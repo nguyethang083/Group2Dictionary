@@ -18,8 +18,8 @@ Example: modifyWord(golang, meaning, orz, anhviet) => this will modify golang me
 Example: queryWord("he", anhviet) => this will return a list of Word object that contain
 prefix "he" like "hello", "help", "height", etc.
 
-Also take care of object type passing in each method
-In case object ype is Word => fast passing like this new Word(word,pronunciation,type,meaning)
+Also notice object type passing in each method
+In case object type is Word => fast passing like this new Word(word,pronunciation,type,meaning)
  */
 public class WordsDao {
     private static PreparedStatement preparedStatement = null;
@@ -130,6 +130,7 @@ public class WordsDao {
         int index = AllWord.leftMostIndex(word);
         if (index == -1) {
             // this word is not in table
+            System.out.println("This word not in dictionary");
             return false;
         }
         index = AllWord.tableID(index);
