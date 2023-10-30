@@ -1,0 +1,29 @@
+dog	con chó
+cat	con mèo
+pig	con lợn
+apple	quả táo
+mango	quả xoài
+banana	quả chuối
+fish	con cá
+gate	cánh cổng
+hello	xin chào
+happy	vui vẻ
+happiness	niềm vui
+smile	mỉm cười
+garden	khu vườn
+flower	bông hoa
+fruit	trái cây
+hate	ghét
+level	cấp độ
+eat	ăn
+breath	thở
+earth	trái đất
+party	bữa tiệc
+next	tiếp theo
+dream	giấc mơ
+fire	lửa
+water	nước
+air	không khí
+dance	nhảy múa
+break	làm gãy
+fly	bay

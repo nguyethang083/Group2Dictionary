@@ -15,12 +15,12 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/bgGUI.png" />
+            <Image url="@../images/bgGUI.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="26.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../images/list.png" />
+            <Image url="@../images/list.png" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="625.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Setting" wrappingWidth="67.14691162109375">

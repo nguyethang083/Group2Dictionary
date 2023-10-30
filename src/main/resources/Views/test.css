@@ -1,8 +1,8 @@
 @font-face {
-    src: url("../../../fonts/PlayfairDisplay-Bold.ttf"),
-    url("../../../fonts/OpenSans-Light.ttf"),
-    url("../../../fonts/NotoSans-Bold.ttf"),
-    url("../../../fonts/NotoSans-Regular.ttf");
+    src: url("../fonts/PlayfairDisplay-Bold.ttf"),
+    url("../fonts/OpenSans-Light.ttf"),
+    url("../fonts/NotoSans-Bold.ttf"),
+    url("../fonts/NotoSans-Regular.ttf");
 }
 
 .text-area > .scroll-pane {
