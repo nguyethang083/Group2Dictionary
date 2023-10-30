@@ -1,0 +1,42 @@
+@font-face {
+    src: url("../../../fonts/PlayfairDisplay-Bold.ttf"),
+    url("../../../fonts/OpenSans-Light.ttf"),
+    url("../../../fonts/NotoSans-Bold.ttf"),
+    url("../../../fonts/NotoSans-Regular.ttf");
+}
+
+.text-area > .scroll-pane {
+    -fx-padding: 0;
+}
+
+.word {
+    -fx-font-family: "Playfair Display";
+    -fx-font-size: 25;
+    -fx-background-color: transparent;
+}
+
+.partofspeech {
+    -fx-font-family: "Playfair Display";
+    -fx-font-size: 18;
+    -fx-background-color: transparent;
+    -fx-text-fill: #527b8e;
+}
+
+.phonetic {
+    -fx-background-color: transparent;
+    -fx-font-size: 16;
+}
+
+.definition {
+    -fx-background-color: transparent;
+    -fx-font-family: "Noto Sans";
+    -fx-font-weight: 700;
+    -fx-font-size: 20;
+    -fx-text-fill: #1a475b;
+}
+
+.meaning {
+    -fx-background-color: transparent;
+    -fx-font-size: 14;
+    -fx-font-weight: 100;
+}

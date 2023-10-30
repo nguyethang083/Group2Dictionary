@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/bgGUI.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="26.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../images/list.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="625.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Setting" wrappingWidth="67.14691162109375">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="717.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="More" wrappingWidth="52.74700927734375">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextFlow layoutX="46.0" layoutY="167.0" prefHeight="298.0" prefWidth="372.0">
+         <children>
+            <TextField prefHeight="54.0" prefWidth="130.0" promptText="word" styleClass="word" stylesheets="@test.css" />
+            <TextField alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="163.0" promptText="parts of speech" styleClass="partofspeech" stylesheets="@test.css" />
+            <TextField alignment="TOP_LEFT" prefHeight="34.0" prefWidth="230.0" promptText="phonetic" styleClass="phonetic" stylesheets="@test.css" />
+            <TextField prefHeight="34.0" prefWidth="198.0" styleClass="definition" stylesheets="@test.css" text="Definition" />
+            <TextArea prefHeight="186.0" prefWidth="364.0" promptText="Meaning" styleClass="meaning" stylesheets="@test.css" />
+         </children>
+      </TextFlow>
+      <Line endX="-99.99996948242188" endY="243.30001831054688" layoutX="517.0" layoutY="259.0" startX="-99.99996948242188" startY="-97.39999389648438" />
+      <Line endX="-477.3999938964844" endY="-97.39999389648438" layoutX="520.0" layoutY="258.0" startX="-103.49996948242188" startY="-96.89999389648438" />
+      <Line endX="-109.39999389648438" endY="233.80001831054688" layoutX="527.0" layoutY="269.0" startX="-483.8000183105469" startY="233.80001831054688" />
+      <Line endX="-485.1999816894531" endY="-107.20001220703125" layoutX="528.0" layoutY="268.0" startX="-485.1999816894531" startY="234.39999389648438" />
+   </children>
+</AnchorPane>
