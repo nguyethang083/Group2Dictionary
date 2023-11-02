@@ -1,3 +1,0 @@
-Step 1: Window: run the "jsapi.exe" in the "lib" folder to extract the "jsapi.jar" file
-	Other OS: try "jsapi.sh"
-Step 2: add the whole "lib" folder to your project

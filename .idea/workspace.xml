@@ -5,12 +5,317 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_10_2023_10_56_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_10_2023_10_56_AM__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engData.db" beforeDir="false" afterPath="$PROJECT_DIR$/engData.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/DictionaryCommandline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/DictionaryCommandline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/DictionaryManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/DictionaryManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/models/Dao/WordsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/models/Dao/WordsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/ANNOUNCE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/How to add freetts to your project.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/RELEASE_NOTES" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/Client.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/EmacspeakServer.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/FreeTTSEmacspeakServer.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/FreeTTSHelloWorld.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/HelloWorld.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/JTime.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/MixedVoices.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/Player.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/Server.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/bin/WebStartClock.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/demo.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/ContributorsAgreement.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/FreeTTSStuff.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/FreeTTS_handout.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/FreeTTS_handout.sxw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/ProgrammerGuide.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/12-35.au" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/12-35.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/complex.au" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/complex.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/cookiecooks.au" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/cookiecooks.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/shoeshineshop.au" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/shoeshineshop.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/talkforever.au" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/talkforever.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/talkforever16.au" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/talkforever16.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/thanks.au" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/audio/thanks.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/create_php.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/demo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/emacspeak_index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/html_copyright.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/TinyWebStartClock.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img0.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img10.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img11.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img8.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/img9.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/images/speaker1.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/jsapi_setup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/mixedsource_copyright.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/release_checklist.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/shell_copyright.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/source_copyright.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/docs/utterance.sxd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/allclasses-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/allclasses-noframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/BaseAudioManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/BaseEngine.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/BaseEngineProperties.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/EngineEventPanel.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/EngineMonitor.EngineMonitorEngineListener.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/EngineMonitor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/SpeechEventDispatcher.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/SpeechEventUtilities.SpeechAWTEvent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/SpeechEventUtilities.SpeechAWTEventTarget.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/SpeechEventUtilities.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/SpeechEventWrapper.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/BaseSynthesizer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/BaseSynthesizerProperties.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/BaseSynthesizerQueueItem.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/BaseVoice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/JSMLParser.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/SynthesizerMonitor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/SynthesizerSelector.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/VoiceList.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/text/TextEngineCentral.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/text/TextSynthesizer.OutputHandler.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/text/TextSynthesizer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/text/TextSynthesizerModeDesc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/text/TextSynthesizerQueueItem.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/text/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/text/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/engine/synthesis/text/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Age.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Dumpable.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/FeatureProcessor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/FeatureSet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/FeatureSetImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/FreeTTS.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/FreeTTSSpeakable.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/FreeTTSSpeakableImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/FreeTTSTime.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Gender.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/InputMode.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Item.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/ItemContents.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/OutputQueue.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/PartOfSpeech.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/PartOfSpeechImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/PathExtractor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/PathExtractorImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/PhoneDuration.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/PhoneDurations.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/PhoneDurationsImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/PhoneSet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/PhoneSetImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/ProcessException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Relation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Segmenter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Token.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Tokenizer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Unit.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Utterance.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/UtteranceProcessor.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/ValidationException.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Validator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/Voice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/VoiceDirectory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/VoiceManager.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/AudioPlayer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/JavaClipAudioPlayer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/JavaStreamingAudioPlayer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/MultiFile8BitAudioPlayer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/MultiFileAudioPlayer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/NullAudioPlayer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/RawFileAudioPlayer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/SingleFileAudioPlayer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/audio/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/cart/CART.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/cart/CARTImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/cart/Durator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/cart/Intonator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/cart/Phraser.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/cart/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/cart/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/cart/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/clunits/ClusterUnitDatabase.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/clunits/ClusterUnitPitchmarkGenerator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/clunits/ClusterUnitSelector.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/clunits/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/clunits/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/clunits/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/diphone/AliasDiphone.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/diphone/Diphone.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/diphone/DiphonePitchmarkGenerator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/diphone/DiphoneUnitDatabase.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/diphone/DiphoneUnitSelector.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/diphone/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/diphone/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/diphone/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/ContourGenerator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/PartOfSpeechTagger.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/PauseGenerator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/PostLexicalAnalyzer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/TokenizerImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/CMUArcticVoice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/CMUClusterUnitVoice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/CMUDiphoneVoice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/CMULexicon.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/CMUTimeLexicon.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/CMUTimeVoice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/CMUVoice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.Accented.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.AccentedSylIn.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.Gpos.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.LastAccent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.MonthRange.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.NumDigits.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PH_CPlace.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PH_CType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PH_CVox.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PH_VC.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PH_VFront.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PH_VHeight.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PH_VLength.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PH_VRnd.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PosInSyl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.PositionType.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegCodaFric.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegCodaGlide.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegCodaNasal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegCodaStop.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegOnsetCoda.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegOnsetFric.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegOnsetGlide.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegOnsetNasal.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegOnsetStop.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SegmentDuration.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.StressedSylIn.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.StressedSylOut.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SubPhrases.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SylBreak.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SylCodaSize.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SylIn.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SylOnsetSize.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.SylOut.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.TokenPosGuess.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.WordBreak.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.WordNumSyls.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.WordPunc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/FeatureProcessors.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/NumberExpander.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/PrefixFSM.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/PronounceableFSM.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/SuffixFSM.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/TokenToWords.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/USEnglish.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/WordRelation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/en/us/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/jsapi/FreeTTSEngineCentral.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/jsapi/FreeTTSSynthesizer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/jsapi/FreeTTSSynthesizerModeDesc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/jsapi/FreeTTSSynthesizerQueueItem.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/jsapi/FreeTTSVoice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/jsapi/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/jsapi/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/jsapi/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/lexicon/LetterToSound.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/lexicon/LetterToSoundImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/lexicon/Lexicon.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/lexicon/LexiconImpl.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/lexicon/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/lexicon/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/lexicon/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/relp/AudioOutput.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/relp/LPCResult.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/relp/Sample.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/relp/SampleInfo.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/relp/SampleSet.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/relp/UnitConcatenator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/relp/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/relp/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/relp/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/util/BulkTimer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/util/SegmentRelationUtils.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/util/Timer.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/util/Utilities.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/util/WaveUtils.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/util/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/util/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/com/sun/speech/freetts/util/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/constant-values.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/en/us/MbrolaVoice.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/en/us/MbrolaVoiceDirectory.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/en/us/MbrolaVoiceValidator.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/en/us/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/en/us/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/en/us/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/mbrola/MbrolaAudioOutput.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/mbrola/MbrolaCaller.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/mbrola/ParametersToMbrolaConverter.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/mbrola/package-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/mbrola/package-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/de/dfki/lt/freetts/mbrola/package-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/deprecated-list.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/help-doc.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/index-all.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/overview-frame.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/overview-summary.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/overview-tree.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/package-list" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/packages.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/resources/inherit.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/serialized-form.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/javadoc/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/cmu_time_awb.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/cmu_us_kal.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/cmudict04.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/cmulex.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/cmutimelex.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/en_us.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/freetts-jsapi10.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/freetts.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/jsapi.exe" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/jsapi.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/jsapi.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/mbrola.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/lib/voices.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/mbrola/README.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/mbrola/mbrola.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/freetts-1.2/speech.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,29 +348,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;eunjungham&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/hoc2/OOP/BTL/Group2Dictionary/lib/sqlite-jdbc-3.36.0.3.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "database.data.extractors.current.export.id": "Comma-separated (CSV)_id",
+    "git-widget-placeholder": "eunjungham",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/hoc2/OOP/BTL/Group2Dictionary/src/main/resources/BigEnglish.csv",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Global Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Dictionary.DictionaryCommandLine.DictionaryCommandline">
     <configuration name="DataBase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Dictionary.DictionaryCommandLine.DataBase" />
@@ -97,19 +404,6 @@
       <option name="ALTERNATIVE_JRE_PATH" value="20" />
       <option name="MAIN_CLASS_NAME" value="Dictionary.DictionaryCommandLine.DictionaryCommandline" />
       <module name="DictGroup2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="DictGroup2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="DictGroup2" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
