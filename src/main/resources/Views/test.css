@@ -1,0 +1,103 @@
+@font-face {
+    src: url("../fonts/PlayfairDisplay-Bold.ttf"),
+    url("../fonts/OpenSans-Light.ttf"),
+    url("../fonts/NotoSans-Bold.ttf"),
+    url("../fonts/NotoSans-Regular.ttf");
+}
+
+.text-area > .scroll-pane {
+    -fx-padding: 0;
+}
+.text-area {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
+
+.text-area:focused {
+    -fx-highlight-fill: #7ecfff;
+}
+
+.text-area .content {
+    -fx-padding: 10px;
+    -fx-text-fill: rgb(128, 128, 128);
+    -fx-highlight-fill: #7ecfff;
+}
+.text-field > .scroll-pane {
+    -fx-padding: 0;
+}
+.text-field {
+    -fx-background-color: -fx-control-inner-background;
+    -fx-background-insets: 0;
+    -fx-padding: 1 3 1 3;
+}
+
+.word {
+    -fx-font-family: "Playfair Display";
+    -fx-font-size: 25;
+    -fx-background-color: transparent;
+}
+
+.partofspeech {
+    -fx-font-family: "Playfair Display";
+    -fx-font-size: 18;
+    -fx-background-color: transparent;
+    -fx-text-fill: #527b8e;
+}
+
+.phonetic {
+    -fx-background-color: transparent;
+    -fx-font-size: 16;
+}
+
+.definition {
+    -fx-background-color: transparent;
+    -fx-font-family: "Noto Sans";
+    -fx-font-weight: 700;
+    -fx-font-size: 20;
+    -fx-text-fill: #1a475b;
+}
+
+.meaning {
+    -fx-background-color: transparent;
+    -fx-font-size: 14;
+    -fx-font-weight: 100;
+}
+
+.combo-box-popup .list-cell {
+    -fx-pref-height: 30px; /* Adjust this value as needed */
+}
+
+/* Adjust the height of the combo box list view */
+.combo-box-popup .list-view {
+    -fx-pref-height: 90px; /* This should be 3 times the height of list-cell */
+}
+
+.combo-box {
+    -fx-background-color: transparent;
+    -fx-font-size: 14;
+}
+
+/* Style the combo box button to be transparent */
+.combo-box-base {
+    -fx-background-color: transparent;
+}
+
+/* Remove the arrow of the combo box */
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.combo-box .arrow {
+    -fx-shape: none;
+}
+
+
+

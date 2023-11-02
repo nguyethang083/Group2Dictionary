@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.helloviewController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/bgGUI.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="listbar" fitHeight="32.0" fitWidth="32.0" layoutX="26.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/list.png" />
+         </image>
+      </ImageView>
+      <Text fill="WHITE" layoutX="625.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Setting" wrappingWidth="67.14691162109375">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="717.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="More" wrappingWidth="52.74700927734375">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font>
+      </Text>
+      <TextFlow layoutX="46.0" layoutY="167.0" prefHeight="298.0" prefWidth="372.0">
+         <children>
+            <Label fx:id="wordLabel" prefHeight="55.0" prefWidth="134.0" styleClass="word" stylesheets="@test.css" />
+            <TextField fx:id="partsofspeech" alignment="BOTTOM_LEFT" prefHeight="40.0" prefWidth="163.0" promptText="parts of speech" styleClass="partofspeech" stylesheets="@test.css" />
+            <TextField fx:id="phonetic" alignment="TOP_LEFT" prefHeight="34.0" prefWidth="230.0" promptText="phonetic" styleClass="phonetic" stylesheets="@test.css" />
+            <TextField prefHeight="34.0" prefWidth="198.0" styleClass="definition" stylesheets="@test.css" text="Definition" />
+            <TextArea fx:id="meaning" prefHeight="186.0" prefWidth="364.0" promptText="Meaning" styleClass="meaning" stylesheets="@test.css" />
+         </children>
+      </TextFlow>
+      <ComboBox fx:id="comboBox" layoutX="268.0" layoutY="19.0" prefHeight="28.0" prefWidth="253.0" promptText="search for a word" stylesheets="@test.css" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" layoutX="483.0" layoutY="17.0" stroke="WHITE" strokeType="INSIDE" width="67.0" />
+   </children>
+</AnchorPane>
