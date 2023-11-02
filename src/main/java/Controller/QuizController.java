@@ -2,8 +2,6 @@ package Controller;
 
 
 import Game.Quiz;
-import DictionaryCommandLine.Dictionary;
-import DictionaryCommandLine.DictionaryManagement;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,10 +15,10 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.sql.SQLException;
 
 public class QuizController implements Initializable {
-    private Dictionary dictionary = new Dictionary();
-    private DictionaryManagement dictionaryManagement = new DictionaryManagement();
+
     private final Quiz quiz;
     ToggleGroup group = new ToggleGroup();
     @FXML
@@ -38,7 +36,7 @@ public class QuizController implements Initializable {
     @FXML
     private Label Result = new Label();
 
-    public QuizController() {
+    public QuizController() throws SQLException {
         quiz = new Quiz();
     }
 
@@ -70,7 +68,7 @@ public class QuizController implements Initializable {
         }
     }
 
-    public void handleSubmit(ActionEvent event) {
+    public void handleNext(ActionEvent event) {
         startQuiz();
         System.out.println("Submit button clicked!");
     }
@@ -84,7 +82,7 @@ public class QuizController implements Initializable {
 
     public void startQuiz() {
         setAvailable();
-        quiz.initQuiz(dictionary);
+        quiz.initQuiz();
         setQuestion();
         setChoices();
         handleVisible();
@@ -114,7 +112,6 @@ public class QuizController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dictionaryManagement.insertFromFile(dictionary);
         for (RadioButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
             button.setToggleGroup(group);
         }
@@ -122,7 +119,7 @@ public class QuizController implements Initializable {
         for (RadioButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
             button.setOnAction(this::handleSelected);
         }
-        NextButton.setOnAction(this::handleSubmit);
+        NextButton.setOnAction(this::handleNext);
     }
 
     public void handleVisible() {
