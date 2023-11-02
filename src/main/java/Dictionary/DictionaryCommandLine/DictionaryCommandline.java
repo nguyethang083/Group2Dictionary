@@ -1,5 +1,12 @@
 package Dictionary.DictionaryCommandLine;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import Dictionary.models.Dao.AllWord;
+import Dictionary.models.Dao.WordsDao;
+import Dictionary.models.Entity.Word;
+
 public class DictionaryCommandline {
     public void dictionaryBasic(DictionaryManagement insertDict) {
         insertDict.removeWord();

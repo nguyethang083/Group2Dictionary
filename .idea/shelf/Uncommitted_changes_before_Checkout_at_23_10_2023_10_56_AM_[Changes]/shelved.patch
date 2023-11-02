@@ -1,0 +1,14 @@
+Index: src/main/resources/data.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>dog\tcon chó\r\ncat\tcon mèo\r\npig\tcon lợn\r\napple\tquả táo\r\nmango\tquả xoài\r\nbanana\tquả chuối\r\nfish\tcon cá\r\ngate\tcánh cổng\r\nhello\txin chào\r\nhappy\tvui vẻ\r\nhappiness\tniềm vui\r\nsmile\tmỉm cười\r\ngarden\tkhu vườn\r\nflower\tbông hoa\r\nfruit\ttrái cây\r\nhate\tghét\r\nlevel\tcấp độ\r\neat\tăn\r\nbreath\tthở\r\nearth\ttrái đất\r\nparty\tbữa tiệc\r\nnext\ttiếp theo\r\ndream\tgiấc mơ\r\nfire\tlửa\r\nwater\tnước\r\nair\tkhông khí\r\ndance\tnhảy múa\r\nbreak\tlàm gãy\r\nfly\tbay\r\n
+===================================================================
+diff --git a/src/main/resources/data.txt b/src/main/resources/data.txt
+--- a/src/main/resources/data.txt	
++++ b/src/main/resources/data.txt	
+@@ -26,4 +26,4 @@
+ air	không khí
+ dance	nhảy múa
+ break	làm gãy
+-fly	bay
++hi	ui

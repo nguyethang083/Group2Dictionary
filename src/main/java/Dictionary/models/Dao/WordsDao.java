@@ -4,7 +4,6 @@ import Dictionary.models.Entity.Word;
 import java.sql.*;
 import java.util.ArrayList;
 
-
 /* How to use ?
 - If you want to add word to specific table, using addWord method
 Example: addWord(golang, anhviet) => this will add golang into table anhviet

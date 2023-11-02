@@ -1,5 +1,4 @@
 package Dictionary.models.Entity;
-
 import java.util.*;
 
 public class WordCollection {
@@ -66,3 +65,5 @@ public class WordCollection {
         }
     }
 }
+
+

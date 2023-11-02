@@ -17,10 +17,6 @@ public class Word {
         this.meaning = meaning;
     }
 
-    public Word() {
-
-    }
-
     public String getWord() {
         return word;
     }

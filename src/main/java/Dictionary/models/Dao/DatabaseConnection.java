@@ -1,7 +1,7 @@
 package Dictionary.models.Dao;
 
 import java.sql.*;
-
+import java.io.Console;
 public class DatabaseConnection {
     private static final String DBPATH = "jdbc:sqlite:engData.db";
 
