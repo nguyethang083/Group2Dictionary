@@ -1,22 +1,18 @@
 package Dictionary.DictionaryCommandLine;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
-import Dictionary.models.Dao.AllWord;
-import Dictionary.models.Dao.WordsDao;
-import Dictionary.models.Entity.Word;
+import java.sql.SQLException;
 
 public class DictionaryCommandline {
-    public void dictionaryBasic(DictionaryManagement insertDict) {
+    public void dictionaryBasic(DictionaryManagement insertDict) throws SQLException {
         insertDict.removeWord();
         insertDict.addWord();
-        insertDict.modifyWord();
+        //insertDict.modifyWord();
         insertDict.dictionarySearcher();
+        //insertDict.dictionarySearcher2();
         insertDict.lookup();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         DictionaryManagement DictManagement = new DictionaryManagement();
         DictionaryCommandline DictCmD = new DictionaryCommandline();
         DictCmD.dictionaryBasic(DictManagement);
