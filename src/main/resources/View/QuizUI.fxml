@@ -4,14 +4,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" stylesheets="@QuizStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.QuizController">
    <children>
-      <RadioButton fx:id="PlanA" layoutX="74.0" layoutY="293.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="300.0" text="RadioButton" />
-      <RadioButton fx:id="PlanC" layoutX="71.0" layoutY="379.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="300.0" text="RadioButton" />
-      <RadioButton fx:id="PlanB" layoutX="522.0" layoutY="293.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="300.0" text="RadioButton" />
-      <RadioButton fx:id="PlanD" layoutX="519.0" layoutY="379.0" mnemonicParsing="false" prefHeight="75.0" prefWidth="300.0" text="RadioButton" />
-      <Label fx:id="Question" layoutX="88.0" layoutY="60.0" prefHeight="200.0" prefWidth="700.0" text="Label" />
+      <RadioButton fx:id="PlanA" contentDisplay="CENTER" layoutX="12.0" layoutY="288.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="430.0" styleClass="radiobutton" stylesheets="@QuizStyle.css" text="RadioButton">
+         <font>
+            <Font name="Noto Sans Regular" size="24.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="PlanC" layoutX="12.0" layoutY="381.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="430.0" styleClass="radiobutton" text="RadioButton" textAlignment="CENTER">
+         <font>
+            <Font name="Noto Sans Regular" size="24.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="PlanB" layoutX="457.0" layoutY="288.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="430.0" styleClass="radiobutton" text="RadioButton" textAlignment="CENTER">
+         <font>
+            <Font name="Noto Sans Regular" size="24.0" />
+         </font></RadioButton>
+      <RadioButton fx:id="PlanD" layoutX="457.0" layoutY="381.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="430.0" styleClass="radiobutton" text="RadioButton" textAlignment="CENTER">
+         <font>
+            <Font name="Noto Sans Regular" size="24.0" />
+         </font></RadioButton>
+      <Label fx:id="Question" alignment="TOP_CENTER" layoutX="90.0" layoutY="148.0" prefHeight="200.0" prefWidth="723.0" text="Label" textAlignment="CENTER">
+         <font>
+            <Font name="Playfair Display Bold" size="26.0" />
+         </font></Label>
       <Button fx:id="NextButton" layoutX="728.0" layoutY="510.0" mnemonicParsing="false" text="Next" />
       <Label fx:id="Result" layoutX="75.0" layoutY="501.0" prefHeight="57.0" prefWidth="525.0" text="Label" />
    </children>

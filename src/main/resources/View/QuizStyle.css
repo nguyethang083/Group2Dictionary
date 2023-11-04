@@ -1,0 +1,13 @@
+@font-face {
+    src: url("../fonts/PlayfairDisplay-Bold.ttf"),
+    url("../fonts/OpenSans-Light.ttf"),
+    url("../fonts/NotoSans-Bold.ttf"),
+    url("../fonts/NotoSans-Regular.ttf");
+}
+
+.radiobutton {
+    -fx-border-radius: 10px;
+    -fx-border-color: rgba(82, 123, 142, 0.40);
+    -fx-border-width: 2px;
+    -fx-background: #ffffff;
+}
