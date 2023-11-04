@@ -1,5 +1,6 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.models.EngWord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.image.ImageView;
 import java.net.URL;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import static Dictionary.models.AllWord.allWord;
 
 public class helloviewController implements Initializable {
     @FXML
@@ -32,7 +35,10 @@ public class helloviewController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<String> words = FXCollections.observableArrayList("Dog", "Cat", "Bear", "Doc", "Crocodile", "Coconut", "dog");
+        ObservableList<String> words = FXCollections.observableArrayList();
+        for (EngWord engword : allWord) {
+            words.add(engword.getWord());
+        }
         comboBox.setItems(words);
         comboBox.setEditable(true);
         comboBox.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {

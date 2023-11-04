@@ -5,8 +5,12 @@ module DICTIONARY {
     requires javafx.controls;
 
     requires org.controlsfx.controls;
+    requires ormlite.jdbc;
+    requires jlayer;
     opens Dictionary.DictionaryController to javafx.fxml;
     opens Dictionary to javafx.graphics;
+    opens Dictionary.models to ormlite.jdbc;
+    exports Dictionary.models;
     exports Dictionary.DictionaryController;
     exports Dictionary;
 }

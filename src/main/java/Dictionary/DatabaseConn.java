@@ -8,8 +8,6 @@ import java.sql.SQLException;
 
 
 public class DatabaseConn {
-
-    
     private static final String DATABASE_URL = "jdbc:sqlite:engData.db";
 
     public static ConnectionSource connectionSource;
