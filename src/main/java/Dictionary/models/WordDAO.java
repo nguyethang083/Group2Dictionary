@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WordDAO extends BaseDaoImpl<EngWord, Long> {
-    public WordDAO(ConnectionSource connectionSource) throws SQLException, SQLException {
+    public WordDAO(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, EngWord.class);
     }
 
