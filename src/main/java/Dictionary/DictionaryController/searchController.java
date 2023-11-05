@@ -7,20 +7,24 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import Dictionary.DatabaseConn;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-public class helloviewController implements Initializable {
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import static Dictionary.models.AllWord.allWord;
+import static Dictionary.DatabaseConn.WordDAO;
+
+public class searchController implements Initializable {
     @FXML
     private ComboBox<String> comboBox;
 
@@ -34,41 +38,53 @@ public class helloviewController implements Initializable {
     private Label wordLabel;
 
     @FXML
-    private ImageView exampleContainer, synonymContainer, voiceButton;
+    private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll;
 
     @FXML
-    private Text examplePrompt, synonymPrompt;;
+    private Text examplePrompt, synonymPrompt;
 
     @FXML
     private Rectangle rectangle;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            List<EngWord> sortedWords = DatabaseConn.WordDAO.sortingWord();
-            ObservableList<String> words = FXCollections.observableArrayList(sortedWords.stream().map(EngWord::getWord).collect(Collectors.toList()));
-            comboBox.setItems(words);
-            //comboBox.setEditable(true);
-            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-                ObservableList<String> filteredWords = words.filtered(word -> word.toLowerCase().contains(newValue.toLowerCase()));
-                comboBox.setItems(filteredWords);
-                if (!comboBox.isShowing()) {
-                    comboBox.show();
-                }
-            });
-
-            comboBox.setOnAction(event -> updateView());
-        } catch (SQLException e) {
-            e.printStackTrace();
+        ObservableList<String> words = FXCollections.observableArrayList();
+        for (EngWord engword : allWord) {
+            words.add(engword.getWord());
         }
+        comboBox.setItems(words);
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                comboBox.hide();
+            } else {
+                ObservableList<String> filteredWords;
+                try {
+                    filteredWords = FXCollections.observableArrayList();
+                    List<EngWord> wordss = WordDAO.containWordByString(newValue);
+                    for (EngWord e : wordss) {
+                        filteredWords.add(e.getWord());
+                    }
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                comboBox.setItems(filteredWords);
+                if (!filteredWords.isEmpty() && !comboBox.isShowing()) {
+                    comboBox.show();
+                } else if (filteredWords.isEmpty()) {
+                    comboBox.hide();
+                }
+            }
+        });
+
+        comboBox.setOnAction(event -> updateView());
     }
 
     private void updateView() {
         String selectedWord = comboBox.getSelectionModel().getSelectedItem();
         if (selectedWord != null) {
-            wordLabel.setText(selectedWord);
             try {
-                EngWord engWord = DatabaseConn.WordDAO.queryWordByString(selectedWord);
+                EngWord engWord = WordDAO.queryWordByString(selectedWord);
+                wordLabel.setText(engWord.getWord());
                 phonetic.setText(engWord.getPronunciation());
                 partsofspeech.setText(engWord.getType().toLowerCase());
                 meaning.setText(engWord.getMeaning());
@@ -117,5 +133,30 @@ public class helloviewController implements Initializable {
     @FXML
     void setOnMouseExited(MouseEvent event) {
         voiceButton.setCursor(Cursor.DEFAULT);
+    }
+
+    @FXML
+    void setOpacityPressed1(MouseEvent event) {
+        deleteAll.setOpacity(0.5);
+    }
+
+    @FXML
+    void setOpacityReleased1(MouseEvent event) {
+        deleteAll.setOpacity(1.0);
+    }
+
+    @FXML
+    void setOnMouseEntered1(MouseEvent event) {
+        deleteAll.setCursor(Cursor.HAND);
+    }
+
+    @FXML
+    void setOnMouseExited1(MouseEvent event) {
+        deleteAll.setCursor(Cursor.DEFAULT);
+    }
+
+    @FXML
+    void clearSearchField(MouseEvent event) {
+        searchField.clear();
     }
 }

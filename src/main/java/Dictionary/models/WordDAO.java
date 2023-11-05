@@ -105,28 +105,6 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
         return true;
     }
 
-    public boolean updateAntonyms(String word, String antonyms) throws SQLException {
-        try {
-            EngWord engWord = this.queryBuilder().where().eq("Word", word).queryForFirst();
-            if (engWord != null) {
-                if (engWord.getAntonyms().isEmpty()) {
-                    engWord.setAntonyms(antonyms);
-                } else if (!antonyms.isEmpty())
-                    engWord.setAntonyms(engWord.getAntonyms() + "\n" + antonyms);
-                this.update(engWord);
-            } else {
-                EngWord newEngWord = new EngWord();
-                newEngWord.setWord(word);
-                newEngWord.setAntonyms(antonyms);
-                this.create(newEngWord);
-            }
-        } catch (SQLException e) {
-            System.err.println(e.getMessage() + " insertAntonyms");
-            return false;
-        }
-        return true;
-    }
-
     // co the tra ra null
     public EngWord queryWordByString(String word) throws SQLException {
         return this.queryBuilder().where().eq("Word", word).queryForFirst();
@@ -334,9 +312,5 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
            return false;
        }
        return true;
-   }
-
-   public List<EngWord> sortingWord() throws SQLException {
-        return this.queryBuilder().orderBy("Word", true).query();
    }
 }

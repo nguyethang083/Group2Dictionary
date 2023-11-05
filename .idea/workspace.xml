@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="adding VoiceFunction">
+    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="fix search, adding effect">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/XButton.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/helloviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/helloviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/comboBoxController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/helloviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/searchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/models/WordDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/models/WordDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/comboBox.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Views/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/hello-view.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/test.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/test.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +96,7 @@
       <workItem from="1698034527368" duration="21305000" />
       <workItem from="1698075292516" duration="880000" />
       <workItem from="1698369202392" duration="19619000" />
-      <workItem from="1699112023639" duration="23059000" />
+      <workItem from="1699112023639" duration="34392000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -142,7 +146,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699187604208</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix search, adding effect">
+      <option name="closed" value="true" />
+      <created>1699193918126</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699193918126</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,7 +180,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="user">
+                    <value>
+                      <list>
+                        <option value="*" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -182,6 +206,7 @@
     <MESSAGE value="show search list" />
     <MESSAGE value="searchGUI 1st draft" />
     <MESSAGE value="adding VoiceFunction" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding VoiceFunction" />
+    <MESSAGE value="fix search, adding effect" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix search, adding effect" />
   </component>
 </project>

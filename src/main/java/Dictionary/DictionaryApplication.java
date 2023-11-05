@@ -19,7 +19,7 @@ public class DictionaryApplication extends Application {
         //stage.show();
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/hello-view.fxml")));
-        primaryStage.setTitle("Sample");
+        primaryStage.setTitle("VLexi Dictionary App");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
