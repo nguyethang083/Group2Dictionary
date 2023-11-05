@@ -72,7 +72,7 @@ public class VoiceFunction {
                         }
                     }
                 }
-            }catch (Exception e) {
+            } catch (Exception e) {
                 return;
             }
         } );
