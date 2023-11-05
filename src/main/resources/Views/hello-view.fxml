@@ -33,7 +33,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Text>
-      <ComboBox fx:id="comboBox" layoutX="268.0" layoutY="19.0" prefHeight="30.0" prefWidth="290.0" promptText="search for a word" stylesheets="@test.css" />
+      <ComboBox fx:id="comboBox" layoutX="259.0" layoutY="15.0" prefHeight="30.0" prefWidth="290.0" stylesheets="@test.css" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="34.0" layoutX="483.0" layoutY="17.0" stroke="WHITE" strokeType="INSIDE" width="77.0" />
       <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="334.0" layoutX="421.0" layoutY="156.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="1.5" style="-fx-arc-width: 50; -fx-arc-height: 50;" visible="false" width="409.0" />
       <Label fx:id="wordLabel" layoutX="457.0" layoutY="174.0" prefHeight="55.0" prefWidth="182.0" styleClass="word" stylesheets="@test.css" />
@@ -76,5 +76,6 @@
             <Image url="@../images/voiceButton.png" />
          </image>
       </ImageView>
+      <TextField fx:id="searchField" layoutX="259.0" layoutY="13.0" prefHeight="42.0" prefWidth="290.0" promptText="search here" styleClass="searchBox" stylesheets="@test.css" />
    </children>
 </AnchorPane>

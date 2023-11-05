@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="searchGUI 1st draft">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="adding VoiceFunction">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/VoiceFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/VoiceFunction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/helloviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/helloviewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Views/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/test.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/test.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,12 +44,16 @@
   &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2X6w5CNyLxB9d3dvaUQLxshJ0Nx" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -90,7 +92,7 @@
       <workItem from="1698034527368" duration="21305000" />
       <workItem from="1698075292516" duration="880000" />
       <workItem from="1698369202392" duration="19619000" />
-      <workItem from="1699112023639" duration="20311000" />
+      <workItem from="1699112023639" duration="23059000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -124,7 +126,23 @@
       <option name="project" value="LOCAL" />
       <updated>1699180394540</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="adding VoiceFunction">
+      <option name="closed" value="true" />
+      <created>1699187595677</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699187595677</updated>
+    </task>
+    <task id="LOCAL-00006" summary="adding VoiceFunction">
+      <option name="closed" value="true" />
+      <created>1699187604208</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699187604208</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,11 +175,13 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="test" />
     <MESSAGE value="delete files" />
     <MESSAGE value="new database" />
     <MESSAGE value="show search list" />
     <MESSAGE value="searchGUI 1st draft" />
-    <option name="LAST_COMMIT_MESSAGE" value="searchGUI 1st draft" />
+    <MESSAGE value="adding VoiceFunction" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding VoiceFunction" />
   </component>
 </project>

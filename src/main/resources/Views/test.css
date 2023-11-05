@@ -97,6 +97,10 @@
     -fx-shape: none;
 }
 
+.combo-box-popup .scroll-bar {
+    -fx-opacity: 0;
+}
+
 .rectangle {
     width: 200px;
     height: 100px;
@@ -109,6 +113,11 @@
     -fx-background-color: transparent;
     -fx-font-family: "Noto Sans";
     -fx-font-weight: 700;
+    -fx-font-size: 14;
+}
+
+.searchBox {
+    -fx-background-color: #FFFFFF;
     -fx-font-size: 14;
 }
 

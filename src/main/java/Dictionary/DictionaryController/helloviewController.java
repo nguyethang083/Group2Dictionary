@@ -28,7 +28,7 @@ public class helloviewController implements Initializable {
     private TextArea meaning, synonym, example;
 
     @FXML
-    private TextField partsofspeech, phonetic, definitionPrompt;
+    private TextField partsofspeech, phonetic, definitionPrompt, searchField;
 
     @FXML
     private Label wordLabel;
@@ -48,14 +48,15 @@ public class helloviewController implements Initializable {
             List<EngWord> sortedWords = DatabaseConn.WordDAO.sortingWord();
             ObservableList<String> words = FXCollections.observableArrayList(sortedWords.stream().map(EngWord::getWord).collect(Collectors.toList()));
             comboBox.setItems(words);
-            comboBox.setEditable(true);
-            comboBox.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            //comboBox.setEditable(true);
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> {
                 ObservableList<String> filteredWords = words.filtered(word -> word.toLowerCase().contains(newValue.toLowerCase()));
                 comboBox.setItems(filteredWords);
                 if (!comboBox.isShowing()) {
                     comboBox.show();
                 }
             });
+
             comboBox.setOnAction(event -> updateView());
         } catch (SQLException e) {
             e.printStackTrace();
