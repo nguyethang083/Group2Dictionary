@@ -9,11 +9,8 @@
     -fx-padding: 0;
 }
 .text-area {
+    -fx-wrap-text: true;
     -fx-background-insets: 0;
-    -fx-background-color: transparent, white, transparent, white;
-}
-
-.text-area .content {
     -fx-background-color: transparent, white, transparent, white;
 }
 
@@ -29,6 +26,7 @@
     -fx-padding: 10px;
     -fx-text-fill: rgb(128, 128, 128);
     -fx-highlight-fill: #7ecfff;
+    -fx-background-color: transparent, white, transparent, white;
 }
 .text-field > .scroll-pane {
     -fx-padding: 0;
@@ -99,5 +97,19 @@
     -fx-shape: none;
 }
 
+.rectangle {
+    width: 200px;
+    height: 100px;
+    background-color: transparent;
+    border-radius: 25px;
+}
+
+.synonym {
+    -fx-text-fill: #000000;
+    -fx-background-color: transparent;
+    -fx-font-family: "Noto Sans";
+    -fx-font-weight: 700;
+    -fx-font-size: 14;
+}
 
 

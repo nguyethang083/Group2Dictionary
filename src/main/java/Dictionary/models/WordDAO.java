@@ -326,15 +326,17 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
     }
 
    public boolean sortedWord() throws SQLException {
-        var x = this.queryBuilder();
-        try {
-            x.orderBy("Word", true);
-        }
-        catch (Exception e){
-            System.err.println(e.getMessage() + " sortedWord");
-            return false;
-        }
-        return true;
-    }
+       var x = this.queryBuilder();
+       try {
+           x.orderBy("Word", true);
+       } catch (Exception e) {
+           System.err.println(e.getMessage() + " sortedWord");
+           return false;
+       }
+       return true;
+   }
 
+   public List<EngWord> sortingWord() throws SQLException {
+        return this.queryBuilder().orderBy("Word", true).query();
+   }
 }
