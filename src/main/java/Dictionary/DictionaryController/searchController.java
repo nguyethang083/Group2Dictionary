@@ -2,15 +2,13 @@ package Dictionary.DictionaryController;
 
 import Dictionary.DictionaryCommandLine.VoiceFunction;
 import Dictionary.models.EngWord;
+import Dictionary.models.WordDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -36,15 +34,16 @@ public class searchController implements Initializable {
 
     @FXML
     private Label wordLabel;
-
     @FXML
-    private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll;
+    private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll, editButton, deleteIcon, saveButton;
 
     @FXML
     private Text examplePrompt, synonymPrompt;
 
     @FXML
     private Rectangle rectangle;
+
+    private String selectedWord;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -53,34 +52,72 @@ public class searchController implements Initializable {
             words.add(engword.getWord());
         }
         comboBox.setItems(words);
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.isEmpty()) {
-                comboBox.hide();
-            } else {
-                ObservableList<String> filteredWords;
-                try {
-                    filteredWords = FXCollections.observableArrayList();
-                    List<EngWord> wordss = WordDAO.containWordByString(newValue);
-                    for (EngWord e : wordss) {
-                        filteredWords.add(e.getWord());
-                    }
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-                comboBox.setItems(filteredWords);
-                if (!filteredWords.isEmpty() && !comboBox.isShowing()) {
-                    comboBox.show();
-                } else if (filteredWords.isEmpty()) {
-                    comboBox.hide();
-                }
-            }
-        });
-
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> updateComboBox(newValue));
         comboBox.setOnAction(event -> updateView());
     }
 
+    private void updateComboBox(String newValue) {
+        if (newValue.isEmpty()) {
+            comboBox.hide();
+        } else {
+            ObservableList<String> filteredWords = getFilteredWords(newValue);
+            comboBox.setItems(filteredWords);
+            if (!filteredWords.isEmpty() && !comboBox.isShowing()) {
+                comboBox.show();
+            } else if (filteredWords.isEmpty()) {
+                comboBox.hide();
+            }
+        }
+    }
+
+    private ObservableList<String> getFilteredWords(String newValue) {
+        ObservableList<String> filteredWords = FXCollections.observableArrayList();
+        try {
+            List<EngWord> words = WordDAO.containWordByString(newValue);
+            for (EngWord e : words) {
+                filteredWords.add(e.getWord());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return filteredWords;
+    }
+    @FXML
+    void editWord(MouseEvent event) {
+        partsofspeech.setEditable(true);
+        example.setEditable(true);
+        meaning.setEditable(true);
+        saveButton.setVisible(true);
+    }
+
+    @FXML
+    void saveWord(MouseEvent event) {
+        String newType = partsofspeech.getText();
+        String newMeaning = meaning.getText();
+        String newExample = example.getText();
+
+        try {
+            WordDAO.updateType(selectedWord, newType);
+            WordDAO.updateExample(selectedWord, newExample);
+            WordDAO.updateMeaning(selectedWord, newMeaning);
+            partsofspeech.setEditable(false);
+            meaning.setEditable(false);
+            example.setEditable(false);
+            saveButton.setVisible(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    void deleteWord(MouseEvent event) throws SQLException {
+        WordDAO.deleteWordByString(selectedWord);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("Xóa thành công");
+        alert.showAndWait();
+        setVisibility(false);
+    }
     private void updateView() {
-        String selectedWord = comboBox.getSelectionModel().getSelectedItem();
+        selectedWord = comboBox.getSelectionModel().getSelectedItem();
         if (selectedWord != null) {
             try {
                 EngWord engWord = WordDAO.queryWordByString(selectedWord);
@@ -90,29 +127,35 @@ public class searchController implements Initializable {
                 meaning.setText(engWord.getMeaning());
                 synonym.setText(engWord.getSynonym());
                 example.setText(engWord.getExample());
-                setVisibility();
+                setVisibility(true);
             } catch (SQLException e) {
-                e.printStackTrace();
+                throw new RuntimeException(e);
             }
         }
     }
 
-    private void setVisibility() {
-        exampleContainer.setVisible(true);
-        synonymContainer.setVisible(true);
-        examplePrompt.setVisible(true);
-        definitionPrompt.setVisible(true);
-        synonymPrompt.setVisible(true);
-        rectangle.setVisible(true);
-        voiceButton.setVisible(true);
+    private void setVisibility(boolean isVisible) {
+        exampleContainer.setVisible(isVisible);
+        synonymContainer.setVisible(isVisible);
+        examplePrompt.setVisible(isVisible);
+        definitionPrompt.setVisible(isVisible);
+        synonymPrompt.setVisible(isVisible);
+        rectangle.setVisible(isVisible);
+        voiceButton.setVisible(isVisible);
+        editButton.setVisible(isVisible);
+        deleteIcon.setVisible(isVisible);
     }
 
     @FXML
     void playVoice(MouseEvent event) {
-        String selectedWord = comboBox.getSelectionModel().getSelectedItem();
         if (selectedWord != null) {
             VoiceFunction.playVoice(selectedWord);
         }
+    }
+
+    @FXML
+    void clearSearchField(MouseEvent event) {
+        searchField.clear();
     }
 
     @FXML
@@ -156,7 +199,22 @@ public class searchController implements Initializable {
     }
 
     @FXML
-    void clearSearchField(MouseEvent event) {
-        searchField.clear();
+    void setOpacityPressed2(MouseEvent event) {
+        editButton.setOpacity(0.5);
+    }
+
+    @FXML
+    void setOpacityReleased2(MouseEvent event) {
+        editButton.setOpacity(1.0);
+    }
+
+    @FXML
+    void setOnMouseEntered2(MouseEvent event) {
+        editButton.setCursor(Cursor.HAND);
+    }
+
+    @FXML
+    void setOnMouseExited2(MouseEvent event) {
+        editButton.setCursor(Cursor.DEFAULT);
     }
 }

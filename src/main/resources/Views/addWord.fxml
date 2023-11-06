@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.addWordController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/addWordGUI.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="newWord" layoutX="256.0" layoutY="179.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newPhonetic" layoutX="591.0" layoutY="179.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newType" layoutX="255.0" layoutY="233.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newSynonym" layoutX="590.0" layoutY="234.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newDefinition" layoutX="256.0" layoutY="297.0" prefHeight="73.0" prefWidth="602.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newExample" layoutX="255.0" layoutY="409.0" prefHeight="74.0" prefWidth="602.0" styleClass="meaning" stylesheets="@test.css" />
+      <Button fx:id="addButton" layoutX="672.0" layoutY="534.0" mnemonicParsing="false" onMouseClicked="#addWord" prefHeight="26.0" prefWidth="100.0" text="Add" />
+   </children>
+</AnchorPane>
