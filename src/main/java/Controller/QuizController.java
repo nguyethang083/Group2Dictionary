@@ -11,6 +11,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.paint.Color;
 
 
 import java.net.URL;
@@ -36,6 +38,8 @@ public class QuizController implements Initializable {
     private Button NextButton = new Button();
     @FXML
     private Label Result = new Label();
+    @FXML
+    private ImageView ScoreArea = new ImageView();
     @FXML
     private Label Score = new Label();
     @FXML
@@ -141,6 +145,8 @@ public class QuizController implements Initializable {
                     "    -fx-text-fill: #6BB52C;\n" +
                     "    -fx-font-size: 20px;";
             Result.setStyle(correctStyle);
+//            Result.setTextFill(Color.web("#6bb52c"));
+//            Result.setBackground(Background.fill(Color.web("#d6feb8")));
         } else {
             Result.setText("Incorrect! The answer is " + quiz.getCorrectAnswer() + ".");
             String incorrectStyle = "-fx-border-radius: 10px;\n" +
@@ -150,6 +156,8 @@ public class QuizController implements Initializable {
                     "    -fx-text-fill: #EF6163;\n" +
                     "    -fx-font-size: 20px;";
             Result.setStyle(incorrectStyle);
+//            Result.setTextFill(Color.web("#ef6163"));
+//            Result.setBackground(Background.fill(Color.web("#fededf")));
         }
         Result.setVisible(true);
         NextButton.setVisible(true);
@@ -157,6 +165,7 @@ public class QuizController implements Initializable {
 
     public void handlePlayAgain(ActionEvent event) {
         quiz.setNumberofQuestion(0);
+        quiz.setScore(0);
         startQuiz();
     }
 
@@ -180,6 +189,7 @@ public class QuizController implements Initializable {
         NextButton.setVisible(false);
         Question.setVisible(true);
         Score.setVisible(true);
+        ScoreArea.setVisible(true);
         ResultBack.setVisible(false);
         TryAgain.setVisible(false);
         FinalScore.setVisible(false);
@@ -193,6 +203,7 @@ public class QuizController implements Initializable {
         NextButton.setVisible(false);
         Question.setVisible(false);
         Score.setVisible(false);
+        ScoreArea.setVisible(false);
         ResultBack.setVisible(true);
         TryAgain.setVisible(true);
         FinalScore.setVisible(true);

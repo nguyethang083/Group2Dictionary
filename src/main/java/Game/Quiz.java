@@ -75,6 +75,9 @@ public class Quiz {
         return score;
     }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     public void increaseNumberofQuestion () {
         numberofQuestion++;
