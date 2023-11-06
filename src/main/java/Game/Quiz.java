@@ -26,7 +26,7 @@ public class Quiz {
     }
 
     public String generateQuestion() {
-        return "What is the word for: \n" + question;
+        return "What is the word for: " + question;
     }
 
     public void initQuiz() {
@@ -42,9 +42,9 @@ public class Quiz {
                 tmp = AllWord.allWord.get(random);
             }
             wordChoice.add(random);
-            choice.add(tmp.getWord());
+            choice.add(tmp.getWord().toLowerCase());
             if (i == answerIndex) {
-                correctAnswer = tmp.getWord();;
+                correctAnswer = tmp.getWord().toLowerCase();;
                 question = tmp.getMeaning();
             }
             i++;
@@ -71,9 +71,21 @@ public class Quiz {
         score++;
     }
 
+    public int getScore() {
+        return score;
+    }
+
 
     public void increaseNumberofQuestion () {
         numberofQuestion++;
+    }
+
+    public int getNumberofQuestion() {
+        return numberofQuestion;
+    }
+
+    public void setNumberofQuestion(int numberofQuestion) {
+        this.numberofQuestion = numberofQuestion;
     }
 
     public String getQuestion() {

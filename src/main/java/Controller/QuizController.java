@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 
 
 import java.net.URL;
@@ -22,19 +23,30 @@ public class QuizController implements Initializable {
     private final Quiz quiz;
     ToggleGroup group = new ToggleGroup();
     @FXML
-    private RadioButton PlanA = new RadioButton();
+    private ToggleButton PlanA = new ToggleButton();
     @FXML
-    private RadioButton PlanB = new RadioButton();
+    private ToggleButton PlanB = new ToggleButton();
     @FXML
-    private RadioButton PlanC = new RadioButton();
+    private ToggleButton PlanC = new ToggleButton();
     @FXML
-    private RadioButton PlanD = new RadioButton();
+    private ToggleButton PlanD = new ToggleButton();
     @FXML
     private Label Question = new Label();
     @FXML
     private Button NextButton = new Button();
     @FXML
     private Label Result = new Label();
+    @FXML
+    private Label Score = new Label();
+    @FXML
+    private Label questionNumber = new Label();
+    @FXML
+    private ImageView ResultBack = new ImageView();
+    @FXML
+    private Label FinalScore = new Label();
+    @FXML
+    private Button TryAgain = new Button();
+
 
     public QuizController() throws SQLException {
         quiz = new Quiz();
@@ -44,18 +56,28 @@ public class QuizController implements Initializable {
     public void setQuestion() {
         Question.setText(quiz.generateQuestion());
         Question.setWrapText(true);
-        Question.setMaxWidth(500);
+        Question.setMaxWidth(826);
+    }
+
+    public void setScore() {
+        Score.setText(String.format("%d", quiz.getScore()));
+        Score.setWrapText(true);
+    }
+
+    public void setQuestionNumber() {
+        questionNumber.setText((quiz.getNumberofQuestion() + 1) + " out of 10");
+        Score.setWrapText(true);
     }
 
     public void setChoices() {
-        for (RadioButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
+        for (ToggleButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
             button.setText(quiz.getChoice().get(List.of(PlanA, PlanB, PlanC, PlanD).indexOf(button)));
             button.setWrapText(true);
         }
     }
 
     public void setInputAnswer() {
-        for (RadioButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
+        for (ToggleButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
             if (button.isSelected()) {
                 quiz.setInputAnswer(button.getText());
             }
@@ -63,14 +85,20 @@ public class QuizController implements Initializable {
     }
 
     public void clearInputAnswer() {
-        for (RadioButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
+        for (ToggleButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
             button.setSelected(false);
         }
     }
 
     public void handleNext(ActionEvent event) {
-        startQuiz();
-        System.out.println("Submit button clicked!");
+        if (quiz.getNumberofQuestion() % 10 == 0) {
+            FinalScore.setText(String.format("%d", quiz.getScore()));
+            handleResultVisible();
+
+        } else {
+            startQuiz();
+            System.out.println("Submit button clicked!");
+        }
     }
 
     public void setAvailable() {
@@ -85,7 +113,9 @@ public class QuizController implements Initializable {
         quiz.initQuiz();
         setQuestion();
         setChoices();
-        handleVisible();
+        setScore();
+        setQuestionNumber();
+        handlePlayingVisible();
         clearInputAnswer();
         quiz.increaseNumberofQuestion();
     }
@@ -93,39 +123,80 @@ public class QuizController implements Initializable {
     public void handleSelected(ActionEvent event) {
         Result.setWrapText(true);
         Result.setMaxWidth(642);
-        RadioButton selectedButton = (RadioButton) event.getSource();
+        ToggleButton selectedButton = (ToggleButton) event.getSource();
         group.getToggles().forEach(toggle -> {
-            RadioButton radioButton = (RadioButton) toggle;
-            if (!radioButton.equals(selectedButton)) {
-                radioButton.setDisable(true);
+            ToggleButton ToggleButton = (ToggleButton) toggle;
+            if (!ToggleButton.equals(selectedButton)) {
+                ToggleButton.setDisable(true);
             }
         });
         quiz.setInputAnswer(selectedButton.getText());
         if (quiz.checkAnswer()) {
             quiz.increaseScore();
             Result.setText("Correct!");
+            String correctStyle = "-fx-border-radius: 10px;\n" +
+                    "    -fx-background-color: #D6FEB8;\n" +
+                    "    -fx-font-family: \"Noto Sans\";\n" +
+                    "    -fx-font-style: \"Regular\";\n" +
+                    "    -fx-text-fill: #6BB52C;\n" +
+                    "    -fx-font-size: 20px;";
+            Result.setStyle(correctStyle);
         } else {
-            Result.setText("Wrong, " + quiz.getCorrectAnswer());
+            Result.setText("Incorrect! The answer is " + quiz.getCorrectAnswer() + ".");
+            String incorrectStyle = "-fx-border-radius: 10px;\n" +
+                    "    -fx-background-color: #FEDEDF;\n" +
+                    "    -fx-font-family: \"Noto Sans\";\n" +
+                    "    -fx-font-style: \"Regular\";\n" +
+                    "    -fx-text-fill: #EF6163;\n" +
+                    "    -fx-font-size: 20px;";
+            Result.setStyle(incorrectStyle);
         }
         Result.setVisible(true);
+        NextButton.setVisible(true);
+    }
+
+    public void handlePlayAgain(ActionEvent event) {
+        quiz.setNumberofQuestion(0);
+        startQuiz();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        for (RadioButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
+        for (ToggleButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
             button.setToggleGroup(group);
         }
         startQuiz();
-        for (RadioButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
+        for (ToggleButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
             button.setOnAction(this::handleSelected);
         }
         NextButton.setOnAction(this::handleNext);
     }
 
-    public void handleVisible() {
+    public void handlePlayingVisible() {
         Result.setVisible(false);
-        for (RadioButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
+        for (ToggleButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
             button.setVisible(true);
         }
+        NextButton.setVisible(false);
+        Question.setVisible(true);
+        Score.setVisible(true);
+        ResultBack.setVisible(false);
+        TryAgain.setVisible(false);
+        FinalScore.setVisible(false);
+    }
+
+    public void handleResultVisible() {
+        Result.setVisible(false);
+        for (ToggleButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
+            button.setVisible(false);
+        }
+        NextButton.setVisible(false);
+        Question.setVisible(false);
+        Score.setVisible(false);
+        ResultBack.setVisible(true);
+        TryAgain.setVisible(true);
+        FinalScore.setVisible(true);
+        TryAgain.setOnAction(this::handlePlayAgain);
+
     }
 }

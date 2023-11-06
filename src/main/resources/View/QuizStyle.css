@@ -9,5 +9,61 @@
     -fx-border-radius: 10px;
     -fx-border-color: rgba(82, 123, 142, 0.40);
     -fx-border-width: 2px;
-    -fx-background: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Noto Sans";
+    -fx-font-size: 20px;
+    -fx-font-style: "Regular";
+    -fx-font-weight: 400px;
+    -fx-padding: 10px;
+}
+
+.next-button {
+    -fx-border-radius: 10px;
+    -fx-background-color: #527B8E;
+    -fx-font-family: "Noto Sans";
+    -fx-font-style: "Regular";
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+}
+
+.quiz-comment {
+    -fx-border-radius: 10px;
+    -fx-background-color: #D6FEB8;
+    -fx-font-family: "Noto Sans";
+    -fx-font-style: "Regular";
+    -fx-text-fill: #6BB52C;
+    -fx-font-size: 20px;
+}
+
+.score {
+    -fx-font-size: 28px;
+    -fx-font-family: "Noto Sans";
+    -fx-text-fill: #ffffff;
+    -fx-font-style: "Regular";
+
+}
+
+.question-no {
+    -fx-font-size: 12px;
+    -fx-font-family: "Noto Sans";
+    -fx-text-fill: #b5b5b5;
+    -fx-font-style: "Regular";
+}
+
+.final-score {
+    -fx-font-size: 60px;
+    -fx-font-family: "Noto Sans";
+    -fx-text-fill: #ffffff;
+    -fx-font-style: "Bold";
+}
+
+.try-again {
+    -fx-border-radius: 20px;
+    -fx-background-color: #527B8E;
+    -fx-font-family: "Noto Sans";
+    -fx-font-style: "Bold";
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-text-alignment: center;
 }
