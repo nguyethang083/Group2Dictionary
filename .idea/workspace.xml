@@ -4,18 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_10_2023_10_56_AM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_23_10_2023_10_56_AM__Changes_.xml" afterDir="false" />
+    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="quiz interface ver 1 fix score and background">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2baa756e-5883-4a6c-8026-70e4d10f3fb8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/2baa756e-5883-4a6c-8026-70e4d10f3fb8/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a3ecaa80-3c35-40bc-86bb-87af3971da24.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a3ecaa80-3c35-40bc-86bb-87af3971da24.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bba40139-6d8e-49e9-86a9-a9f49074b772.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/bba40139-6d8e-49e9-86a9-a9f49074b772/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fad4039b-c3c8-4563-8093-5c46cfa72de5.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fad4039b-c3c8-4563-8093-5c46cfa72de5/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engData.db" beforeDir="false" afterPath="$PROJECT_DIR$/engData.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/DictionaryCommandline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/DictionaryCommandline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/DictionaryManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryCommandLine/DictionaryManagement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/models/Dao/WordsDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/models/Dao/WordsDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/View/QuizStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/View/QuizStyle.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -43,30 +55,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;eunjungham&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/hoc2/OOP/BTL/Group2Dictionary/lib/sqlite-jdbc-3.36.0.3.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "tunglam994",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/UET/Semester I 2023 - 2024/OOP/Practice/Group2Dictionary/Group2Dictionary",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;sqlite&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "sqlite"
     ]
   }
-}</component>
-  <component name="RunManager" selected="Application.Dictionary.DictionaryCommandLine.DictionaryCommandline">
+}]]></component>
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="DictGroup2" />
+      <option name="VM_PARAMETERS" value="--module-path D:\Java\javafx-sdk-21\lib --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DataBase" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Dictionary.DictionaryCommandLine.DataBase" />
       <module name="DictGroup2" />
@@ -101,21 +122,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="DictGroup2" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="DictGroup2" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Dictionary.DictionaryCommandLine.DictionaryCommandline" />
+      <item itemvalue="Application.App" />
       <item itemvalue="Application.DatabaseConnection" />
       <item itemvalue="Application.DataBase" />
     </list>
@@ -140,6 +149,7 @@
       <workItem from="1698034527368" duration="21305000" />
       <workItem from="1698075292516" duration="880000" />
       <workItem from="1698369202392" duration="19619000" />
+      <workItem from="1699288910522" duration="5888000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -149,7 +159,55 @@
       <option name="project" value="LOCAL" />
       <updated>1698457551358</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="test quiz with database">
+      <option name="closed" value="true" />
+      <created>1698946563707</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698946563708</updated>
+    </task>
+    <task id="LOCAL-00003" summary="css test">
+      <option name="closed" value="true" />
+      <created>1699117713751</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699117713752</updated>
+    </task>
+    <task id="LOCAL-00004" summary="quiz interface ver 1">
+      <option name="closed" value="true" />
+      <created>1699235078109</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699235078110</updated>
+    </task>
+    <task id="LOCAL-00005" summary="quiz interface ver 1 fix">
+      <option name="closed" value="true" />
+      <created>1699290727542</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1699290727543</updated>
+    </task>
+    <task id="LOCAL-00006" summary="quiz interface ver 1 fix score and background">
+      <option name="closed" value="true" />
+      <created>1699346162546</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699346162546</updated>
+    </task>
+    <task id="LOCAL-00007" summary="quiz interface ver 1 fix score and background">
+      <option name="closed" value="true" />
+      <created>1699346171800</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699346171800</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -168,6 +226,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="test quiz with database" />
+    <MESSAGE value="css test" />
+    <MESSAGE value="quiz interface ver 1" />
+    <MESSAGE value="quiz interface ver 1 fix" />
+    <MESSAGE value="quiz interface ver 1 fix score and background" />
+    <option name="LAST_COMMIT_MESSAGE" value="quiz interface ver 1 fix score and background" />
   </component>
 </project>
