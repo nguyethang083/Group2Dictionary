@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -15,11 +17,6 @@
    <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/bgGUI.png" />
-      </image>
-   </ImageView>
-   <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="26.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-      <image>
-         <Image url="@../images/list.png" />
       </image>
    </ImageView>
    <Text fill="WHITE" layoutX="625.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Setting" wrappingWidth="67.14691162109375">
@@ -96,4 +93,6 @@
          <Image url="@../images/saveButton.png" />
       </image>
    </ImageView>
+   <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="14.0" prefHeight="565.0" prefWidth="209.0" />
+   <JFXHamburger fx:id="myHamburger" layoutX="27.0" layoutY="26.0" />
 </AnchorPane>

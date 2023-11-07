@@ -7,6 +7,7 @@ module DICTIONARY {
     requires org.controlsfx.controls;
     requires ormlite.jdbc;
     requires jlayer;
+    requires com.jfoenix;
     opens Dictionary.DictionaryController to javafx.fxml;
     opens Dictionary to javafx.graphics;
     opens Dictionary.models to ormlite.jdbc;
