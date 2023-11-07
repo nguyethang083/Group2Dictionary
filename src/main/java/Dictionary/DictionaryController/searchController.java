@@ -3,26 +3,41 @@ package Dictionary.DictionaryController;
 import Dictionary.DictionaryCommandLine.VoiceFunction;
 import Dictionary.models.EngWord;
 import Dictionary.models.WordDAO;
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
 import static Dictionary.models.AllWord.allWord;
 import static Dictionary.DatabaseConn.WordDAO;
 
 public class searchController implements Initializable {
+    @FXML
+    private JFXDrawer drawer;
+
+    @FXML
+    private JFXHamburger myHamburger;
+
     @FXML
     private ComboBox<String> comboBox;
 
@@ -54,6 +69,29 @@ public class searchController implements Initializable {
         comboBox.setItems(words);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> updateComboBox(newValue));
         comboBox.setOnAction(event -> updateView());
+
+        try {
+            VBox vbox = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/sidePanel.fxml")));
+            drawer.setSidePane(vbox);
+        } catch (IOException e) {
+            System.out.println("Hai");
+        }
+
+        myHamburger.setCursor(Cursor.HAND);
+
+        myHamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
+            ScaleTransition st = new ScaleTransition(Duration.millis(200), myHamburger);
+            st.setByX(0.15);
+            st.setByY(0.15);
+            st.setCycleCount(2);
+            st.setAutoReverse(true);
+            st.play();
+
+            if(drawer.isOpened())
+                drawer.close();
+            else
+                drawer.open();
+        });
     }
 
     private void updateComboBox(String newValue) {
