@@ -1,4 +1,4 @@
-package Dictionary.models;
+package Dictionary.Entities;
 
 import java.sql.SQLException;
 import java.util.HashMap;

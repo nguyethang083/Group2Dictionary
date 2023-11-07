@@ -1,4 +1,4 @@
-package Dictionary.DictionaryCommandLine;
+package Dictionary.Features;
 
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.FactoryRegistry;
@@ -14,7 +14,7 @@ import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class VoiceFunction {
+public class Voice {
     public static String getVoice(String word) {
         return "https://dict.youdao.com/dictvoice?audio=" + word + "&type=2";
     }

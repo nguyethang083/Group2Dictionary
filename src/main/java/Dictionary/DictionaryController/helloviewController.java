@@ -1,7 +1,7 @@
 package Dictionary.DictionaryController;
 
-import Dictionary.DictionaryCommandLine.VoiceFunction;
-import Dictionary.models.EngWord;
+import Dictionary.Features.Voice;
+import Dictionary.Entities.EngWord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -95,7 +95,7 @@ public class helloviewController implements Initializable {
     void playVoice(MouseEvent event) {
         String selectedWord = comboBox.getSelectionModel().getSelectedItem();
         if (selectedWord != null) {
-            VoiceFunction.playVoice(selectedWord);
+            Voice.playVoice(selectedWord);
         }
     }
 
