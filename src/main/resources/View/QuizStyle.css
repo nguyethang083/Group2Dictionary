@@ -13,18 +13,21 @@
     -fx-text-fill: #000000;
     -fx-font-family: "Noto Sans";
     -fx-font-size: 20px;
-    -fx-font-style: "Regular";
     -fx-font-weight: 400px;
     -fx-padding: 10px;
 }
 
 .next-button {
     -fx-border-radius: 10px;
-    -fx-background-color: #527B8E;
+    -fx-border-color: rgba(82, 123, 142, 0.40);
+    -fx-border-width: 2px;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
     -fx-font-family: "Noto Sans";
-    -fx-font-style: "Regular";
-    -fx-text-fill: #ffffff;
     -fx-font-size: 20px;
+    -fx-font-style: "Regular";
+    -fx-font-weight: 400px;
+    -fx-padding: 10px;
 }
 
 .quiz-comment {
