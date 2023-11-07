@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WordDAO extends BaseDaoImpl<EngWord, Long> {
-    public WordDAO(ConnectionSource connectionSource) throws SQLException, SQLException {
+    public WordDAO(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, EngWord.class);
     }
 
@@ -39,6 +39,28 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
         return true;
     }
 
+    public boolean updateMeaning(String word, String meaning) throws SQLException {
+        try {
+            EngWord engWord = this.queryBuilder().where().eq("Word", word).queryForFirst();
+            if (engWord != null) {
+                if (engWord.getMeaning().isEmpty()) {
+                    engWord.setMeaning(meaning);
+                } else if (!meaning.isEmpty())
+                    engWord.setMeaning(meaning);
+                this.update(engWord);
+            } else {
+                EngWord newEngWord = new EngWord();
+                newEngWord.setWord(word);
+                newEngWord.setMeaning(meaning);
+                this.create(newEngWord);
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage() + " insertMeaning");
+            return false;
+        }
+        return true;
+    }
+
     public boolean updateExample(String word, String example) throws SQLException {
         try {
             EngWord engWord = this.queryBuilder().where().eq("Word", word).queryForFirst();
@@ -46,7 +68,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
                 if (engWord.getExample().isEmpty()) {
                     engWord.setExample(example);
                 } else if (!example.isEmpty())
-                    engWord.setExample(engWord.getExample() + "\n" + example);
+                    engWord.setExample(example);
                 this.update(engWord);
             } else {
                 EngWord newEngWord = new EngWord();
@@ -90,7 +112,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
                 if (engWord.getType().isEmpty()) {
                     engWord.setType(type);
                 } else if (!type.isEmpty())
-                    engWord.setType(engWord.getType() + "\n" + type);
+                    engWord.setType(type);
                 this.update(engWord);
             } else {
                 EngWord newEngWord = new EngWord();
@@ -100,28 +122,6 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             }
         } catch (Exception e) {
             System.err.println(e.getMessage() + " insertType");
-            return false;
-        }
-        return true;
-    }
-
-    public boolean updateAntonyms(String word, String antonyms) throws SQLException {
-        try {
-            EngWord engWord = this.queryBuilder().where().eq("Word", word).queryForFirst();
-            if (engWord != null) {
-                if (engWord.getAntonyms().isEmpty()) {
-                    engWord.setAntonyms(antonyms);
-                } else if (!antonyms.isEmpty())
-                    engWord.setAntonyms(engWord.getAntonyms() + "\n" + antonyms);
-                this.update(engWord);
-            } else {
-                EngWord newEngWord = new EngWord();
-                newEngWord.setWord(word);
-                newEngWord.setAntonyms(antonyms);
-                this.create(newEngWord);
-            }
-        } catch (SQLException e) {
-            System.err.println(e.getMessage() + " insertAntonyms");
             return false;
         }
         return true;
@@ -326,15 +326,13 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
     }
 
    public boolean sortedWord() throws SQLException {
-        var x = this.queryBuilder();
-        try {
-            x.orderBy("Word", true);
-        }
-        catch (Exception e){
-            System.err.println(e.getMessage() + " sortedWord");
-            return false;
-        }
-        return true;
-    }
-
+       var x = this.queryBuilder();
+       try {
+           x.orderBy("Word", true);
+       } catch (Exception e) {
+           System.err.println(e.getMessage() + " sortedWord");
+           return false;
+       }
+       return true;
+   }
 }
