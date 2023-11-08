@@ -1,4 +1,4 @@
-package Dictionary.models;
+package Dictionary.Entities;
 
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.stmt.Where;

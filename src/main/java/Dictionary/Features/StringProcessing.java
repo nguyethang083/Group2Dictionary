@@ -1,4 +1,4 @@
-package Dictionary.DictionaryCommandLine;
+package Dictionary.Features;
 
 public class StringProcessing {
     public static String normalizeString(String searchTerm) {

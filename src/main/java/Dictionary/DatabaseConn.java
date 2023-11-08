@@ -1,6 +1,6 @@
 package Dictionary;
 
-import Dictionary.models.WordDAO;
+import Dictionary.Entities.WordDAO;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
 
