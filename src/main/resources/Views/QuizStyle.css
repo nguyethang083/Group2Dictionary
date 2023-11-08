@@ -13,7 +13,7 @@
     -fx-text-fill: #000000;
     -fx-font-family: "Noto Sans";
     -fx-font-size: 20px;
-    -fx-font-weight: 400px;
+    -fx-font-weight: 400;
     -fx-padding: 10px;
 }
 
@@ -25,15 +25,13 @@
     -fx-text-fill: #000000;
     -fx-font-family: "Noto Sans";
     -fx-font-size: 20px;
-    -fx-font-style: "Regular";
-    -fx-font-weight: 400px;
+    -fx-font-weight: 400;
     -fx-padding: 10px;
 }
 
 .quiz-comment {
     -fx-border-radius: 10px;
     -fx-font-family: "Noto Sans";
-    -fx-font-style: "Regular";
     -fx-font-size: 20px;
 }
 
@@ -41,7 +39,7 @@
     -fx-font-size: 28px;
     -fx-font-family: "Noto Sans";
     -fx-text-fill: #ffffff;
-    -fx-font-style: "Regular";
+    -fx-font-weight: 700;
 
 }
 
@@ -49,21 +47,22 @@
     -fx-font-size: 12px;
     -fx-font-family: "Noto Sans";
     -fx-text-fill: #b5b5b5;
-    -fx-font-style: "Regular";
+
+    -fx-font-weight: 700;
 }
 
 .final-score {
     -fx-font-size: 60px;
     -fx-font-family: "Noto Sans";
     -fx-text-fill: #ffffff;
-    -fx-font-style: "Bold";
+    -fx-font-weight: 700;
 }
 
 .try-again {
     -fx-border-radius: 20px;
     -fx-background-color: #527B8E;
     -fx-font-family: "Noto Sans";
-    -fx-font-style: "Bold";
+    -fx-font-weight: 700;
     -fx-text-fill: #ffffff;
     -fx-font-size: 16px;
     -fx-text-alignment: center;
