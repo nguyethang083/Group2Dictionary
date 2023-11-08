@@ -13,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -26,12 +25,11 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 
 import static Dictionary.models.AllWord.allWord;
 import static Dictionary.DatabaseConn.WordDAO;
 
-public class searchController implements Initializable {
+public class DictionaryController implements Initializable {
     @FXML
     private AnchorPane content, container;
 
@@ -90,9 +88,8 @@ public class searchController implements Initializable {
 
             sidePanelController sidePanelController = loader.getController();
             sidePanelController.setDrawer(drawer);
-            sidePanelController.setSearchController(this);
+            sidePanelController.setDictionaryController(this);
 
-            //Node sidePanel = loader.load();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -105,7 +102,7 @@ public class searchController implements Initializable {
     @FXML
     public void showComponent(String path) {
         try {
-            AnchorPane component = FXMLLoader.load(Objects.requireNonNull(searchController.class.getResource(path)));
+            AnchorPane component = FXMLLoader.load(Objects.requireNonNull(DictionaryController.class.getResource(path)));
             setNode(component);
         } catch (IOException e) {
             e.printStackTrace();

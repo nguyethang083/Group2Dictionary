@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="addMenu transition">
+    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="menu draft complete">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engData.db" beforeDir="false" afterPath="$PROJECT_DIR$/engData.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/searchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/searchController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/searchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/DictionaryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/sidePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/sidePanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Dictionary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/Dictionary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/addWord.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/addWord.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/search.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/search.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Views/sidePanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/sidePanel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/test.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/test.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/images/addWordGUI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/addWordGUI.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +101,9 @@
       <workItem from="1699209788965" duration="502000" />
       <workItem from="1699282120489" duration="13477000" />
       <workItem from="1699336475545" duration="8358000" />
-      <workItem from="1699371986149" duration="17947000" />
+      <workItem from="1699371986149" duration="18796000" />
+      <workItem from="1699423384759" duration="131000" />
+      <workItem from="1699423634006" duration="467000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -217,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699412993090</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="menu draft complete">
+      <option name="closed" value="true" />
+      <created>1699421221220</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1699421221220</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +282,8 @@
     <MESSAGE value="addWord GUI" />
     <MESSAGE value="save menu" />
     <MESSAGE value="addMenu transition" />
-    <option name="LAST_COMMIT_MESSAGE" value="addMenu transition" />
+    <MESSAGE value="menu draft complete" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu draft complete" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

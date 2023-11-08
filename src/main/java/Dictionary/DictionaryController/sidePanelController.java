@@ -18,12 +18,12 @@ public class sidePanelController implements Initializable {
     private ImageView closeMenu;
 
     @FXML
-    private ImageView addWordMenu, Game1Menu;
+    private ImageView addWordMenu, Game1Menu, searchMenu;
 
-    private searchController searchController;
+    private DictionaryController dictionaryController;
 
-    public void setSearchController(searchController searchController) {
-        this.searchController = searchController;
+    public void setDictionaryController(DictionaryController dictionaryController) {
+        this.dictionaryController = dictionaryController;
     }
 
     private JFXDrawer drawer; // You need to pass the drawer instance from searchController to here
@@ -45,37 +45,29 @@ public class sidePanelController implements Initializable {
                 drawer.close();
             }
         });
-        addWordMenu.setCursor(Cursor.HAND);
-        addWordMenu.setOnMouseEntered(event -> {
+        setupImageView(searchMenu, "/Views/Dictionary.fxml");
+        setupImageView(addWordMenu, "/Views/addWord.fxml");
+        setupImageView(Game1Menu, "/Views/QuizUI.fxml");
+    }
+
+    public void setupImageView(ImageView imageView, String scenePath) {
+        imageView.setCursor(Cursor.HAND);
+        imageView.setOnMouseEntered(event -> {
             // This is the color overlay when the mouse enters the ImageView
-            addWordMenu.setEffect(new ColorAdjust(0, 0, -0.5, 0));
+            imageView.setEffect(new ColorAdjust(0, 0, -0.5, 0));
         });
 
-        addWordMenu.setOnMouseExited(event -> {
+        imageView.setOnMouseExited(event -> {
             // Remove the color overlay when the mouse exits the ImageView
-            addWordMenu.setEffect(null);
+            imageView.setEffect(null);
         });
 
-        addWordMenu.setOnMouseClicked(event -> {
-            // This is the color overlay when the ImageView is clicked
-            addWordMenu.setEffect(new ColorAdjust(0, -1, 0, 0));
+        imageView.setOnMouseClicked(event -> {
+            imageView.setEffect(new ColorAdjust(0, -1, 0, 0));
 
-            // Call your method to change the scene
-            searchController.showComponent("/Views/addWord.fxml");
-
-            // Remove the color overlay after the click action is done
-            addWordMenu.setEffect(null);
-        });
-
-        Game1Menu.setOnMouseClicked(event -> {
-            // This is the color overlay when the ImageView is clicked
-            Game1Menu.setEffect(new ColorAdjust(0, -1, 0, 0));
-
-            // Call your method to change the scene
-            searchController.showComponent("/Views/QuizUI.fxml");
-
-            // Remove the color overlay after the click action is done
-            Game1Menu.setEffect(null);
+            // Load the specified scene
+            dictionaryController.showComponent(scenePath);
+            imageView.setEffect(null);
         });
     }
 }
