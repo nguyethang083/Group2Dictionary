@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="menu draft complete">
+    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="rename Controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engData.db" beforeDir="false" afterPath="$PROJECT_DIR$/engData.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/searchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/DictionaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/sidePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/sidePanelController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Dictionary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/Dictionary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/search.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/search.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/sidePanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/sidePanel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sqlite-jdbc-3.36.0.3.jar" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +98,7 @@
       <workItem from="1699336475545" duration="8358000" />
       <workItem from="1699371986149" duration="18796000" />
       <workItem from="1699423384759" duration="131000" />
-      <workItem from="1699423634006" duration="467000" />
+      <workItem from="1699423634006" duration="750000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -225,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699421221220</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="rename Controller">
+      <option name="closed" value="true" />
+      <created>1699424197380</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1699424197380</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +286,8 @@
     <MESSAGE value="save menu" />
     <MESSAGE value="addMenu transition" />
     <MESSAGE value="menu draft complete" />
-    <option name="LAST_COMMIT_MESSAGE" value="menu draft complete" />
+    <MESSAGE value="rename Controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="rename Controller" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
