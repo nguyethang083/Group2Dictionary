@@ -12,8 +12,16 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 public class TranslateAPI {
+    private final List<String> languages = Arrays.asList("English", "Vietnamese", "Chinese", "French", "Korea", "Japanese");
+    private static String sourceLanguage;
+    private static String targetLanguage;
+    // thich thi dung
+    private boolean isToVietnameseLang = true;
     private static final CloseableHttpClient httpClient = HttpClients.createDefault();
 
     public static String translateWord(String textToTranslate, String sourceLanguage, String targetLanguage) throws IOException {
@@ -53,7 +61,27 @@ public class TranslateAPI {
         }
     }
 
+    // input là thuộc tính languages ở trên output là source/target
+    private String getLanguageCode(String languageName) {
+        switch (languageName) {
+            case "Chinese":
+                return "zh";
+            case "Japanese":
+                return "ja";
+            case "Vietnamese":
+                return "vi";
+            case "Korea":
+                return "ko";
+            case "French":
+                return "fr";
+            // Add more cases for additional languages
+            case "English":
+            default:
+                return "en";
+        }
+    }
+
     public static void main(String[] args) throws IOException {
-        System.out.println(translateWord("hello i love you very much ", "en", ""));
+        System.out.println(translateWord("hello i am hangdog ", "en", "zh"));
     }
 }
