@@ -1,6 +1,6 @@
 package Dictionary.DictionaryController;
 
-import Dictionary.models.EngWord;
+import Dictionary.Entities.EngWord;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
