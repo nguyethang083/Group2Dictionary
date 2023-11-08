@@ -97,10 +97,6 @@
     -fx-shape: none;
 }
 
-.combo-box-popup .scroll-bar {
-    -fx-opacity: 0;
-}
-
 .rectangle {
     width: 200px;
     height: 100px;
@@ -120,5 +116,26 @@
     -fx-background-color: #FFFFFF;
     -fx-font-size: 14;
 }
+
+.addButton {
+    background-color: #1a475b;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.addButton:hover {
+    background-color: white;
+    color: #1a475b;
+}
+
+.jfx-hamburger StackPane { -fx-background-color: white; }
 
 
