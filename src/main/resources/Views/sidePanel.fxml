@@ -32,7 +32,7 @@
                         <Image url="@../images/addWordMenu.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="3.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Game1Menu" fitHeight="150.0" fitWidth="200.0" layoutX="3.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Game1Menu.png" />
                      </image>

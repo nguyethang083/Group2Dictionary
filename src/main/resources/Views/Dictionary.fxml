@@ -9,15 +9,13 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<StackPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.searchController">
+<AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.searchController">
    <children>
-      <AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
+      <AnchorPane fx:id="content" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0">
          <children>
             <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -98,9 +96,9 @@
                   <Image url="@../images/saveButton.png" />
                </image>
             </ImageView>
-            <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="14.0" prefHeight="565.0" prefWidth="209.0" />
-            <JFXHamburger fx:id="myHamburger" layoutX="27.0" layoutY="27.0" prefHeight="13.0" prefWidth="18.0" stylesheets="@test.css" />
          </children>
       </AnchorPane>
+      <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="20.0" prefHeight="565.0" prefWidth="209.0" />
+      <JFXHamburger fx:id="myHamburger" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="60.0" stylesheets="@test.css" />
    </children>
-</StackPane>
+</AnchorPane>

@@ -97,10 +97,6 @@
     -fx-shape: none;
 }
 
-.combo-box-popup .scroll-bar {
-    -fx-opacity: 0;
-}
-
 .rectangle {
     width: 200px;
     height: 100px;

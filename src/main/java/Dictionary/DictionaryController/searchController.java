@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -32,7 +33,7 @@ import static Dictionary.DatabaseConn.WordDAO;
 
 public class searchController implements Initializable {
     @FXML
-    public AnchorPane container;
+    private AnchorPane content, container;
 
     @FXML
     private JFXDrawer drawer;
@@ -98,8 +99,8 @@ public class searchController implements Initializable {
     }
 
     public void setNode(Node node) {
-        container.getChildren().clear();
-        container.getChildren().add(node);
+        content.getChildren().clear();
+        content.getChildren().add(node);
     }
     @FXML
     public void showComponent(String path) {

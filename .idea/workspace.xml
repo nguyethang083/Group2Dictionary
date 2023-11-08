@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="save menu">
+    <list default="true" id="76449b20-c206-40b0-8be0-5a74d10df88d" name="Changes" comment="addMenu transition">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engData.db" beforeDir="false" afterPath="$PROJECT_DIR$/engData.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/searchController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/searchController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/sidePanelController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionary/DictionaryController/sidePanelController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Dictionary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/Dictionary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/search.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/search.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/addWord.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/addWord.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/sidePanel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/sidePanel.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/test.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/test.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/addWordGUI.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/addWordGUI.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +103,7 @@
       <workItem from="1699209788965" duration="502000" />
       <workItem from="1699282120489" duration="13477000" />
       <workItem from="1699336475545" duration="8358000" />
-      <workItem from="1699371986149" duration="12998000" />
+      <workItem from="1699371986149" duration="17947000" />
     </task>
     <task id="LOCAL-00001" summary="test">
       <option name="closed" value="true" />
@@ -207,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699406548458</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="addMenu transition">
+      <option name="closed" value="true" />
+      <created>1699412993090</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1699412993090</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +273,8 @@
     <MESSAGE value="done SearchGUI" />
     <MESSAGE value="addWord GUI" />
     <MESSAGE value="save menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="save menu" />
+    <MESSAGE value="addMenu transition" />
+    <option name="LAST_COMMIT_MESSAGE" value="addMenu transition" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
