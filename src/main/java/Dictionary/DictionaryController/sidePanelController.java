@@ -17,6 +17,15 @@ public class sidePanelController implements Initializable {
     @FXML
     private ImageView closeMenu;
 
+    @FXML
+    private ImageView addWordMenu;
+
+    private searchController searchController;
+
+    public void setSearchController(searchController searchController) {
+        this.searchController = searchController;
+    }
+
     private JFXDrawer drawer; // You need to pass the drawer instance from searchController to here
 
     public void setDrawer(JFXDrawer drawer) {
@@ -36,5 +45,6 @@ public class sidePanelController implements Initializable {
                 drawer.close();
             }
         });
+        addWordMenu.setOnMouseClicked(event -> searchController.showComponent("/Views/addWord.fxml"));
     }
 }

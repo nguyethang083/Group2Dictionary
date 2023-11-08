@@ -2,20 +2,20 @@ package Dictionary.DictionaryController;
 
 import Dictionary.DictionaryCommandLine.VoiceFunction;
 import Dictionary.models.EngWord;
-import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,6 +31,9 @@ import static Dictionary.models.AllWord.allWord;
 import static Dictionary.DatabaseConn.WordDAO;
 
 public class searchController implements Initializable {
+    @FXML
+    public AnchorPane container;
+
     @FXML
     private JFXDrawer drawer;
 
@@ -86,8 +89,25 @@ public class searchController implements Initializable {
 
             sidePanelController sidePanelController = loader.getController();
             sidePanelController.setDrawer(drawer);
+            sidePanelController.setSearchController(this);
+
+            //Node sidePanel = loader.load();
         } catch (IOException e) {
-            System.out.println("Hai");
+            e.printStackTrace();
+        }
+    }
+
+    public void setNode(Node node) {
+        container.getChildren().clear();
+        container.getChildren().add(node);
+    }
+    @FXML
+    public void showComponent(String path) {
+        try {
+            AnchorPane component = FXMLLoader.load(Objects.requireNonNull(searchController.class.getResource(path)));
+            setNode(component);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
