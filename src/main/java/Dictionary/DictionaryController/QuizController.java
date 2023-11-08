@@ -140,7 +140,6 @@ public class QuizController implements Initializable {
                     -fx-border-radius: 10px;
                         -fx-background-color: #D6FEB8;
                         -fx-font-family: "Noto Sans";
-                        -fx-font-style: "Regular";
                         -fx-text-fill: #6BB52C;
                         -fx-font-size: 20px;""";
             Result.setStyle(correctStyle);
@@ -152,7 +151,6 @@ public class QuizController implements Initializable {
                     -fx-border-radius: 10px;
                         -fx-background-color: #FEDEDF;
                         -fx-font-family: "Noto Sans";
-                        -fx-font-style: "Regular";
                         -fx-text-fill: #EF6163;
                         -fx-font-size: 20px;""";
             Result.setStyle(incorrectStyle);
