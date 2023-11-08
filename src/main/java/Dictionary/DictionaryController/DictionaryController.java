@@ -1,7 +1,7 @@
 package Dictionary.DictionaryController;
 
-import Dictionary.DictionaryCommandLine.VoiceFunction;
-import Dictionary.models.EngWord;
+import Dictionary.Features.Voice;
+import Dictionary.Entities.EngWord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 
-import static Dictionary.models.AllWord.allWord;
+import static Dictionary.Entities.AllWord.allWord;
 import static Dictionary.DatabaseConn.WordDAO;
 
 public class DictionaryController implements Initializable {
@@ -202,7 +202,7 @@ public class DictionaryController implements Initializable {
     @FXML
     void playVoice(MouseEvent event) {
         if (selectedWord != null) {
-            VoiceFunction.playVoice(selectedWord);
+            Voice.playVoice(selectedWord);
         }
     }
 

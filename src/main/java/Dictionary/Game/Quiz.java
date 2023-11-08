@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.sql.SQLException;
 
-import Dictionary.models.AllWord;
-import Dictionary.models.EngWord;
-import Dictionary.models.WordDAO;
+import Dictionary.Entities.AllWord;
+import Dictionary.Entities.EngWord;
+import Dictionary.Entities.WordDAO;
 
 public class Quiz {
     long seed = System.currentTimeMillis();
