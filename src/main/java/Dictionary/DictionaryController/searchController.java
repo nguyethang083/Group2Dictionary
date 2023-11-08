@@ -2,7 +2,6 @@ package Dictionary.DictionaryController;
 
 import Dictionary.DictionaryCommandLine.VoiceFunction;
 import Dictionary.models.EngWord;
-import Dictionary.models.WordDAO;
 import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -70,28 +69,26 @@ public class searchController implements Initializable {
         searchField.textProperty().addListener((observable, oldValue, newValue) -> updateComboBox(newValue));
         comboBox.setOnAction(event -> updateView());
 
-        try {
-            VBox vbox = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/sidePanel.fxml")));
-            drawer.setSidePane(vbox);
-        } catch (IOException e) {
-            System.out.println("Hai");
-        }
-
         myHamburger.setCursor(Cursor.HAND);
 
         myHamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            ScaleTransition st = new ScaleTransition(Duration.millis(200), myHamburger);
-            st.setByX(0.15);
-            st.setByY(0.15);
-            st.setCycleCount(2);
-            st.setAutoReverse(true);
-            st.play();
-
-            if(drawer.isOpened())
-                drawer.close();
-            else
+            if (!drawer.isOpened())
                 drawer.open();
         });
+
+        myHamburger.setOnMouseClicked(event -> myHamburger.setVisible(false));
+        drawer.setOnDrawerClosed(event -> myHamburger.setVisible(true));
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/sidePanel.fxml"));
+            VBox vbox = loader.load();
+            drawer.setSidePane(vbox);
+
+            sidePanelController sidePanelController = loader.getController();
+            sidePanelController.setDrawer(drawer);
+        } catch (IOException e) {
+            System.out.println("Hai");
+        }
     }
 
     private void updateComboBox(String newValue) {

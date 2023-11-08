@@ -94,5 +94,5 @@
       </image>
    </ImageView>
    <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="14.0" prefHeight="565.0" prefWidth="209.0" />
-   <JFXHamburger fx:id="myHamburger" layoutX="27.0" layoutY="26.0" />
+   <JFXHamburger fx:id="myHamburger" layoutX="27.0" layoutY="27.0" prefHeight="13.0" prefWidth="18.0" stylesheets="@test.css" />
 </AnchorPane>
