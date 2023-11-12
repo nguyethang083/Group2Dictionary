@@ -2,12 +2,12 @@ package Dictionary.DictionaryController;
 
 import Dictionary.Features.Voice;
 import Dictionary.Entities.EngWord;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -24,6 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 
@@ -52,7 +53,7 @@ public class DictionaryController implements Initializable {
     @FXML
     private Label wordLabel;
     @FXML
-    private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll, editButton, deleteIcon, saveButton, intro;
+    private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll, editButton, deleteIcon, saveButton, intro, exitProgram;
 
     @FXML
     private Text examplePrompt, synonymPrompt;
@@ -64,6 +65,25 @@ public class DictionaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        initImageViews();
+        initComboBox();
+        initHamburger();
+        try {
+            initDrawer();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void initImageViews() {
+        List<ImageView> imageViews = Arrays.asList(voiceButton, deleteAll, editButton, deleteIcon, saveButton);
+        for (ImageView imageView : imageViews) {
+            imageView.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> imageView.setOpacity(0.5));
+            imageView.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> imageView.setOpacity(1.0));
+        }
+    }
+
+    private void initComboBox() {
         ObservableList<String> words = FXCollections.observableArrayList();
         for (EngWord engword : allWord) {
             words.add(engword.getWord());
@@ -71,9 +91,9 @@ public class DictionaryController implements Initializable {
         comboBox.setItems(words);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> updateComboBox(newValue));
         comboBox.setOnAction(event -> updateView());
+    }
 
-        myHamburger.setCursor(Cursor.HAND);
-
+    private void initHamburger() {
         myHamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
             if (!drawer.isOpened()) {
                 drawer.open();
@@ -83,8 +103,9 @@ public class DictionaryController implements Initializable {
 
         myHamburger.setOnMouseClicked(event -> myHamburger.setVisible(false));
         drawer.setOnDrawerClosed(event -> myHamburger.setVisible(true));
+    }
 
-        try {
+    private void initDrawer() throws IOException {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/sidePanel.fxml"));
             VBox vbox = loader.load();
             drawer.setSidePane(vbox);
@@ -92,23 +113,20 @@ public class DictionaryController implements Initializable {
             sidePanelController sidePanelController = loader.getController();
             sidePanelController.setDrawer(drawer);
             sidePanelController.setDictionaryController(this);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public void setNode(Node node) {
         content.getChildren().clear();
         content.getChildren().add(node);
     }
+
     @FXML
     public void showComponent(String path) {
         try {
             AnchorPane component = FXMLLoader.load(Objects.requireNonNull(DictionaryController.class.getResource(path)));
             setNode(component);
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 
@@ -138,6 +156,7 @@ public class DictionaryController implements Initializable {
         }
         return filteredWords;
     }
+
     @FXML
     void editWord(MouseEvent event) {
         partsofspeech.setEditable(true);
@@ -164,6 +183,7 @@ public class DictionaryController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     void deleteWord(MouseEvent event) throws SQLException {
         WordDAO.deleteWordByString(selectedWord);
@@ -172,6 +192,7 @@ public class DictionaryController implements Initializable {
         alert.showAndWait();
         setVisibility(false);
     }
+
     private void updateView() {
         selectedWord = comboBox.getSelectionModel().getSelectedItem();
         if (selectedWord != null) {
@@ -184,7 +205,6 @@ public class DictionaryController implements Initializable {
                 synonym.setText(engWord.getSynonym());
                 example.setText(engWord.getExample());
                 intro.setVisible(false);
-                intro.setMouseTransparent(true);
                 setVisibility(true);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -203,6 +223,8 @@ public class DictionaryController implements Initializable {
         }
     }
 
+
+
     @FXML
     void playVoice(MouseEvent event) {
         if (selectedWord != null) {
@@ -216,62 +238,8 @@ public class DictionaryController implements Initializable {
     }
 
     @FXML
-    void setOpacityPressed(MouseEvent event) {
-        voiceButton.setOpacity(0.5);
+    void exitProgram(MouseEvent event) {
+        Platform.exit();
     }
 
-    @FXML
-    void setOpacityReleased(MouseEvent event) {
-        voiceButton.setOpacity(1.0);
-    }
-
-    @FXML
-    void setOnMouseEntered(MouseEvent event) {
-        voiceButton.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void setOnMouseExited(MouseEvent event) {
-        voiceButton.setCursor(Cursor.DEFAULT);
-    }
-
-    @FXML
-    void setOpacityPressed1(MouseEvent event) {
-        deleteAll.setOpacity(0.5);
-    }
-
-    @FXML
-    void setOpacityReleased1(MouseEvent event) {
-        deleteAll.setOpacity(1.0);
-    }
-
-    @FXML
-    void setOnMouseEntered1(MouseEvent event) {
-        deleteAll.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void setOnMouseExited1(MouseEvent event) {
-        deleteAll.setCursor(Cursor.DEFAULT);
-    }
-
-    @FXML
-    void setOpacityPressed2(MouseEvent event) {
-        editButton.setOpacity(0.5);
-    }
-
-    @FXML
-    void setOpacityReleased2(MouseEvent event) {
-        editButton.setOpacity(1.0);
-    }
-
-    @FXML
-    void setOnMouseEntered2(MouseEvent event) {
-        editButton.setCursor(Cursor.HAND);
-    }
-
-    @FXML
-    void setOnMouseExited2(MouseEvent event) {
-        editButton.setCursor(Cursor.DEFAULT);
-    }
 }

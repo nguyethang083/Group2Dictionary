@@ -7,7 +7,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-
+import org.apache.commons.text.StringEscapeUtils;
 import org.json.JSONObject;
 
 public class TranslateAPI {
@@ -41,10 +41,13 @@ public class TranslateAPI {
 
     private static String parseTranslationResponse(String response) {
         JSONObject jsonResponse = new JSONObject(response);
-        return jsonResponse.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");
+        String translatedText = jsonResponse.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");
+        translatedText = StringEscapeUtils.unescapeHtml4(translatedText);
+
+        return translatedText;
     }
 
     public static void main(String[] args) {
-        System.out.println(translateWord("Hello, world!", "en", "vi"));
+        System.out.println(translateWord("Bạn bị sao thế", "vi", "en"));
     }
 }

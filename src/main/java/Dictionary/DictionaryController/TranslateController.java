@@ -5,7 +5,6 @@ import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -40,8 +39,6 @@ public class TranslateController {
     @FXML
     public void initialize() {
         ObservableList<String> languages = FXCollections.observableArrayList("French", "Vietnamese", "Korean", "English", "Japanese", "Chinese");
-        translateButton.setCursor(Cursor.HAND);
-        swapIcon.setCursor(Cursor.HAND);
         sourceLanguageComboBox.setItems(languages);
         targetLanguageComboBox.setItems(languages);
 
