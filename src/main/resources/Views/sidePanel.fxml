@@ -1,43 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="562.0" prefWidth="205.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.sidePanelController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="205.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.sidePanelController">
    <children>
-      <Pane prefHeight="571.0" prefWidth="206.0">
+      <Pane prefHeight="600.0" prefWidth="206.0">
          <children>
-            <AnchorPane prefHeight="562.0" prefWidth="205.0">
+            <AnchorPane prefHeight="600.0" prefWidth="205.0">
                <children>
-                  <ImageView fitHeight="562.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="600.0" fitWidth="206.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/menuGUI.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="searchMenu" fitHeight="57.0" fitWidth="200.0" layoutX="3.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="searchMenu" fitHeight="57.0" fitWidth="200.0" layoutX="1.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/HomePage.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="67.0" fitWidth="200.0" layoutX="3.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="translateMenu" fitHeight="67.0" fitWidth="200.0" layoutX="2.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/translateMenu.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="addWordMenu" fitHeight="92.0" fitWidth="200.0" layoutX="3.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="addWordMenu" fitHeight="78.0" fitWidth="200.0" layoutX="2.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/addWordMenu.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="Game1Menu" fitHeight="150.0" fitWidth="200.0" layoutX="3.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Game1Menu" fitHeight="150.0" fitWidth="200.0" layoutX="1.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Game1Menu.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="51.0" fitWidth="215.0" layoutX="3.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Game2Menu" fitHeight="51.0" fitWidth="215.0" layoutX="1.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Game2Menu.png" />
                      </image>
@@ -47,11 +49,16 @@
                         <Image url="@../images/backButton.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="14.0" layoutY="526.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="15.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/exitMenu.png" />
                      </image>
                   </ImageView>
+                  <Label alignment="CENTER" layoutX="-2.0" layoutY="121.0" prefHeight="28.0" prefWidth="205.0" text="Vlexi Dictionary" textAlignment="CENTER" textFill="#c2a132">
+                     <font>
+                        <Font name="Playfair Display Bold" size="19.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

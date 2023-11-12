@@ -1,7 +1,9 @@
 @font-face {
     src: url("../fonts/PlayfairDisplay-Bold.ttf"),
+    url("../fonts/PlayfairDisplay-Regular.ttf"),
     url("../fonts/OpenSans-Light.ttf"),
     url("../fonts/NotoSans-Bold.ttf"),
+    url("../fonts/Poppins-Bold.ttf"),
     url("../fonts/NotoSans-Regular.ttf");
 }
 
@@ -11,7 +13,7 @@
     -fx-border-width: 2px;
     -fx-background-color: #ffffff;
     -fx-text-fill: #000000;
-    -fx-font-family: "Noto Sans";
+    -fx-font-family: "Noto Sans Regular";
     -fx-font-size: 20px;
     -fx-font-weight: 400;
     -fx-padding: 10px;
@@ -23,7 +25,7 @@
     -fx-border-width: 2px;
     -fx-background-color: #ffffff;
     -fx-text-fill: #000000;
-    -fx-font-family: "Noto Sans";
+    -fx-font-family: "Noto Sans Regular";
     -fx-font-size: 20px;
     -fx-font-weight: 400;
     -fx-padding: 10px;
@@ -31,13 +33,13 @@
 
 .quiz-comment {
     -fx-border-radius: 10px;
-    -fx-font-family: "Noto Sans";
+    -fx-font-family: "Noto Sans Regular";
     -fx-font-size: 20px;
 }
 
 .score {
     -fx-font-size: 28px;
-    -fx-font-family: "Noto Sans";
+    -fx-font-family: "Noto Sans Regular";
     -fx-text-fill: #ffffff;
     -fx-font-weight: 400;
 
@@ -45,14 +47,14 @@
 
 .question-no {
     -fx-font-size: 12px;
-    -fx-font-family: "Noto Sans";
+    -fx-font-family: "Noto Sans Regular";
     -fx-text-fill: #b5b5b5;
     -fx-font-weight: 400;
 }
 
 .final-score {
     -fx-font-size: 60px;
-    -fx-font-family: "Noto Sans";
+    -fx-font-family: "Noto Sans Bold";
     -fx-text-fill: #ffffff;
     -fx-font-weight: 400;
 }
@@ -60,9 +62,20 @@
 .try-again {
     -fx-border-radius: 20px;
     -fx-background-color: #527B8E;
-    -fx-font-family: "Noto Sans";
+    -fx-font-family: "Noto Sans Bold";
     -fx-font-weight: 400;
     -fx-text-fill: #ffffff;
     -fx-font-size: 16px;
     -fx-text-alignment: center;
+}
+
+.question {
+    -fx-font-family: "Playfair Display";
+    -fx-text-fill: #000000;
+    -fx-font-size: 22;
+}
+
+.popupTrans {
+    -fx-font-family: "Poppins Bold";
+    -fx-font-size: 12px;
 }
