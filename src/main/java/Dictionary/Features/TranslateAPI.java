@@ -1,87 +1,50 @@
 package Dictionary.Features;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.io.IOException;
+import java.net.URI;
 import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+
+import org.json.JSONObject;
 
 public class TranslateAPI {
-    private final List<String> languages = Arrays.asList("English", "Vietnamese", "Chinese", "French", "Korea", "Japanese");
-    private static String sourceLanguage;
-    private static String targetLanguage;
-    // thich thi dung
-    private boolean isToVietnameseLang = true;
-    private static final CloseableHttpClient httpClient = HttpClients.createDefault();
+    private static final String API_KEY = System.getenv("RAPIDAPI_KEY");  // Read API key from environment variable
 
-    public static String translateWord(String textToTranslate, String sourceLanguage, String targetLanguage) throws IOException {
-        String encodedText = URLEncoder.encode(textToTranslate, StandardCharsets.UTF_8);
-
-        String apiUrl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="
-                + sourceLanguage + "&tl=" + targetLanguage + "&dt=t&text=" + encodedText + "&op=translate";
-
-        HttpGet httpGet = new HttpGet(apiUrl);
-        HttpResponse response = httpClient.execute(httpGet);
-        HttpEntity entity = response.getEntity();
-
-        if (entity != null) {
-            String jsonResponse = EntityUtils.toString(entity);
-            return parseTranslationResponse(jsonResponse);
-        }
-
-        return "Error: Unable to get translation response.";
-    }
-
-    public static String parseTranslationResponse(String response) {
+    public static String translateWord(String textToTranslate, String sourceLanguage, String targetLanguage) {
         try {
-            JSONArray jsonArray = new JSONArray(response);
-
-            JSONArray translationArray = jsonArray.getJSONArray(0);
-
-            StringBuilder translatedTextBuilder = new StringBuilder();
-            for (int i = 0; i < translationArray.length(); i++) {
-                String translationSegment = translationArray.getJSONArray(i).getString(0);
-                translatedTextBuilder.append(translationSegment);
-            }
-
-            return translatedTextBuilder.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return "Error: Unable to parse the translation response.";
+            String encodedText = URLEncoder.encode(textToTranslate, StandardCharsets.UTF_8);
+            HttpRequest request = buildHttpRequest(encodedText, sourceLanguage, targetLanguage);
+            HttpResponse<String> response = executeHttpRequest(request);
+            return parseTranslationResponse(response.body());
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
         }
     }
 
-    // input là thuộc tính languages ở trên output là source/target
-    private String getLanguageCode(String languageName) {
-        switch (languageName) {
-            case "Chinese":
-                return "zh";
-            case "Japanese":
-                return "ja";
-            case "Vietnamese":
-                return "vi";
-            case "Korea":
-                return "ko";
-            case "French":
-                return "fr";
-            // Add more cases for additional languages
-            case "English":
-            default:
-                return "en";
-        }
+    private static HttpRequest buildHttpRequest(String encodedText, String sourceLanguage, String targetLanguage) {
+        return HttpRequest.newBuilder()
+                .uri(URI.create("https://google-translate1.p.rapidapi.com/language/translate/v2"))
+                .header("content-type", "application/x-www-form-urlencoded")
+                .header("Accept-Encoding", "application/gzip")
+                .header("X-RapidAPI-Key", API_KEY)
+                .header("X-RapidAPI-Host", "google-translate1.p.rapidapi.com")
+                .method("POST", HttpRequest.BodyPublishers.ofString("q=" + encodedText + "&target=" + targetLanguage + "&source=" + sourceLanguage))
+                .build();
     }
 
-    public static void main(String[] args) throws IOException {
-        System.out.println(translateWord("hello i am hangdog ", "en", "zh"));
+    private static HttpResponse<String> executeHttpRequest(HttpRequest request) throws IOException, InterruptedException {
+        return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    private static String parseTranslationResponse(String response) {
+        JSONObject jsonResponse = new JSONObject(response);
+        return jsonResponse.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");
+    }
+
+    public static void main(String[] args) {
+        System.out.println(translateWord("Hello, world!", "en", "vi"));
     }
 }

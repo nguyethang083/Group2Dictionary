@@ -3,15 +3,9 @@ import Dictionary.Game.Quiz;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.paint.Color;
-
 
 import java.net.URL;
 import java.util.List;
@@ -139,8 +133,7 @@ public class QuizController implements Initializable {
             String correctStyle = """
                     -fx-border-radius: 10px;
                         -fx-background-color: #D6FEB8;
-                        -fx-font-family: "Noto Sans";
-                        -fx-font-style: "Regular";
+                        -fx-font-family: "Noto Sans Regular";
                         -fx-text-fill: #6BB52C;
                         -fx-font-size: 20px;""";
             Result.setStyle(correctStyle);
@@ -151,8 +144,7 @@ public class QuizController implements Initializable {
             String incorrectStyle = """
                     -fx-border-radius: 10px;
                         -fx-background-color: #FEDEDF;
-                        -fx-font-family: "Noto Sans";
-                        -fx-font-style: "Regular";
+                        -fx-font-family: "Noto Sans Regular";
                         -fx-text-fill: #EF6163;
                         -fx-font-size: 20px;""";
             Result.setStyle(incorrectStyle);

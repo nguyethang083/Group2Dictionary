@@ -21,9 +21,9 @@
                 <Image url="@../images/Demo_Score.png" />
             </image>
         </ImageView>
-        <Label fx:id="Question" alignment="TOP_LEFT" layoutX="37.0" layoutY="161.0" minWidth="826.0" prefWidth="826.0" text="h-h-hi its me again im back lets talk asap do you have the time lets talk">
+        <Label fx:id="Question" alignment="CENTER" layoutY="161.0" minWidth="826.0" prefHeight="32.0" prefWidth="900.0" text="h-h-hi its me again im back lets talk asap do you have the time lets talk">
             <font>
-                <Font name="Noto Sans Bold" size="22.0" />
+                <Font name="Playfair Display Regular" size="22.0" />
             </font>
             <padding>
                 <Insets left="10.0" />
@@ -36,12 +36,11 @@
             <font>
                 <Font name="Noto Sans Regular" size="20.0" />
             </font></Label>
-        <ToggleButton fx:id="PlanA" layoutX="37.0" layoutY="288.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="405.0" styleClass="radiobutton" stylesheets="@QuizStyle.css" text="ToggleButton" />
+        <ToggleButton fx:id="PlanA" layoutX="37.0" layoutY="288.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="405.0" styleClass="radiobutton" text="ToggleButton" />
         <ToggleButton fx:id="PlanD" layoutX="457.0" layoutY="381.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="405.0" styleClass="radiobutton" stylesheets="@QuizStyle.css" text="ToggleButton" />
         <ToggleButton fx:id="PlanC" layoutX="37.0" layoutY="381.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="405.0" styleClass="radiobutton" stylesheets="@QuizStyle.css" text="ToggleButton" />
         <ToggleButton fx:id="PlanB" layoutX="457.0" layoutY="288.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="405.0" styleClass="radiobutton" stylesheets="@QuizStyle.css" text="ToggleButton" />
         <Label fx:id="Score" layoutX="823.0" layoutY="99.0" prefHeight="44.0" prefWidth="19.0" styleClass="score" stylesheets="@QuizStyle.css" text="1" />
-        <Label text="Label" />
         <Label fx:id="questionNumber" layoutX="40.0" layoutY="108.0" prefHeight="25.0" prefWidth="80.0" styleClass="question-no" stylesheets="@QuizStyle.css" text="Label" />
         <ImageView fx:id="ResultBack" fitHeight="400.0" fitWidth="600.0" layoutX="150.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
             <image>

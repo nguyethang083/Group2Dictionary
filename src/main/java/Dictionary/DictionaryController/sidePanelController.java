@@ -18,7 +18,7 @@ public class sidePanelController implements Initializable {
     private ImageView closeMenu;
 
     @FXML
-    private ImageView addWordMenu, Game1Menu, searchMenu;
+    private ImageView addWordMenu, Game1Menu, searchMenu, Game2Menu, translateMenu;
 
     private DictionaryController dictionaryController;
 
@@ -41,16 +41,18 @@ public class sidePanelController implements Initializable {
             tt.setAutoReverse(true);
             tt.play();
 
-            if(drawer.isOpened()) {
+            if (drawer.isOpened()) {
                 drawer.close();
+                drawer.setMouseTransparent(true);
             }
         });
-        setupImageView(searchMenu, "/Views/Dictionary.fxml");
-        setupImageView(addWordMenu, "/Views/addWord.fxml");
-        setupImageView(Game1Menu, "/Views/QuizUI.fxml");
+        setupImageView(searchMenu, "/Views/Dictionary.fxml", true);
+        setupImageView(addWordMenu, "/Views/addWord.fxml", false);
+        setupImageView(Game1Menu, "/Views/QuizUI.fxml", true);
+        setupImageView(translateMenu, "/Views/Translate.fxml", true);
     }
 
-    public void setupImageView(ImageView imageView, String scenePath) {
+    public void setupImageView(ImageView imageView, String scenePath, boolean shouldCloseDrawer) {
         imageView.setCursor(Cursor.HAND);
         imageView.setOnMouseEntered(event -> {
             // This is the color overlay when the mouse enters the ImageView
@@ -67,6 +69,13 @@ public class sidePanelController implements Initializable {
 
             // Load the specified scene
             dictionaryController.showComponent(scenePath);
+
+            // Close the drawer if shouldCloseDrawer is true
+            if (shouldCloseDrawer && drawer.isOpened()) {
+                drawer.close();
+                drawer.setMouseTransparent(true);
+            }
+
             imageView.setEffect(null);
         });
     }
