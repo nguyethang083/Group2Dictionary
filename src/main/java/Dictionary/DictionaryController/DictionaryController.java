@@ -103,6 +103,7 @@ public class DictionaryController implements Initializable {
     public void showComponent(String path) {
         try {
             AnchorPane component = FXMLLoader.load(Objects.requireNonNull(DictionaryController.class.getResource(path)));
+
             setNode(component);
         } catch (IOException e) {
             e.printStackTrace();

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+import Dictionary.DictionaryController.WordleController;
 
 import java.util.Objects;
 
@@ -18,10 +19,12 @@ public class DictionaryApplication extends Application {
         //stage.setScene(scene);
         //stage.show();
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/Dictionary.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/WordleUI.fxml")));
         primaryStage.setTitle("VLexi Dictionary App");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+
+
 
         primaryStage.setOnCloseRequest(event -> {
             Platform.exit();
