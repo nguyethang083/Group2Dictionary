@@ -1,10 +1,13 @@
 package Dictionary.DictionaryController;
 
 import javafx.animation.*;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -29,37 +32,41 @@ public class WordleController implements Initializable {
     private int CURRENT_COLUMN = 1;
 
     @FXML
-    public GridPane gridPane;
+    private GridPane gridPane;
     @FXML
-    public GridPane keyboardRow1;
+    private GridPane keyboardRow1;
     @FXML
-    public GridPane keyboardRow2;
+    private GridPane keyboardRow2;
     @FXML
-    public GridPane keyboardRow3;
-    //    @FXML
-//    public ImageView helpIcon;
-//    @FXML
-//    public ImageView githubIcon;
-//    @FXML
-//    public HBox titleHBox;
-//    @FXML
-//    public ImageView restartIcon;
+    private GridPane keyboardRow3;
+    @FXML
+    private ImageView ResultBack;
+    @FXML
+    private Label GameStatus;
+    @FXML
+    private Label WinningWord = new Label();
+    @FXML
+    private ImageView restartIcon;
+    @FXML
+    private Button TryAgain;
+
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createGrid();
         createKeyboard();
-        wordle.generateRandomWord();
         gridPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 onKeyPressed(event);
             }
         });
+        wordle.generateRandomWord();
+        WinningWord.setText(wordle.getAnswer().toUpperCase());
+        handleVisible(true);
     }
 
     public WordleController() {
         wordle = new Wordle();
-        gridPane = new GridPane();
-        gridPane.requestFocus();
     }
 
     // tạo ra bảng gồm các từ hiển thị
@@ -157,7 +164,7 @@ public class WordleController implements Initializable {
     }
 
     //update màu cho chữ cái
-    private void updateRowColors(int searchRow) {
+    private void updateRowColors(int searchRow, String status) {
         SequentialTransition seq = new SequentialTransition();
         for (int i = 1; i <= MAX_COLUMN; i++) {
             Label label = getLabel(searchRow, i);
@@ -195,6 +202,18 @@ public class WordleController implements Initializable {
                 seq.getChildren().add(bounceTransition2);
             }
         }
+        if (status == "win") {
+            seq.setOnFinished(e -> {
+                GameStatus.setText("YOU WIN!");
+                handleVisible(false);
+            });
+        } else if (status == "lose") {
+            seq.setOnFinished(e -> {
+                GameStatus.setText("YOU LOSE!");
+                handleVisible(false);
+            });
+        }
+
         seq.play();
     }
 
@@ -292,16 +311,86 @@ public class WordleController implements Initializable {
         if (CURRENT_ROW <= MAX_ROW && CURRENT_COLUMN == MAX_COLUMN) {
             String guess = getWordFromCurrentRow().toLowerCase();
             if (guess.equals(wordle.getAnswer())) {
-                updateRowColors(CURRENT_ROW);
+                updateRowColors(CURRENT_ROW, "win");
+                updateKeyboardColors();
+            } else if (wordle.valid(guess)) {
+                if (CURRENT_ROW == MAX_ROW) {
+                    updateRowColors(CURRENT_ROW, "lose");
+                } else {
+                    updateRowColors(CURRENT_ROW, "playing");
+                }
                 updateKeyboardColors();
 
-            } else if (wordle.valid(guess)) {
-                updateRowColors(CURRENT_ROW);
-                updateKeyboardColors();
                 CURRENT_ROW++;
                 CURRENT_COLUMN = 1;
             }
         }
+    }
+
+    public void reset() {
+        wordle.generateRandomWord();
+        Label label;
+        for (Node child : gridPane.getChildren())
+            if (child instanceof Label) {
+                label = (Label) child;
+                label.getStyleClass().clear();
+                label.setText("");
+                label.getStyleClass().add("default-tile");
+            }
+
+        for (Node child : keyboardRow1.getChildren())
+            if (child instanceof Label) {
+                label = (Label) child;
+                label.getStyleClass().clear();
+                label.getStyleClass().add("keyboard-tile");
+            }
+
+        for (Node child : keyboardRow2.getChildren())
+            if (child instanceof Label) {
+                label = (Label) child;
+                label.getStyleClass().clear();
+                label.getStyleClass().add("keyboard-tile");
+            }
+
+        for (Node child : keyboardRow3.getChildren())
+            if (child instanceof Label) {
+                label = (Label) child;
+                if (label.getText() == "↵" || label.getText() ==  "←") continue;
+                label.getStyleClass().clear();
+                label.getStyleClass().add("keyboard-tile");
+            }
+
+        CURRENT_COLUMN = 1;
+        CURRENT_ROW = 1;
+
+        handleVisible(true);
+    }
+
+    @FXML
+    public void handleRestart() {
+        RotateTransition rotateTransition = new RotateTransition(Duration.millis(500), restartIcon);
+        rotateTransition.setFromAngle(0);
+        rotateTransition.setToAngle(360);
+        rotateTransition.setOnFinished(ae -> reset());
+        rotateTransition.play();
+    }
+
+    @FXML
+    public void handleTryAgain() {
+        reset();
+    }
+
+    public void handleVisible(boolean status) {
+        gridPane.setVisible(status);
+        keyboardRow1.setVisible(status);
+        keyboardRow2.setVisible(status);
+        keyboardRow3.setVisible(status);
+        restartIcon.setVisible(status);
+
+        ResultBack.setVisible(!status);
+        TryAgain.setVisible(!status);
+        GameStatus.setVisible(!status);
+        WinningWord.setVisible(!status);
     }
 }
 

@@ -232,3 +232,32 @@
     -fx-text-alignment: center;
     -fx-alignment: center;
 }
+
+.game-status {
+    -fx-font-family: "Poppins Bold";
+    -fx-font-size: 60px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a475b;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+
+}
+
+.winning-word {
+    -fx-font-family: "Poppins Bold";
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a475b;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+}
+
+.try-again {
+    -fx-background-radius: 20px;
+    -fx-background-color: #527B8E;
+    -fx-font-family: "Poppins Bold";
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
