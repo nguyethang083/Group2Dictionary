@@ -197,7 +197,6 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
     }
 
     public List<EngWord> queryListWordByString(String word) throws SQLException {
-
         Where<EngWord, Long> english = this.queryBuilder().where().eq("Word", word);
         return new ArrayList<>(english.query());
     }

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static Dictionary.DatabaseConn.WordDAO;
+import static Dictionary.DatabaseConn.SavedWordDAO;
 
 public class DictionaryManagement {
     public void removeWord() throws SQLException {
@@ -52,6 +53,20 @@ public class DictionaryManagement {
         Scanner sc = new Scanner(System.in);
         String prefix = sc.nextLine();
         List<EngWord> searchingResult = WordDAO.containWordByString(prefix);
+        System.out.println("Result:");
+        System.out.println("No\t | English         | Meaning");
+        for (int i = 0; i < ((List<?>) searchingResult).size(); i++) {
+            String word = searchingResult.get(i).getWord();
+            String meaning = searchingResult.get(i).getMeaning();
+            System.out.printf("%d\t | %-15s | %s\n",i + 1 ,word ,meaning);
+        }
+    }
+
+    public void UserSearcher() throws SQLException {
+        System.out.print("SearchWho: ");
+        Scanner sc = new Scanner(System.in);
+        String user = sc.nextLine();
+        List<EngWord> searchingResult = SavedWordDAO.queryListWordByUser(user);
         System.out.println("Result:");
         System.out.println("No\t | English         | Meaning");
         for (int i = 0; i < ((List<?>) searchingResult).size(); i++) {

@@ -10,7 +10,9 @@ import java.nio.charset.StandardCharsets;
 
 import org.json.JSONObject;
 
-public class TranslateAPI {
+import org.apache.commons.text.StringEscapeUtils;
+
+public class TranslateAPI implements APIGeneral {
     private static final String API_KEY = System.getenv("RAPIDAPI_KEY");  // Read API key from environment variable
 
     public static String translateWord(String textToTranslate, String sourceLanguage, String targetLanguage) {
@@ -41,10 +43,13 @@ public class TranslateAPI {
 
     private static String parseTranslationResponse(String response) {
         JSONObject jsonResponse = new JSONObject(response);
-        return jsonResponse.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");
+        String translatedText = jsonResponse.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");
+        translatedText = StringEscapeUtils.unescapeHtml4(translatedText);
+
+        return translatedText;
     }
 
     public static void main(String[] args) {
-        System.out.println(translateWord("Hello, world!", "en", "vi"));
+        System.out.println(translateWord("Hằng bị gì thế", "vi", "en"));
     }
 }
