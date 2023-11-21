@@ -178,7 +178,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             }
             return true;
         } catch (SQLException e) {
-            System.err.println(e.getMessage() + " deleteWord " + word);
+            System.err.println(e.getMessage() + " deleteTuple " + word);
             return false;
         }
     }
@@ -191,7 +191,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             }
             return true;
         } catch (SQLException e) {
-            System.err.println(e.getMessage() + " deleteWord " + engWord.getWord());
+            System.err.println(e.getMessage() + " deleteTuple " + engWord.getWord());
             return false;
         }
     }

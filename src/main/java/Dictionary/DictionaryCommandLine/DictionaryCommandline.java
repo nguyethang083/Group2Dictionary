@@ -10,7 +10,9 @@ public class DictionaryCommandline {
 //        insertDict.dictionarySearcher();
 //        //insertDict.dictionarySearcher2();
 //        insertDict.lookup();
-        insertDict.UserSearcher();
+        insertDict.addSavedWord();
+        insertDict.deleteSavedWord();
+//        insertDict.UserSearcher();
     }
 
     public static void main(String[] args) throws SQLException {

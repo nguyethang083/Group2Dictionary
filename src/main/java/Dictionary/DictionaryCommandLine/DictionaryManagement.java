@@ -1,5 +1,6 @@
 package Dictionary.DictionaryCommandLine;
 
+import Dictionary.Entities.SavedWord;
 import Dictionary.Features.Voice;
 import Dictionary.Entities.EngWord;
 
@@ -22,6 +23,20 @@ public class DictionaryManagement {
         }
     }
 
+    public void deleteSavedWord() throws SQLException {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the word that you want to remove: ");
+        String removeWord = sc.nextLine();
+        System.out.print("user: ");
+        String user = sc.nextLine();
+
+        SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord(removeWord), user);
+        if (!SavedWordDAO.deleteTuple(savedWord))
+        {
+            System.out.println("This word doesn't exist in the saved-word list!");
+        }
+    }
+
     public void addWord() throws SQLException {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter the word that you want to add: \n");
@@ -32,6 +47,19 @@ public class DictionaryManagement {
         EngWord newWord = new EngWord(word, meaning, null);
 
         if(WordDAO.addWord(newWord)) System.out.println("thanh cong oi\n");
+    }
+
+    public void addSavedWord() throws SQLException {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the word that you want to add: \n");
+        System.out.print("word: ");
+        String word = sc.nextLine();
+        System.out.print("user: ");
+        String user = sc.nextLine();
+        SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord(word), user);
+
+        if(SavedWordDAO.addSavedWord(savedWord)) System.out.println("thanh cong oi\n");
+        else System.out.println("This word doesn't exist in the saved-word list!");
     }
 
     /*public void modifyWord()

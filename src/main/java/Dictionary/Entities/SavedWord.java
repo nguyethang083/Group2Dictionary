@@ -7,51 +7,39 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "SavedWord", daoClass = SavedWordDAO.class)
 public class SavedWord {
+    @DatabaseField(generatedId = true, index = true)
+    private long id;
     @DatabaseField(canBeNull = false, index = true)
     private String User_id = "";
     @DatabaseField(canBeNull = false, index = true)
     private long English_id;
 
+    public long getId() {
+        return id;
+    }
     public long getEnglish_id() {
         return English_id;
+    }
+    public void setEnglish_id(long x) {
+        English_id = x;
     }
 
     public String getUser_id() {
         return User_id;
     }
-    /*public EngWord() {
+    public void setUser_id(String x) {
+        User_id = x;
+    }
+    public SavedWord() {
     }
 
-    public EngWord(String word, String type, String meaning, String pronunciation, String example, String synonym, String antonyms) {
-        Word = word;
-        Type = type;
-        Meaning = meaning;
-        Pronunciation = pronunciation;
-        Example = example;
-        Synonym = synonym;
-        Antonyms = antonyms;
+    public SavedWord(long Eng, String User) {
+        English_id = Eng;
+        User_id = User;
     }
-    public EngWord(String word, String Meaning, String pronunciation){
-        Word = word;
-        this.Meaning = Meaning;
-        Pronunciation = pronunciation;
-    }
-    public EngWord(String word, String Meaning){
-        Word = word;
-        if(Meaning != null) {
-            this.Meaning = Meaning;
-        }
-    }
-    // englishDAO.create(new English("Hello", "Xin chao", "'he:llo'", "Noun", "Greeting,Hello, how are you?"));
-    public EngWord(String word, String Meaning, String pronunciation, String type, String example){
-        Word = word;
-        this.Meaning = Meaning;
-        Pronunciation = pronunciation;
-        Type = type;
-        Example = example;
-    }
+
     @Override
     public String toString(){
-        return "The word is " + Word + " " + Meaning + " " + Pronunciation + " " + Type + " " + Example + " " + Synonym + " " + Antonyms + "\n";
-    }*/
+        return "The word is " + User_id + English_id + "\n";
+    }
 }
