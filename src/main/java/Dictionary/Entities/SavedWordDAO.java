@@ -16,6 +16,9 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         super(connectionSource, SavedWord.class);
     }
 
+    // lưu ý cực mạnh: nếu ko muốn dùng id của word để làm input mà dùng word dạng string
+    // thì có thể dùng hàm WordDAO.queryIdbyWord
+
     /**
      *
      * @param user chọn 1 user (lúc login)
