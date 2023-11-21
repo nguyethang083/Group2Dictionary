@@ -20,11 +20,11 @@
 }
 
 .next-button {
-    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
     -fx-border-color: rgba(82, 123, 142, 0.40);
     -fx-border-width: 2px;
-    -fx-background-color: #ffffff;
-    -fx-text-fill: #000000;
+    -fx-background-color: #1a475b;
+    -fx-text-fill: #ffffff;
     -fx-font-family: "Noto Sans Regular";
     -fx-font-size: 20px;
     -fx-font-weight: 400;
@@ -60,7 +60,7 @@
 }
 
 .try-again {
-    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
     -fx-background-color: #527B8E;
     -fx-font-family: "Noto Sans Bold";
     -fx-font-weight: 400;

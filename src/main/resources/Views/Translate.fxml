@@ -36,15 +36,15 @@
          </cursor>
       </ImageView>
       <Rectangle fx:id="transContainer" arcHeight="5.0" arcWidth="5.0" fill="#1a475b" height="33.0" layoutX="317.0" layoutY="467.0" stroke="TRANSPARENT" strokeType="INSIDE" style="-fx-arc-width: 30; -fx-arc-height: 35;" width="107.0" />
-      <JFXButton fx:id="translateButton" buttonType="RAISED" layoutX="327.0" layoutY="466.0" onMouseClicked="#translateText" prefHeight="33.0" prefWidth="85.0" styleClass="popupTrans" stylesheets="@test.css" text="Translate" textFill="WHITE">
+      <JFXButton fx:id="translateButton" buttonType="RAISED" layoutX="317.0" layoutY="466.0" onMouseClicked="#translateText" prefHeight="34.0" prefWidth="107.0" text="Translate" textFill="WHITE">
          <font>
-            <Font name="Open Sans Light" size="14.0" />
+            <Font name="Poppins Regular" size="14.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></JFXButton>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a475b" height="63.0" layoutX="-1.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="900.0" />
-      <ImageView fitHeight="82.0" fitWidth="232.0" layoutX="350.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="80.0" fitWidth="264.0" layoutX="349.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/TranslateText.png" />
          </image>

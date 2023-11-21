@@ -2,6 +2,7 @@ package Dictionary.DictionaryController;
 
 import Dictionary.Features.TranslateAPI;
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -81,12 +82,23 @@ public class TranslateController {
         String sourceText = textToTranslate.getText();
         String sourceLanguage = languageCodes.get(sourceLanguageComboBox.getValue());
         String targetLanguage = languageCodes.get(targetLanguageComboBox.getValue());
-        try {
-            String translation = TranslateAPI.translateWord(sourceText, sourceLanguage, targetLanguage);
-            translatedText.setText(translation);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
+        // Create a new thread for the translation process
+        Thread thread = new Thread(() -> {
+            try {
+                String translation = TranslateAPI.translateWord(sourceText, sourceLanguage, targetLanguage);
+
+                // Update the UI on the JavaFX Application Thread
+                Platform.runLater(() -> {
+                    translatedText.setText(translation);
+                });
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        // Start the thread
+        thread.start();
     }
 
 }

@@ -1,7 +1,6 @@
 package Dictionary.DictionaryCommandLine;
-
-import Dictionary.Features.Voice;
 import Dictionary.Entities.EngWord;
+import Dictionary.Features.VoiceAPI;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -86,8 +85,8 @@ public class DictionaryManagement {
         System.out.println("3, Pronunciation: " + searchingResult.getPronunciation());
         System.out.println("4, Meaning: " + searchingResult.getMeaning());
         System.out.println("5, Example: " + searchingResult.getExample());
-        Voice.playVoice(searchingResult.getWord());
-        Voice.playVoice(searchingResult.getMeaning());
-        Voice.playVoice(searchingResult.getExample());
+        VoiceAPI.textToSpeech(searchingResult.getWord(), "en");
+        VoiceAPI.textToSpeech(searchingResult.getMeaning(), "en");
+        VoiceAPI.textToSpeech(searchingResult.getExample(), "en");
     }
 }

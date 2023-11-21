@@ -1,7 +1,7 @@
 package Dictionary.DictionaryController;
 
-import Dictionary.Features.Voice;
 import Dictionary.Entities.EngWord;
+import Dictionary.Features.VoiceAPI;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -228,7 +228,7 @@ public class DictionaryController implements Initializable {
     @FXML
     void playVoice(MouseEvent event) {
         if (selectedWord != null) {
-            Voice.playVoice(selectedWord);
+            VoiceAPI.textToSpeech(selectedWord, "en");
         }
     }
 
