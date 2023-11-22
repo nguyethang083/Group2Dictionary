@@ -23,12 +23,12 @@
                   <Image url="@../images/bgGUI.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="650.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About" wrappingWidth="67.14691162109375">
+            <Text fx:id="saveWordMenu" fill="WHITE" layoutX="631.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words" wrappingWidth="102.34698486328125">
                <font>
-                  <Font name="Arial Bold" size="18.0" />
+                  <Font name="Poppins Bold" size="18.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="742.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="More" wrappingWidth="52.74700927734375">
+            <Text fill="WHITE" layoutX="745.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About" wrappingWidth="52.74700927734375">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="editButton" fitHeight="27.0" fitWidth="18.0" layoutX="760.0" layoutY="162.0" onMouseClicked="#editWord" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="editButton" fitHeight="20.0" fitWidth="23.0" layoutX="759.0" layoutY="161.0" onMouseClicked="#editWord" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/editButton.png" />
                </image>
@@ -96,7 +96,15 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="deleteIcon" fitHeight="30.0" fitWidth="18.0" layoutX="787.0" layoutY="154.0" onMouseClicked="#deleteWord" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="734.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/saveIcon.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="deleteIcon" fitHeight="30.0" fitWidth="18.0" layoutX="788.0" layoutY="154.0" onMouseClicked="#deleteWord" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/deleteIcon.png" />
                </image>
@@ -112,12 +120,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="intro" fitHeight="268.0" fitWidth="727.0" layoutX="85.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="intro" fitHeight="275.0" fitWidth="753.0" layoutX="61.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/intro.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="exitProgram" fitHeight="25.0" fitWidth="32.0" layoutX="816.0" layoutY="23.0" onMousePressed="#exitProgram" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="exitProgram" fitHeight="25.0" fitWidth="32.0" layoutX="831.0" layoutY="23.0" onMousePressed="#exitProgram" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/exitProgram.png" />
                </image>
