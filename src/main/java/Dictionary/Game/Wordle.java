@@ -67,18 +67,6 @@ public class Wordle {
         return false;
     }
 
-    public String letterStatus(String inputLetter, int currentIndex) {
-        String status = "";
-        if (String.valueOf(answer.charAt(currentIndex - 1)).toLowerCase().equals(inputLetter.toLowerCase())) {
-            status = "correct-letter";
-        } else if (answer.contains(inputLetter)) {
-            status = "present-letter";
-        } else {
-            status = "wrong-letter";
-        }
-        return status;
-    }
-
     public String getAnswer() {
         return answer;
     }

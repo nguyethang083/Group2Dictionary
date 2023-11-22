@@ -13,12 +13,12 @@
     <children>
         <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/Quizbackground.png" />
+                <Image url="@../images/Dictionary_QuizBackground.png" />
             </image>
         </ImageView>
         <ImageView fx:id="ScoreArea" fitHeight="70.0" fitWidth="70.0" layoutX="796.0" layoutY="82.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/Demo_Score.png" />
+                <Image url="@../images/Dictionary_Score.png" />
             </image>
         </ImageView>
         <Label fx:id="Question" alignment="TOP_LEFT" layoutX="37.0" layoutY="161.0" minWidth="826.0" prefWidth="826.0" styleClass="question" text="h-h-hi its me again im back lets talk asap do you have the time lets talk">
@@ -31,7 +31,7 @@
         <Button fx:id="NextButton" layoutX="737.0" layoutY="488.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="126.0" style="-fx-border-radius: 10;" styleClass="next-button" text="Next" />
         <Label fx:id="Result" layoutX="37.0" layoutY="488.0" prefHeight="80.0" prefWidth="688.0" styleClass="quiz-comment" text="Label">
             <padding>
-                <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                <Insets bottom="5.0" left="12.0" right="10.0" top="5.0" />
             </padding>
             <font>
                 <Font name="Noto Sans Regular" size="20.0" />
@@ -44,7 +44,7 @@
         <Label fx:id="questionNumber" layoutX="40.0" layoutY="108.0" prefHeight="25.0" prefWidth="80.0" styleClass="question-no" stylesheets="@QuizStyle.css" text="Label" />
         <ImageView fx:id="ResultBack" fitHeight="400.0" fitWidth="600.0" layoutX="150.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/Result.png" />
+                <Image url="@../images/Dictionary_Result-02.png" />
             </image>
         </ImageView>
         <Label fx:id="FinalScore" alignment="CENTER" contentDisplay="CENTER" layoutX="381.0" layoutY="290.0" prefHeight="78.0" prefWidth="138.0" styleClass="final-score" text="10" textAlignment="CENTER" />

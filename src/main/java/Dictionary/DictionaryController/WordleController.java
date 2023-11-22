@@ -28,8 +28,8 @@ public class WordleController implements Initializable {
     private final String[] thirdRowLetters = {"↵", "Z", "X", "C", "V", "B", "N", "M", "←"};
     private final int MAX_COLUMN = 5;
     private final int MAX_ROW = 6;
-    private int CURRENT_ROW = 1;
-    private int CURRENT_COLUMN = 1;
+    private int currentRow = 1;
+    private int currentColumn = 1;
 
     @FXML
     private GridPane gridPane;
@@ -79,8 +79,7 @@ public class WordleController implements Initializable {
             }
         }
     }
-
-    // tạo ra giao diện keyboard
+    
     public void createKeyboard() {
         for (int i = 0; i < firstRowLetters.length; i++) {
             Label label = new Label();
@@ -106,7 +105,7 @@ public class WordleController implements Initializable {
     }
 
     // Cài đặt input lên ô từ
-    private void setLabelText(int searchRow, int searchColumn, String input) {
+    private void setBlockText(int searchRow, int searchColumn, String input) {
         Label label = getLabel(searchRow, searchColumn);
         if (label != null)
             label.setText(input.toUpperCase());
@@ -140,7 +139,7 @@ public class WordleController implements Initializable {
     }
 
     // Trả về chữ cái đang ở hàng nào cột nào
-    private String getLabelText(int searchRow, int searchColumn) {
+    private String getBlockText(int searchRow, int searchColumn) {
         Label label = getLabel(searchRow, searchColumn);
         if (label != null)
             return label.getText().toLowerCase();
@@ -148,7 +147,7 @@ public class WordleController implements Initializable {
     }
 
     // set style class cho chữ cái
-    private void setLabelStyleClass(int searchRow, int searchColumn, String styleclass) {
+    private void setBlockStyleClass(int searchRow, int searchColumn, String styleclass) {
         Label label = getLabel(searchRow, searchColumn);
         if (label != null) {
             label.getStyleClass().add(styleclass);
@@ -156,7 +155,7 @@ public class WordleController implements Initializable {
     }
 
     //xóa style class
-    private void clearLabelStyleClass(int searchRow, int searchColumn) {
+    private void clearBlockStyleClass(int searchRow, int searchColumn) {
         Label label = getLabel(searchRow, searchColumn);
         if (label != null) {
             label.getStyleClass().clear();
@@ -164,7 +163,7 @@ public class WordleController implements Initializable {
     }
 
     //update màu cho chữ cái
-    private void updateRowColors(int searchRow, String status) {
+    private void updateRowColor(int searchRow, String status) {
         SequentialTransition seq = new SequentialTransition();
         for (int i = 1; i <= MAX_COLUMN; i++) {
             Label label = getLabel(searchRow, i);
@@ -218,7 +217,7 @@ public class WordleController implements Initializable {
     }
 
     //update keyboard sau khi nhập
-    private void updateKeyboardColors() {
+    private void updateKeyboardColor() {
         String currentWord = getWordFromCurrentRow().toLowerCase();
         for (int i = 1; i <= MAX_COLUMN; i++) {
             Label keyboardLabel = new Label();
@@ -250,7 +249,7 @@ public class WordleController implements Initializable {
     private String getWordFromCurrentRow() {
         StringBuilder input = new StringBuilder();
         for (int j = 1; j <= MAX_COLUMN; j++)
-            input.append(getLabelText(CURRENT_ROW, j));
+            input.append(getBlockText(currentRow, j));
         return input.toString();
     }
 
@@ -270,25 +269,25 @@ public class WordleController implements Initializable {
 
     //xử lí xóa
     private void onBackspacePressed() {
-        if ((CURRENT_COLUMN == MAX_COLUMN || CURRENT_COLUMN == 1)
-                && !Objects.equals(getLabelText(CURRENT_ROW, CURRENT_COLUMN), "")) {
-            setLabelText(CURRENT_ROW, CURRENT_COLUMN, "");
-            clearLabelStyleClass(CURRENT_ROW, CURRENT_COLUMN);
-            setLabelStyleClass(CURRENT_ROW, CURRENT_COLUMN, "default-tile");
-        } else if ((CURRENT_COLUMN > 1 && CURRENT_COLUMN < MAX_COLUMN)
-                || (CURRENT_COLUMN == MAX_COLUMN && Objects.equals(getLabelText(CURRENT_ROW, CURRENT_COLUMN), ""))) {
-            CURRENT_COLUMN--;
-            setLabelText(CURRENT_ROW, CURRENT_COLUMN, "");
-            clearLabelStyleClass(CURRENT_ROW, CURRENT_COLUMN);
-            setLabelStyleClass(CURRENT_ROW, CURRENT_COLUMN, "default-tile");
+        if ((currentColumn == MAX_COLUMN || currentColumn == 1)
+                && !Objects.equals(getBlockText(currentRow, currentColumn), "")) {
+            setBlockText(currentRow, currentColumn, "");
+            clearBlockStyleClass(currentRow, currentColumn);
+            setBlockStyleClass(currentRow, currentColumn, "default-tile");
+        } else if ((currentColumn > 1 && currentColumn < MAX_COLUMN)
+                || (currentColumn == MAX_COLUMN && Objects.equals(getBlockText(currentRow, currentColumn), ""))) {
+            currentColumn--;
+            setBlockText(currentRow, currentColumn, "");
+            clearBlockStyleClass(currentRow, currentColumn);
+            setBlockStyleClass(currentRow, currentColumn, "default-tile");
         }
     }
 
     private void onLetterPressed(KeyEvent keyEvent) {
-        if (Objects.equals(getLabelText(CURRENT_ROW, CURRENT_COLUMN), "")) {
-            setLabelText(CURRENT_ROW, CURRENT_COLUMN, keyEvent.getText());
+        if (Objects.equals(getBlockText(currentRow, currentColumn), "")) {
+            setBlockText(currentRow, currentColumn, keyEvent.getText());
             System.out.println(keyEvent.getText());
-            Label label = getLabel(CURRENT_ROW, CURRENT_COLUMN);
+            Label label = getLabel(currentRow, currentColumn);
             ScaleTransition bounceTransition1 = new ScaleTransition(Duration.millis(100), label);
             bounceTransition1.fromXProperty().setValue(1);
             bounceTransition1.toXProperty().setValue(1.1);
@@ -300,29 +299,29 @@ public class WordleController implements Initializable {
             bounceTransition2.fromYProperty().setValue(1.1);
             bounceTransition2.toYProperty().setValue(1);
             new SequentialTransition(bounceTransition1, bounceTransition2).play();
-            setLabelStyleClass(CURRENT_ROW, CURRENT_COLUMN, "tile-with-letter");
-            if (CURRENT_COLUMN < MAX_COLUMN)
-                CURRENT_COLUMN++;
+            setBlockStyleClass(currentRow, currentColumn, "tile-with-letter");
+            if (currentColumn < MAX_COLUMN)
+                currentColumn++;
         }
     }
 
     // xử lí submit
     private void onEnterPressed() {
-        if (CURRENT_ROW <= MAX_ROW && CURRENT_COLUMN == MAX_COLUMN) {
+        if (currentRow <= MAX_ROW && currentColumn == MAX_COLUMN) {
             String guess = getWordFromCurrentRow().toLowerCase();
             if (guess.equals(wordle.getAnswer())) {
-                updateRowColors(CURRENT_ROW, "win");
-                updateKeyboardColors();
+                updateRowColor(currentRow, "win");
+                updateKeyboardColor();
             } else if (wordle.valid(guess)) {
-                if (CURRENT_ROW == MAX_ROW) {
-                    updateRowColors(CURRENT_ROW, "lose");
+                if (currentRow == MAX_ROW) {
+                    updateRowColor(currentRow, "lose");
                 } else {
-                    updateRowColors(CURRENT_ROW, "playing");
+                    updateRowColor(currentRow, "playing");
                 }
-                updateKeyboardColors();
+                updateKeyboardColor();
 
-                CURRENT_ROW++;
-                CURRENT_COLUMN = 1;
+                currentRow++;
+                currentColumn = 1;
             }
         }
     }
@@ -360,10 +359,11 @@ public class WordleController implements Initializable {
                 label.getStyleClass().add("keyboard-tile");
             }
 
-        CURRENT_COLUMN = 1;
-        CURRENT_ROW = 1;
+        currentColumn = 1;
+        currentRow = 1;
 
         handleVisible(true);
+        WinningWord.setText(wordle.getAnswer().toUpperCase());
     }
 
     @FXML

@@ -136,24 +136,15 @@ public class QuizController implements Initializable {
         if (quiz.checkAnswer()) {
             quiz.increaseScore();
             Result.setText("Correct!");
-            String correctStyle = """
-                    -fx-border-radius: 10px;
-                        -fx-background-color: #D6FEB8;
-                        -fx-font-family: "Noto Sans Regular";
-                        -fx-text-fill: #6BB52C;
-                        -fx-font-size: 20px;""";
-            Result.setStyle(correctStyle);
+            Result.getStyleClass().clear();
+            Result.getStyleClass().add("correct-style");
 //            Result.setTextFill(Color.web("#6bb52c"));
 //            Result.setBackground(Background.fill(Color.web("#d6feb8")));
         } else {
             Result.setText("Incorrect! The answer is " + quiz.getCorrectAnswer() + ".");
-            String incorrectStyle = """
-                    -fx-border-radius: 10px;
-                        -fx-background-color: #FEDEDF;
-                        -fx-font-family: "Noto Sans Regular";
-                        -fx-text-fill: #EF6163;
-                        -fx-font-size: 20px;""";
-            Result.setStyle(incorrectStyle);
+
+            Result.getStyleClass().clear();
+            Result.getStyleClass().add("incorrect-style");
 //            Result.setTextFill(Color.web("#ef6163"));
 //            Result.setBackground(Background.fill(Color.web("#fededf")));
         }
