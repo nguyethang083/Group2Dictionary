@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -70,40 +71,66 @@
                   <Font name="Playfair Display Bold" size="20.0" />
                </font>
             </Text>
-            <ImageView fx:id="voiceButton" fitHeight="21.0" fitWidth="32.0" layoutX="577.0" layoutY="203.0" onMouseClicked="#playVoice" onMouseEntered="#setOnMouseEntered" onMouseExited="#setOnMouseExited" onMousePressed="#setOpacityPressed" onMouseReleased="#setOpacityReleased" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="voiceButton" fitHeight="21.0" fitWidth="32.0" layoutX="577.0" layoutY="203.0" onMouseClicked="#playVoice" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/voiceButton.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <TextField fx:id="searchField" layoutX="296.0" layoutY="13.0" prefHeight="42.0" prefWidth="282.0" promptText="search here" styleClass="searchBox" stylesheets="@test.css" />
-            <ImageView fx:id="deleteAll" fitHeight="20.0" fitWidth="18.0" layoutX="559.0" layoutY="26.0" onMouseClicked="#clearSearchField" onMouseEntered="#setOnMouseEntered1" onMouseExited="#setOnMouseExited1" onMousePressed="#setOpacityPressed1" onMouseReleased="#setOpacityReleased1" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="deleteAll" fitHeight="20.0" fitWidth="18.0" layoutX="559.0" layoutY="26.0" onMouseClicked="#clearSearchField" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/XButton.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
-            <ImageView fx:id="editButton" fitHeight="27.0" fitWidth="18.0" layoutX="760.0" layoutY="162.0" onMouseClicked="#editWord" onMouseEntered="#setOnMouseEntered2" onMouseExited="#setOnMouseExited2" onMousePressed="#setOpacityPressed2" onMouseReleased="#setOpacityReleased2" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="editButton" fitHeight="27.0" fitWidth="18.0" layoutX="760.0" layoutY="162.0" onMouseClicked="#editWord" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/editButton.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fx:id="deleteIcon" fitHeight="30.0" fitWidth="18.0" layoutX="787.0" layoutY="154.0" onMouseClicked="#deleteWord" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/deleteIcon.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fx:id="saveButton" fitHeight="27.0" fitWidth="77.0" layoutX="748.0" layoutY="533.0" onMouseClicked="#saveWord" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/saveButton.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fx:id="intro" fitHeight="268.0" fitWidth="727.0" layoutX="85.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/intro.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="exitProgram" fitHeight="25.0" fitWidth="32.0" layoutX="816.0" layoutY="23.0" onMousePressed="#exitProgram" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/exitProgram.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </AnchorPane>
       <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" layoutY="2.0" mouseTransparent="true" prefHeight="600.0" prefWidth="198.0" />
-      <JFXHamburger fx:id="myHamburger" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="60.0" stylesheets="@test.css" />
+      <JFXHamburger fx:id="myHamburger" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="60.0" stylesheets="@test.css">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></JFXHamburger>
    </children>
 </AnchorPane>

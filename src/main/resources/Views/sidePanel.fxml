@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -48,11 +49,17 @@
                      <image>
                         <Image url="@../images/backButton.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
-                  <ImageView fitHeight="22.0" fitWidth="23.0" layoutX="15.0" layoutY="554.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="exitApp" fitHeight="22.0" fitWidth="23.0" layoutX="15.0" layoutY="554.0" onMousePressed="#exitApp" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/exitMenu.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor>
                   </ImageView>
                   <Label alignment="CENTER" layoutX="-2.0" layoutY="121.0" prefHeight="28.0" prefWidth="205.0" text="Vlexi Dictionary" textAlignment="CENTER" textFill="#c2a132">
                      <font>

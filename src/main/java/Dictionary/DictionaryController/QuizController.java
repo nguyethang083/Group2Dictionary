@@ -131,7 +131,8 @@ public class QuizController implements Initializable {
             quiz.increaseScore();
             Result.setText("Correct!");
             String correctStyle = """
-                    -fx-border-radius: 10px;
+                    -fx-background-radius: 10px;
+                    -fx-min-width: 688px;
                         -fx-background-color: #D6FEB8;
                         -fx-font-family: "Noto Sans Regular";
                         -fx-text-fill: #6BB52C;
@@ -142,7 +143,8 @@ public class QuizController implements Initializable {
         } else {
             Result.setText("Incorrect! The answer is " + quiz.getCorrectAnswer() + ".");
             String incorrectStyle = """
-                    -fx-border-radius: 10px;
+                    -fx-background-radius: 10px;
+                    -fx-min-width: 688px;
                         -fx-background-color: #FEDEDF;
                         -fx-font-family: "Noto Sans Regular";
                         -fx-text-fill: #EF6163;
