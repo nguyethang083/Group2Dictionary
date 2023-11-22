@@ -45,7 +45,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         }
         try {
             Where<SavedWord, Long> tuple = this.queryBuilder().where().eq("User_id", UserId).and().eq("English_id",EngId);
-            if (tuple.query() == null) {
+            if (tuple.query() != null) {
                 System.out.println("Từ này đã được lưu rồi");
                 return false;
             }

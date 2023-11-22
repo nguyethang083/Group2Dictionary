@@ -13,6 +13,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
         super(connectionSource, EngWord.class);
     }
 
+    // lỗi null pointer cần sửa lại!!!
     public long queryIdByWord(String word) throws SQLException {
         return this.queryBuilder().where().eq("Word", word).queryForFirst().getId();
     }
