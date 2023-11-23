@@ -2,6 +2,7 @@ package Dictionary;
 
 import Dictionary.Entities.SavedWord;
 import Dictionary.Entities.SavedWordDAO;
+import Dictionary.Entities.UserDAO;
 import Dictionary.Entities.WordDAO;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
@@ -23,12 +24,15 @@ public class DatabaseConn {
     }
 
     public static WordDAO WordDAO;
+    public static UserDAO UserDAO;
+
     public static SavedWordDAO SavedWordDAO;
 
     static {
         try {
             WordDAO = new WordDAO(connectionSource);
             SavedWordDAO = new SavedWordDAO(connectionSource);
+            UserDAO = new UserDAO(connectionSource);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
