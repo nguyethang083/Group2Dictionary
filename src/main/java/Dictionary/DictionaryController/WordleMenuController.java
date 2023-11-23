@@ -42,7 +42,7 @@ public class WordleMenuController extends GameMenuController {
         Stage Instruction = new Stage();
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Views/QuizInstruction.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Views/WordleInstruction.fxml"));
             Instruction.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
