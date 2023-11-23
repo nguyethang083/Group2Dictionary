@@ -1,84 +1,50 @@
 package Dictionary.Features;
 
-import javazoom.jl.decoder.JavaLayerException;
-import javazoom.jl.player.FactoryRegistry;
-import javazoom.jl.player.advanced.AdvancedPlayer;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.net.URI;
+import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 
-public class Voice {
-    public static String getVoice(String word) {
-        return "https://dict.youdao.com/dictvoice?audio=" + word + "&type=2";
-    }
+import javazoom.jl.player.Player;
 
-    public static void downloadUrl(String word) {
+public class Voice implements APIGeneral {
+    private static final String API_KEY = "71dc1b6092msh3f8ee17bd0825bap163fb1jsnb9be8fbaa2ba";
+    // //System.getenv("RAPIDAPI_KEY");  // Read API key from environment variable
+
+    public static void textToSpeech(String text, String language) {
         try {
-            word = word.replaceAll(" ", "%20");
-            String audioUrl = getVoice(word);
-            URL url = new URL(audioUrl);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("GET");
-
-            int responseCode = conn.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                try (InputStream inputStream = conn.getInputStream();
-                     FileOutputStream outputStream = new FileOutputStream("a.wav")) {
-                    byte[] buffer = new byte[4096];
-                    int bytesRead;
-                    while ((bytesRead = inputStream.read(buffer)) != -1) {
-                        outputStream.write(buffer, 0, bytesRead);
-                    }
-                }
-            } else {
-                System.err.println("Failed to download audio. Response Code: " + responseCode);
-            }
-
-            conn.disconnect();
-        } catch (IOException e) {
-            e.printStackTrace();
+            HttpRequest request = buildHttpRequest(text, language);
+            HttpResponse<InputStream> response = executeHttpRequest(request);
+            playAudio(response.body());
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
-    public static void playVoice(String w) {
-        String word = StringProcessing.normalizeStringForVoice(w);
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        executor.submit(() -> {
-            try {
-                downloadUrl(word);
-                String audioFilePath = "a.wav";
-                try {
-                    FileInputStream fis = new FileInputStream(audioFilePath);
-                    AdvancedPlayer player = new AdvancedPlayer(fis, FactoryRegistry.systemRegistry().createAudioDevice());
-                    System.out.println("Playing audio...");
-                    player.play();
-                } catch (IOException | JavaLayerException e) {
-                    e.printStackTrace();
-                } finally {
-                    // Delete the file after playing the audio
-                    File fileToDelete = new File(audioFilePath);
-                    if (fileToDelete.exists()) {
-                        if (fileToDelete.delete()) {
-                            System.out.println("File deleted successfully.");
-                        } else {
-                            System.err.println("Failed to delete file.");
-                        }
-                    }
-                }
-            } catch (Exception e) {
-                return;
-            }
-        } );
+    public static HttpRequest buildHttpRequest(String text, String language) {
+        String encodedText = URLEncoder.encode(text, StandardCharsets.UTF_8);
+        return HttpRequest.newBuilder()
+                .uri(URI.create("https://text-to-speech-api3.p.rapidapi.com/speak?text=" + encodedText + "&lang=" + language))
+                .header("X-RapidAPI-Key", API_KEY)
+                .header("X-RapidAPI-Host", "text-to-speech-api3.p.rapidapi.com")
+                .method("GET", HttpRequest.BodyPublishers.noBody())
+                .build();
+    }
+
+    public static HttpResponse<InputStream> executeHttpRequest(HttpRequest request) throws IOException, InterruptedException {
+        return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofInputStream());
+    }
+
+    private static void playAudio(InputStream audioStream) throws Exception {
+        Player player = new Player(audioStream);
+        player.play();
     }
 
     public static void main(String[] args) {
-        playVoice("Hằng là ai");
+        textToSpeech("いらっしゃい ませ", "ja");
     }
 }

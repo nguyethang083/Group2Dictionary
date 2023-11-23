@@ -7,7 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "User", daoClass = User.class)
 public class User {
-    @DatabaseField(generatedId = true, index = true)
+    @DatabaseField(generatedId = false, index = true)
     private String Id;
     @DatabaseField(canBeNull = false, index = true)
     private String Firstname = "";

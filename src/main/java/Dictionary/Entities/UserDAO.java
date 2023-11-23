@@ -29,7 +29,8 @@ public class UserDAO extends BaseDaoImpl<User, Long> {
         }
         try {
             Where<User, Long> tuple = this.queryBuilder().where().eq("Id", id);
-            if (tuple.query() != null) {
+            if (tuple.queryForFirst() != null) {
+                System.out.println(tuple.queryForFirst().toString());
                 System.out.println("User này đã được lưu rồi");
                 return false;
             }
