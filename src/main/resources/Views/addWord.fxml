@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/Frame%201.png" />
+            <Image url="@../images/Frame1.png" />
          </image>
       </ImageView>
       <TextField fx:id="newWord" layoutX="77.0" layoutY="213.0" prefHeight="27.0" prefWidth="325.0" styleClass="meaning" stylesheets="@test.css" />

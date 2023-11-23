@@ -23,10 +23,13 @@
                   <Image url="@../images/bgGUI.png" />
                </image>
             </ImageView>
-            <Text fx:id="saveWordMenu" fill="WHITE" layoutX="631.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words" wrappingWidth="102.34698486328125">
+            <Text fx:id="saveMyWordsMenu" fill="WHITE" layoutX="631.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words" wrappingWidth="102.34698486328125">
                <font>
                   <Font name="Poppins Bold" size="18.0" />
                </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Text>
             <Text fill="WHITE" layoutX="745.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="About" wrappingWidth="52.74700927734375">
                <font>
@@ -96,7 +99,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="734.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="saveThisWord" fitHeight="20.0" fitWidth="25.0" layoutX="734.0" layoutY="161.0" onMouseClicked="#saveToMyWords" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/saveIcon.png" />
                </image>

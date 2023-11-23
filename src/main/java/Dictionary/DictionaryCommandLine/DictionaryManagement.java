@@ -1,6 +1,7 @@
 package Dictionary.DictionaryCommandLine;
 
 import Dictionary.Entities.SavedWord;
+import Dictionary.Entities.User;
 import Dictionary.Features.Voice;
 import Dictionary.Entities.EngWord;
 
@@ -59,7 +60,7 @@ public class DictionaryManagement {
         SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord(word), user);
 
         if(SavedWordDAO.addSavedWord(savedWord)) System.out.println("thanh cong oi\n");
-        else System.out.println("This word doesn't exist in the saved-word list!");
+            else System.out.println("This word doesn't exist in the saved-word list!");
     }
 
     /*public void modifyWord()
@@ -133,4 +134,5 @@ public class DictionaryManagement {
         Voice.playVoice(searchingResult.getMeaning());
         Voice.playVoice(searchingResult.getExample());
     }
+
 }

@@ -1,5 +1,6 @@
 package Dictionary.Entities;
 
+import Dictionary.DatabaseConn;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Dictionary.DatabaseConn.WordDAO;
+import static Dictionary.DatabaseConn.SavedWordDAO;
 
 public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     public SavedWordDAO(ConnectionSource connectionSource) throws SQLException {

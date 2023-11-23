@@ -2,6 +2,7 @@ package Dictionary;
 
 import Dictionary.Entities.SavedWord;
 import Dictionary.Entities.SavedWordDAO;
+import Dictionary.Entities.UserDAO;
 import Dictionary.Entities.WordDAO;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;

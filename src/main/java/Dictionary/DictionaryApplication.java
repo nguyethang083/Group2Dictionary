@@ -12,7 +12,7 @@ import java.util.Objects;
 public class DictionaryApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/MyWords.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/Dictionary.fxml")));
         primaryStage.setTitle("Vlexi Dictionary App");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
