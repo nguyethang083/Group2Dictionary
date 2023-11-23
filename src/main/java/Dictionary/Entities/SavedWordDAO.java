@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Dictionary.DatabaseConn.WordDAO;
+import static Dictionary.DatabaseConn.UserDAO;
 import static Dictionary.DatabaseConn.SavedWordDAO;
 
 public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
@@ -47,7 +48,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         }
         try {
             Where<SavedWord, Long> tuple = this.queryBuilder().where().eq("User_id", UserId).and().eq("English_id",EngId);
-            if (tuple.query() != null) {
+            if (tuple.queryForFirst() != null) {
                 System.out.println("Từ này đã được lưu rồi");
                 return false;
             }
@@ -73,6 +74,20 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " deleteSWord");
             return false;
+        }
+    }
+
+    public static void main(String[] args) throws SQLException {
+        User hangg = new User("2", "Hang", "Vu");
+        UserDAO.addUser(hangg);
+        SavedWord x = new SavedWord(398, "hang");
+        SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Absent"), "hangg");
+        System.out.println(WordDAO.queryIdByWord("Absent"));
+        SavedWordDAO.addSavedWord(savedWord);
+        List<EngWord> kk = SavedWordDAO.queryListWordByUser("hangg");
+        System.out.println(kk.size());
+        for (EngWord n : kk) {
+            System.out.println(n.getWord());
         }
     }
 }

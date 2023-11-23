@@ -24,12 +24,15 @@ public class DatabaseConn {
     }
 
     public static WordDAO WordDAO;
+    public static UserDAO UserDAO;
+
     public static SavedWordDAO SavedWordDAO;
 
     static {
         try {
             WordDAO = new WordDAO(connectionSource);
             SavedWordDAO = new SavedWordDAO(connectionSource);
+            UserDAO = new UserDAO(connectionSource);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
