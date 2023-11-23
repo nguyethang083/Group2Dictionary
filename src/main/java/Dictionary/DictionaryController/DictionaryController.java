@@ -69,7 +69,7 @@ public class DictionaryController implements Initializable {
 
     private String selectedWord;
 
-    private String currentUser;
+    private String currentUser = "hang";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
