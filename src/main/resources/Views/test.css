@@ -144,5 +144,7 @@
     -fx-font-size: 18;
     -fx-font-weight: 100;
 }
-
+.list-view:focused .content {
+    -fx-background-color: transparent, white, transparent, white;
+}
 

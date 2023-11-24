@@ -78,13 +78,11 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     }
 
     public static void main(String[] args) throws SQLException {
-        User hungdan = new User("33", "Hung", "Le");
-        UserDAO.addUser(hungdan);
-        SavedWord x = new SavedWord(398, "hungdan");
-        SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Absent"), "hungdan");
-        System.out.println(WordDAO.queryIdByWord("Absent"));
+        //User testUser = new User("5", "Toi", "Test");
+        //UserDAO.addUser(testUser);
+        SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Constitutional"), "testUser");
         SavedWordDAO.addSavedWord(savedWord);
-        List<EngWord> kk = SavedWordDAO.queryListWordByUser("hungdan");
+        List<EngWord> kk = SavedWordDAO.queryListWordByUser("testUser");
         System.out.println(kk.size());
         for (EngWord n : kk) {
             System.out.println(n.getWord());

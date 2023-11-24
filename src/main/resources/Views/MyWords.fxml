@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.MyWordsController">
    <children>
@@ -13,6 +12,6 @@
             <Image url="@../images/MyWords.png" />
          </image>
       </ImageView>
-      <JFXListView fx:id="wordlist" layoutX="489.0" layoutY="347.0" prefHeight="191.0" prefWidth="346.0" />
+      <ListView fx:id="wordlist" fixedCellSize="0.0" layoutX="468.0" layoutY="332.0" prefHeight="200.0" prefWidth="402.0" stylesheets="@test.css" />
    </children>
 </AnchorPane>

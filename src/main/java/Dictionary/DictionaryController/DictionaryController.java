@@ -6,6 +6,7 @@ import Dictionary.Features.VoiceAPI;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -69,7 +70,7 @@ public class DictionaryController implements Initializable {
 
     private String selectedWord;
 
-    private String currentUser = "hang";
+    private String currentUser = "testUser";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -83,21 +84,30 @@ public class DictionaryController implements Initializable {
         }
         saveMyWordsMenu.setOnMouseClicked(event -> {
             try {
-                // Load the FXML file for the MyWords scene
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/MyWords.fxml"));
                 Parent root = loader.load();
 
                 MyWordsController controller = loader.getController();
+                controller.setDictionaryController(this); // Add this line
+
                 List<EngWord> savedWords = SavedWordDAO.queryListWordByUser(currentUser);
+                System.out.println("?");
+                for (EngWord k : savedWords) {
+                    System.out.println(k.getWord());
+                }
                 controller.displaySavedWords(savedWords);
 
                 Stage stage = (Stage) saveMyWordsMenu.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
-        } catch (SQLException | IOException e) {
+            } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
             }
         });
+    }
+
+    public void setSelectedWord(String word) {
+        this.selectedWord = word;
     }
 
     private void initImageViews() {
@@ -115,7 +125,12 @@ public class DictionaryController implements Initializable {
         }
         comboBox.setItems(words);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> updateComboBox(newValue));
-        comboBox.setOnAction(event -> updateView());
+        comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                setSelectedWord(newValue);
+                updateView();
+            }
+        });
     }
 
     private void initHamburger() {
@@ -231,8 +246,8 @@ public class DictionaryController implements Initializable {
         setVisibility(false);
     }
 
-    private void updateView() {
-        selectedWord = comboBox.getSelectionModel().getSelectedItem();
+    public void updateView() {
+        //selectedWord = comboBox.getSelectionModel().getSelectedItem();
         if (selectedWord != null) {
             try {
                 EngWord engWord = WordDAO.queryWordByString(selectedWord);
