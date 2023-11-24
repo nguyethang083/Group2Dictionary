@@ -13,6 +13,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
         super(connectionSource, EngWord.class);
     }
 
+    // lỗi null pointer cần sửa lại!!!
     public long queryIdByWord(String word) throws SQLException {
         return this.queryBuilder().where().eq("Word", word).queryForFirst().getId();
     }
@@ -178,7 +179,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             }
             return true;
         } catch (SQLException e) {
-            System.err.println(e.getMessage() + " deleteWord " + word);
+            System.err.println(e.getMessage() + " deleteTuple " + word);
             return false;
         }
     }
@@ -191,13 +192,12 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             }
             return true;
         } catch (SQLException e) {
-            System.err.println(e.getMessage() + " deleteWord " + engWord.getWord());
+            System.err.println(e.getMessage() + " deleteTuple " + engWord.getWord());
             return false;
         }
     }
 
     public List<EngWord> queryListWordByString(String word) throws SQLException {
-
         Where<EngWord, Long> english = this.queryBuilder().where().eq("Word", word);
         return new ArrayList<>(english.query());
     }

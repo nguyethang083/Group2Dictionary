@@ -1,59 +1,55 @@
 package Dictionary.Features;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
-import org.apache.http.util.EntityUtils;
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.io.IOException;
+import java.net.URI;
 import java.net.URLEncoder;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
-public class TranslateAPI {
-    private static final CloseableHttpClient httpClient = HttpClients.createDefault();
+import org.json.JSONObject;
 
-    public static String translateWord(String textToTranslate, String sourceLanguage, String targetLanguage) throws IOException {
-        String encodedText = URLEncoder.encode(textToTranslate, StandardCharsets.UTF_8);
+import org.apache.commons.text.StringEscapeUtils;
 
-        String apiUrl = "https://translate.googleapis.com/translate_a/single?client=gtx&sl="
-                + sourceLanguage + "&tl=" + targetLanguage + "&dt=t&text=" + encodedText + "&op=translate";
+public class TranslateAPI implements APIGeneral {
+    private static final String API_KEY = System.getenv("RAPIDAPI_KEY");  // Read API key from environment variable
 
-        HttpGet httpGet = new HttpGet(apiUrl);
-        HttpResponse response = httpClient.execute(httpGet);
-        HttpEntity entity = response.getEntity();
-
-        if (entity != null) {
-            String jsonResponse = EntityUtils.toString(entity);
-            return parseTranslationResponse(jsonResponse);
-        }
-
-        return "Error: Unable to get translation response.";
-    }
-
-    public static String parseTranslationResponse(String response) {
+    public static String translateWord(String textToTranslate, String sourceLanguage, String targetLanguage) {
         try {
-            JSONArray jsonArray = new JSONArray(response);
-
-            JSONArray translationArray = jsonArray.getJSONArray(0);
-
-            StringBuilder translatedTextBuilder = new StringBuilder();
-            for (int i = 0; i < translationArray.length(); i++) {
-                String translationSegment = translationArray.getJSONArray(i).getString(0);
-                translatedTextBuilder.append(translationSegment);
-            }
-
-            return translatedTextBuilder.toString();
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return "Error: Unable to parse the translation response.";
+            String encodedText = URLEncoder.encode(textToTranslate, StandardCharsets.UTF_8);
+            HttpRequest request = buildHttpRequest(encodedText, sourceLanguage, targetLanguage);
+            HttpResponse<String> response = executeHttpRequest(request);
+            return parseTranslationResponse(response.body());
+        } catch (Exception e) {
+            return "Error: " + e.getMessage();
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        System.out.println(translateWord("hello i love you very much ", "en", ""));
+    private static HttpRequest buildHttpRequest(String encodedText, String sourceLanguage, String targetLanguage) {
+        return HttpRequest.newBuilder()
+                .uri(URI.create("https://google-translate1.p.rapidapi.com/language/translate/v2"))
+                .header("content-type", "application/x-www-form-urlencoded")
+                .header("Accept-Encoding", "application/gzip")
+                .header("X-RapidAPI-Key", API_KEY)
+                .header("X-RapidAPI-Host", "google-translate1.p.rapidapi.com")
+                .method("POST", HttpRequest.BodyPublishers.ofString("q=" + encodedText + "&target=" + targetLanguage + "&source=" + sourceLanguage))
+                .build();
+    }
+
+    private static HttpResponse<String> executeHttpRequest(HttpRequest request) throws IOException, InterruptedException {
+        return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofString());
+    }
+
+    private static String parseTranslationResponse(String response) {
+        JSONObject jsonResponse = new JSONObject(response);
+        String translatedText = jsonResponse.getJSONObject("data").getJSONArray("translations").getJSONObject(0).getString("translatedText");
+        translatedText = StringEscapeUtils.unescapeHtml4(translatedText);
+
+        return translatedText;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(translateWord("Hằng bị gì thế", "vi", "en"));
     }
 }

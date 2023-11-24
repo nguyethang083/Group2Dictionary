@@ -79,6 +79,6 @@ public class Voice {
     }
 
     public static void main(String[] args) {
-        playVoice("i'm so happy, i'm 6 years old; i'm hangdog");
+        playVoice("Hằng là ai");
     }
 }

@@ -20,6 +20,7 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
@@ -51,7 +52,7 @@ public class DictionaryController implements Initializable {
     @FXML
     private Label wordLabel;
     @FXML
-    private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll, editButton, deleteIcon, saveButton;
+    private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll, editButton, deleteIcon, saveButton, intro;
 
     @FXML
     private Text examplePrompt, synonymPrompt;
@@ -74,8 +75,10 @@ public class DictionaryController implements Initializable {
         myHamburger.setCursor(Cursor.HAND);
 
         myHamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, (e) -> {
-            if (!drawer.isOpened())
+            if (!drawer.isOpened()) {
                 drawer.open();
+                drawer.setMouseTransparent(false);
+            }
         });
 
         myHamburger.setOnMouseClicked(event -> myHamburger.setVisible(false));
@@ -181,6 +184,8 @@ public class DictionaryController implements Initializable {
                 meaning.setText(engWord.getMeaning());
                 synonym.setText(engWord.getSynonym());
                 example.setText(engWord.getExample());
+                intro.setVisible(false);
+                intro.setMouseTransparent(true);
                 setVisibility(true);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -189,15 +194,14 @@ public class DictionaryController implements Initializable {
     }
 
     private void setVisibility(boolean isVisible) {
-        exampleContainer.setVisible(isVisible);
-        synonymContainer.setVisible(isVisible);
-        examplePrompt.setVisible(isVisible);
-        definitionPrompt.setVisible(isVisible);
-        synonymPrompt.setVisible(isVisible);
-        rectangle.setVisible(isVisible);
-        voiceButton.setVisible(isVisible);
-        editButton.setVisible(isVisible);
-        deleteIcon.setVisible(isVisible);
+        List<Node> nodes = Arrays.asList(
+                exampleContainer, synonymContainer, examplePrompt, definitionPrompt, synonymPrompt, rectangle,
+                voiceButton, editButton, deleteIcon, meaning, wordLabel, phonetic, example, synonym, partsofspeech
+        );
+
+        for (Node node : nodes) {
+            node.setVisible(isVisible);
+        }
     }
 
     @FXML

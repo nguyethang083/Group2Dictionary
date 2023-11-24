@@ -6,19 +6,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.addWordController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.addWordController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/addWordGUI.png" />
          </image>
       </ImageView>
-      <TextField fx:id="newWord" layoutX="255.0" layoutY="225.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newPhonetic" layoutX="590.0" layoutY="225.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newType" layoutX="255.0" layoutY="282.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newSynonym" layoutX="590.0" layoutY="282.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newDefinition" alignment="TOP_LEFT" layoutX="256.0" layoutY="337.0" prefHeight="81.0" prefWidth="602.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newExample" alignment="TOP_LEFT" layoutX="255.0" layoutY="455.0" prefHeight="82.0" prefWidth="602.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newWord" layoutX="260.0" layoutY="213.0" prefHeight="26.0" prefWidth="265.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newPhonetic" layoutX="594.0" layoutY="213.0" prefHeight="26.0" prefWidth="266.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newType" layoutX="260.0" layoutY="274.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newSynonym" layoutX="596.0" layoutY="273.0" prefHeight="26.0" prefWidth="266.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newDefinition" alignment="TOP_LEFT" layoutX="256.0" layoutY="337.0" prefHeight="58.0" prefWidth="602.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newExample" alignment="TOP_LEFT" layoutX="256.0" layoutY="435.0" prefHeight="82.0" prefWidth="602.0" styleClass="meaning" stylesheets="@test.css" />
       <Button fx:id="addButton" contentDisplay="CENTER" layoutX="502.0" layoutY="553.0" mnemonicParsing="false" onMouseClicked="#addWord" prefHeight="26.0" prefWidth="110.0" styleClass="addButton" stylesheets="@test.css" text="Add" textAlignment="CENTER" />
    </children>
 </AnchorPane>
