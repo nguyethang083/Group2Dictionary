@@ -91,7 +91,6 @@ public class DictionaryController implements Initializable {
                 controller.setDictionaryController(this); // Add this line
 
                 List<EngWord> savedWords = SavedWordDAO.queryListWordByUser(currentUser);
-                System.out.println("?");
                 for (EngWord k : savedWords) {
                     System.out.println(k.getWord());
                 }

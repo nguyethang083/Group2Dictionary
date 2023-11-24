@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
@@ -22,32 +24,41 @@ public class MyWordsController {
     public void setDictionaryController(DictionaryController dictionaryController) {
         this.dictionaryController = dictionaryController;
     }
+
     public void displaySavedWords(List<EngWord> words) {
         ObservableList<String> observableList = FXCollections.observableArrayList();
         for (EngWord word : words) {
             observableList.add(word.getWord());
         }
         wordlist.setItems(observableList);
-        wordlist.setOnMouseClicked(event -> {
-            String selectedWord = wordlist.getSelectionModel().getSelectedItem();
-
-            // Load Dictionary.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dictionary.fxml"));
-            Parent root = null;
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+        wordlist.setCellFactory(lv -> new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    Hyperlink hyperlink = new Hyperlink(item);
+                    // Add this line to your code
+                    hyperlink.setStyle("-fx-focus-color: transparent;");
+                    hyperlink.setOnAction(event -> {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dictionary.fxml"));
+                        Parent root = null;
+                        try {
+                            root = loader.load();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                        DictionaryController dictionaryController = loader.getController();
+                        dictionaryController.setSelectedWord(item);
+                        dictionaryController.updateView();
+                        Stage stage = (Stage) wordlist.getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    });
+                    setGraphic(hyperlink);
+                }
             }
-
-            // Get the controller and set the selected word
-            DictionaryController dictionaryController = loader.getController();
-            dictionaryController.setSelectedWord(selectedWord);
-            dictionaryController.updateView();
-
-            Stage stage = (Stage) wordlist.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
         });
     }
 }
