@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -72,6 +73,9 @@ public class DictionaryController implements Initializable {
 
     private String currentUser = "testUser";
 
+    Image image1 = new Image(Objects.requireNonNull(getClass().getResource("/images/saveIcon.png")).toExternalForm());
+    Image image2 = new Image(Objects.requireNonNull(getClass().getResource("/images/savedIcon.png")).toExternalForm());
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initImageViews();
@@ -82,27 +86,6 @@ public class DictionaryController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        saveMyWordsMenu.setOnMouseClicked(event -> {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/MyWords.fxml"));
-                Parent root = loader.load();
-
-                MyWordsController controller = loader.getController();
-                controller.setDictionaryController(this); // Add this line
-
-                List<EngWord> savedWords = SavedWordDAO.queryListWordByUser(currentUser);
-                for (EngWord k : savedWords) {
-                    System.out.println(k.getWord());
-                }
-                controller.displaySavedWords(savedWords);
-
-                Stage stage = (Stage) saveMyWordsMenu.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.show();
-            } catch (SQLException | IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
     }
 
     public void setSelectedWord(String word) {
@@ -110,6 +93,7 @@ public class DictionaryController implements Initializable {
     }
 
     private void initImageViews() {
+        saveThisWord.setImage(image1);
         List<ImageView> imageViews = Arrays.asList(voiceButton, deleteAll, editButton, deleteIcon, saveButton);
         for (ImageView imageView : imageViews) {
             imageView.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> imageView.setOpacity(0.5));
@@ -160,11 +144,12 @@ public class DictionaryController implements Initializable {
     }
 
     @FXML
-    public void showComponent(String path) {
+    public Object showComponent(String path) {
         try {
-            AnchorPane component = FXMLLoader.load(Objects.requireNonNull(DictionaryController.class.getResource(path)));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            AnchorPane component = loader.load();
             setNode(component);
+            return loader.getController();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -207,15 +192,31 @@ public class DictionaryController implements Initializable {
 
     @FXML
     void saveToMyWords(MouseEvent event) throws SQLException {
-        SavedWord saveWord = new SavedWord();
-        EngWord engWord = WordDAO.queryWordByString(selectedWord);
-        long EngId = engWord.getId();
-        saveWord.setEnglish_id(EngId);
-        saveWord.setUser_id(currentUser);
-        SavedWordDAO.addSavedWord(saveWord);
+        if (saveThisWord.getImage().equals(image2)) {
+            saveThisWord.setImage(image1);
+            SavedWord savedWord = new SavedWord();
+            EngWord engWord = WordDAO.queryWordByString(selectedWord);
+            long EngId = engWord.getId();
+            savedWord.setEnglish_id(EngId);
+            savedWord.setUser_id(currentUser);
+            SavedWordDAO.deleteTuple(savedWord);
+        } else {
+            saveThisWord.setImage(image2);
+            SavedWord saveWord = new SavedWord();
+            EngWord engWord = WordDAO.queryWordByString(selectedWord);
+            long EngId = engWord.getId();
+            saveWord.setEnglish_id(EngId);
+            saveWord.setUser_id(currentUser);
+            SavedWordDAO.addSavedWord(saveWord);
+        }
     }
 
-
+    @FXML
+    void switchToMyWords(MouseEvent event) throws SQLException {
+        MyWordsController controller = (MyWordsController) showComponent("/Views/MyWords.fxml");
+        List<EngWord> savedWords = SavedWordDAO.queryListWordByUser(currentUser);
+        controller.displaySavedWords(savedWords);
+    }
 
     @FXML
     void saveWord(MouseEvent event) {
@@ -236,6 +237,7 @@ public class DictionaryController implements Initializable {
         }
     }
 
+    // Temporary alert
     @FXML
     void deleteWord(MouseEvent event) throws SQLException {
         WordDAO.deleteWordByString(selectedWord);
@@ -258,6 +260,15 @@ public class DictionaryController implements Initializable {
                 example.setText(engWord.getExample());
                 intro.setVisible(false);
                 setVisibility(true);
+
+                SavedWord savedWord = new SavedWord();
+                savedWord.setEnglish_id(engWord.getId());
+                savedWord.setUser_id(currentUser);
+                if (SavedWordDAO.idExists(savedWord)) {
+                    saveThisWord.setImage(image2);
+                } else {
+                    saveThisWord.setImage(image1);
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -266,7 +277,7 @@ public class DictionaryController implements Initializable {
 
     private void setVisibility(boolean isVisible) {
         List<Node> nodes = Arrays.asList(
-                exampleContainer, synonymContainer, examplePrompt, definitionPrompt, synonymPrompt, rectangle,
+                exampleContainer, synonymContainer, examplePrompt, definitionPrompt, synonymPrompt, rectangle, saveThisWord,
                 voiceButton, editButton, deleteIcon, meaning, wordLabel, phonetic, example, synonym, partsofspeech
         );
 

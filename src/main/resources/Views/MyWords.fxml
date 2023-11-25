@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,11 +15,12 @@
             <Image url="@../images/MyWords.png" />
          </image>
       </ImageView>
-      <ListView fx:id="wordlist" fixedCellSize="0.0" layoutX="450.0" layoutY="341.0" prefHeight="200.0" prefWidth="402.0" stylesheets="@test.css" />
+      <ListView fx:id="wordlist" fixedCellSize="0.0" layoutX="439.0" layoutY="207.0" prefHeight="294.0" prefWidth="402.0" styleClass="list-word" stylesheets="@test.css" />
       <Text layoutX="380.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words">
          <font>
             <Font name="Playfair Display Bold" size="33.0" />
          </font>
       </Text>
+      <TextField layoutX="66.0" layoutY="287.0" prefHeight="30.0" prefWidth="187.0" />
    </children>
 </AnchorPane>

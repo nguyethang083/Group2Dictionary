@@ -77,10 +77,19 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         }
     }
 
+    public boolean idExists(SavedWord x) throws SQLException {
+        long EngId = x.getEnglish_id();
+        String UserId = x.getUser_id();
+        SavedWord tuple = this.queryBuilder().where().eq("User_id", UserId).and().eq("English_id", EngId).queryForFirst();
+        return tuple != null;
+    }
+
+
     public static void main(String[] args) throws SQLException {
         //User testUser = new User("5", "Toi", "Test");
         //UserDAO.addUser(testUser);
         SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Constitutional"), "testUser");
+        System.out.println(savedWord.getClass());
         SavedWordDAO.addSavedWord(savedWord);
         List<EngWord> kk = SavedWordDAO.queryListWordByUser("testUser");
         System.out.println(kk.size());

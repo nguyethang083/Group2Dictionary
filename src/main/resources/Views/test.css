@@ -71,7 +71,7 @@
 }
 
 .combo-box-popup .list-cell {
-    -fx-pref-height: 30px; /* Adjust this value as needed */
+    -fx-pref-height: 30px;
 }
 
 /* Adjust the height of the combo box list view */
@@ -144,7 +144,7 @@
     -fx-font-size: 18;
     -fx-font-weight: 100;
 }
-.list-cell {
+.list-word {
     -fx-font-family: "Playfair Display";
     -fx-font-size: 20px;
     -fx-text-fill: #527B8E;

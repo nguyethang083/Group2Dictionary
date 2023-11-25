@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,6 +20,8 @@ import java.util.List;
 public class MyWordsController {
     @FXML
     private ListView<String> wordlist;
+    @FXML
+    private TextField searchbar;
     private DictionaryController dictionaryController;
 
     public void setDictionaryController(DictionaryController dictionaryController) {
@@ -31,6 +34,7 @@ public class MyWordsController {
             observableList.add(word.getWord());
         }
         wordlist.setItems(observableList);
+        adjustListViewHeight(wordlist);
         wordlist.setCellFactory(lv -> new ListCell<String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -41,7 +45,8 @@ public class MyWordsController {
                     Hyperlink hyperlink = new Hyperlink(item);
                     // Add this line to your code
                     hyperlink.setStyle("-fx-focus-color: transparent;");
-                    hyperlink.setOnAction(event -> {
+                    hyperlink.setStyle("-fx-text-fill: #527B8E;");
+                    hyperlink.setOnMouseClicked(event -> {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dictionary.fxml"));
                         Parent root = null;
                         try {
@@ -60,5 +65,14 @@ public class MyWordsController {
                 }
             }
         });
+    }
+    private void adjustListViewHeight(ListView<String> listView) {
+        int totalItems = listView.getItems().size();
+        int itemHeight = 47;
+        int verticalPadding = 6;
+        totalItems = Math.min(totalItems, 6);
+        double totalHeight = totalItems * itemHeight + verticalPadding;
+
+        listView.setPrefHeight(totalHeight);
     }
 }
