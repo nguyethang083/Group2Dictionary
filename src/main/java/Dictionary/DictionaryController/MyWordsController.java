@@ -43,7 +43,6 @@ public class MyWordsController {
                     setText(null);
                 } else {
                     Hyperlink hyperlink = new Hyperlink(item);
-                    // Add this line to your code
                     hyperlink.setStyle("-fx-focus-color: transparent;");
                     hyperlink.setStyle("-fx-text-fill: #527B8E;");
                     hyperlink.setOnMouseClicked(event -> {
