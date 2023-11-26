@@ -6,13 +6,10 @@ import Dictionary.Features.VoiceAPI;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -32,7 +29,6 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
-import javafx.stage.Stage;
 
 import static Dictionary.DatabaseConn.SavedWordDAO;
 import static Dictionary.Entities.AllWord.allWord;
@@ -40,7 +36,7 @@ import static Dictionary.DatabaseConn.WordDAO;
 
 public class DictionaryController implements Initializable {
     @FXML
-    private AnchorPane content, container;
+    private AnchorPane content;
 
     @FXML
     private JFXDrawer drawer;
@@ -159,7 +155,12 @@ public class DictionaryController implements Initializable {
         if (newValue.isEmpty()) {
             comboBox.hide();
         } else {
-            ObservableList<String> filteredWords = getFilteredWords(newValue);
+            ObservableList<EngWord> filteredEngWords = getFilteredEngWords(newValue);
+            // Extract the word strings from the EngWord objects
+            ObservableList<String> filteredWords = FXCollections.observableArrayList();
+            for (EngWord engWord : filteredEngWords) {
+                filteredWords.add(engWord.getWord());
+            }
             comboBox.setItems(filteredWords);
             if (!filteredWords.isEmpty() && !comboBox.isShowing()) {
                 comboBox.show();
@@ -169,12 +170,13 @@ public class DictionaryController implements Initializable {
         }
     }
 
-    private ObservableList<String> getFilteredWords(String newValue) {
-        ObservableList<String> filteredWords = FXCollections.observableArrayList();
+
+    ObservableList<EngWord> getFilteredEngWords(String newValue) {
+        ObservableList<EngWord> filteredWords = FXCollections.observableArrayList();
         try {
             List<EngWord> words = WordDAO.containWordByString(newValue);
             for (EngWord e : words) {
-                filteredWords.add(e.getWord());
+                filteredWords.add(e);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
