@@ -15,7 +15,7 @@
             <Image url="@../images/MyWords.png" />
          </image>
       </ImageView>
-      <ListView fx:id="wordlist" fixedCellSize="0.0" layoutX="439.0" layoutY="207.0" prefHeight="294.0" prefWidth="402.0" styleClass="list-word" stylesheets="@test.css" />
+      <ListView fx:id="wordlist" fixedCellSize="0.0" layoutX="481.0" layoutY="203.0" prefHeight="294.0" prefWidth="330.0" styleClass="list-word" stylesheets="@test.css" />
       <Text layoutX="380.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words">
          <font>
             <Font name="Playfair Display Bold" size="33.0" />

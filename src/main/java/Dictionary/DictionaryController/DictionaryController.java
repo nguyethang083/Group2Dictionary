@@ -171,7 +171,7 @@ public class DictionaryController implements Initializable {
     }
 
 
-    ObservableList<EngWord> getFilteredEngWords(String newValue) {
+    public ObservableList<EngWord> getFilteredEngWords(String newValue) {
         ObservableList<EngWord> filteredWords = FXCollections.observableArrayList();
         try {
             List<EngWord> words = WordDAO.containWordByString(newValue);
@@ -216,9 +216,11 @@ public class DictionaryController implements Initializable {
     @FXML
     void switchToMyWords(MouseEvent event) throws SQLException {
         MyWordsController controller = (MyWordsController) showComponent("/Views/MyWords.fxml");
+        controller.setCurrentUser(currentUser);
         List<EngWord> savedWords = SavedWordDAO.queryListWordByUser(currentUser);
         controller.displaySavedWords(savedWords);
     }
+
 
     @FXML
     void saveWord(MouseEvent event) {
