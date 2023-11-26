@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -117,7 +116,7 @@ public class MyWordsController {
 
     private void adjustListViewHeight(ListView<HBox> listView) {
         int totalItems = listView.getItems().size();
-        int itemHeight = 47;
+        int itemHeight = 46;
         int verticalPadding = 6;
         totalItems = Math.min(totalItems, 6);
         double totalHeight = totalItems * itemHeight + verticalPadding;

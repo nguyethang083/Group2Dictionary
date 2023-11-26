@@ -15,12 +15,16 @@
             <Image url="@../images/MyWords.png" />
          </image>
       </ImageView>
-      <ListView fx:id="wordlist" fixedCellSize="0.0" layoutX="481.0" layoutY="203.0" prefHeight="294.0" prefWidth="330.0" styleClass="list-word" stylesheets="@test.css" />
+      <ListView fx:id="wordlist" fixedCellSize="0.0" focusTraversable="false" layoutX="481.0" layoutY="203.0" prefHeight="294.0" prefWidth="330.0" styleClass="list-word" stylesheets="@test.css" />
       <Text layoutX="380.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words">
          <font>
             <Font name="Playfair Display Bold" size="33.0" />
          </font>
       </Text>
-      <TextField fx:id="searchbar" layoutX="66.0" layoutY="287.0" prefHeight="30.0" prefWidth="187.0" />
+      <TextField fx:id="searchbar" layoutX="66.0" layoutY="287.0" prefHeight="30.0" prefWidth="187.0" style="-fx-background-color: transparent;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
    </children>
 </AnchorPane>
