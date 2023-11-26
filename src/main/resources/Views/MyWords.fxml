@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -15,7 +17,7 @@
             <Image url="@../images/MyWords.png" />
          </image>
       </ImageView>
-      <ListView fx:id="wordlist" fixedCellSize="0.0" focusTraversable="false" layoutX="481.0" layoutY="203.0" prefHeight="294.0" prefWidth="330.0" styleClass="list-word" stylesheets="@test.css" />
+      <ListView fx:id="wordlist" fixedCellSize="0.0" focusTraversable="false" layoutX="467.0" layoutY="205.0" prefHeight="294.0" prefWidth="330.0" styleClass="list-word" stylesheets="@test.css" />
       <Text layoutX="380.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words">
          <font>
             <Font name="Playfair Display Bold" size="33.0" />
@@ -26,5 +28,23 @@
             <Font size="14.0" />
          </font>
       </TextField>
+      <Text fx:id="deleteAll" fill="#527b8e" layoutX="82.0" layoutY="222.0" onMouseClicked="#handleDeleteAll" strokeType="OUTSIDE" strokeWidth="0.0" text="delete all" underline="true">
+         <font>
+            <Font name="Poppins Regular" size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Text>
+      <Text fill="#527b8e" layoutX="97.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SAVED WORDS">
+         <font>
+            <Font name="Poppins Regular" size="16.0" />
+         </font>
+      </Text>
+      <Label fx:id="count" layoutX="82.0" layoutY="176.0" text="3" textFill="#527b8e">
+         <font>
+            <Font name="Poppins Regular" size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

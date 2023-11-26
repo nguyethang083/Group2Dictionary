@@ -11,13 +11,16 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,6 +34,12 @@ public class MyWordsController {
 
     @FXML
     private TextField searchbar;
+
+    @FXML
+    private Text deleteAll;
+
+    @FXML
+    private Label count;
 
     private String currentUser;
 
@@ -112,15 +121,33 @@ public class MyWordsController {
         }
         wordlist.setItems(observableList);
         adjustListViewHeight(wordlist);
+
+        try {
+            int wordCount = SavedWordDAO.getWordCountByUser(currentUser);
+            count.setText(Integer.toString(wordCount));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void adjustListViewHeight(ListView<HBox> listView) {
         int totalItems = listView.getItems().size();
-        int itemHeight = 46;
+        int itemHeight = 47;
         int verticalPadding = 6;
         totalItems = Math.min(totalItems, 6);
         double totalHeight = totalItems * itemHeight + verticalPadding;
 
         listView.setPrefHeight(totalHeight);
     }
+
+    @FXML
+    public void handleDeleteAll(MouseEvent event) {
+        try {
+            SavedWordDAO.deleteAllWordsByUser(currentUser);
+            displaySavedWords(SavedWordDAO.queryListWordByUser(currentUser));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

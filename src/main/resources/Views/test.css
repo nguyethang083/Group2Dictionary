@@ -164,20 +164,20 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
 }
-.list-word .list-cell:odd {
-    -fx-background-color: #F3F3F3;
-}
-
 .list-word .list-cell:even {
-    -fx-background-color: white;
+    -fx-background-color: #F3F3F3;
 }
 
-.list-word .list-cell:filled:selected:focused:odd,
-.list-word .list-cell:filled:selected:odd {
-    -fx-background-color: #F3F3F3;
+.list-word .list-cell:odd {
+    -fx-background-color: white;
 }
 
 .list-word .list-cell:filled:selected:focused:even,
 .list-word .list-cell:filled:selected:even {
+    -fx-background-color: #F3F3F3;
+}
+
+.list-word .list-cell:filled:selected:focused:odd,
+.list-word .list-cell:filled:selected:odd {
     -fx-background-color: white;
 }
