@@ -34,6 +34,10 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         return new ArrayList<>(english.query());
     }
 
+    public List<SavedWord> queryListSavedWordByUser(String user) throws SQLException {
+        return new ArrayList<>(this.queryBuilder().where().eq("User_id", user).query());
+    }
+
     /**
      * hàm add id từ vào user được chọn
      * @param x bao gồm Userid và Englishid
@@ -52,9 +56,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
                 System.out.println("Từ này đã được lưu rồi");
                 return false;
             }
-            else {
-                this.create(x);
-            }
+            this.create(x);
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " insertSWord");
             return false;
