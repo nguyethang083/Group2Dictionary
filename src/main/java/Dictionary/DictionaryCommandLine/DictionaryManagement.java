@@ -134,7 +134,7 @@ public class DictionaryManagement {
 
     public static void main(String[] args) throws SQLException {
         DictionaryManagement k = new DictionaryManagement();
-        User hang = new User("101", "Hang", "vu");
+        User hang = new User("101", "Hang", "vu", "123");
         k.UserSearcher();
     }
 }

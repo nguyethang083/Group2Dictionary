@@ -23,6 +23,7 @@ public class DatabaseConn {
     public static WordDAO WordDAO;
     public static UserDAO UserDAO;
     public static SavedWordDAO SavedWordDAO;
+    public static SearchedWordDAO SearchedWordDAO;
     public static ScoreQuizDAO ScoreQuizDAO;
     public static ScoreWordleDAO ScoreWordleDAO;
 
@@ -30,6 +31,7 @@ public class DatabaseConn {
         try {
             WordDAO = new WordDAO(connectionSource);
             SavedWordDAO = new SavedWordDAO(connectionSource);
+            SearchedWordDAO = new SearchedWordDAO(connectionSource);
             UserDAO = new UserDAO(connectionSource);
             ScoreQuizDAO = new ScoreQuizDAO(connectionSource);
             ScoreWordleDAO = new ScoreWordleDAO(connectionSource);
