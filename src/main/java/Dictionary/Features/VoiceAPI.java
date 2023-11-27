@@ -11,8 +11,8 @@ import java.nio.charset.StandardCharsets;
 
 import javazoom.jl.player.Player;
 
-public class Voice implements APIGeneral {
-    private static final String API_KEY = "71dc1b6092msh3f8ee17bd0825bap163fb1jsnb9be8fbaa2ba";
+public class VoiceAPI {
+        private static final String API_KEY = "71dc1b6092msh3f8ee17bd0825bap163fb1jsnb9be8fbaa2ba";
     // //System.getenv("RAPIDAPI_KEY");  // Read API key from environment variable
 
     public static void textToSpeech(String text, String language) {
@@ -25,7 +25,7 @@ public class Voice implements APIGeneral {
         }
     }
 
-    public static HttpRequest buildHttpRequest(String text, String language) {
+    private static HttpRequest buildHttpRequest(String text, String language) {
         String encodedText = URLEncoder.encode(text, StandardCharsets.UTF_8);
         return HttpRequest.newBuilder()
                 .uri(URI.create("https://text-to-speech-api3.p.rapidapi.com/speak?text=" + encodedText + "&lang=" + language))
@@ -35,7 +35,7 @@ public class Voice implements APIGeneral {
                 .build();
     }
 
-    public static HttpResponse<InputStream> executeHttpRequest(HttpRequest request) throws IOException, InterruptedException {
+    private static HttpResponse<InputStream> executeHttpRequest(HttpRequest request) throws IOException, InterruptedException {
         return HttpClient.newHttpClient().send(request, HttpResponse.BodyHandlers.ofInputStream());
     }
 

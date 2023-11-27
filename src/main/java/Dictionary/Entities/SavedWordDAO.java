@@ -79,14 +79,47 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         }
     }
 
+    public boolean deleteAllWordsByUser(String UserId) throws SQLException {
+        try {
+            List<SavedWord> tuples = this.queryBuilder().where().eq("User_id", UserId).query();
+            for (SavedWord tuple : tuples) {
+                this.delete(tuple);
+            }
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage() + " deleteAllWordsByUser");
+            return false;
+        }
+    }
+
+
+    public boolean idExists(SavedWord x) throws SQLException {
+        long EngId = x.getEnglish_id();
+        String UserId = x.getUser_id();
+        SavedWord tuple = this.queryBuilder().where().eq("User_id", UserId).and().eq("English_id", EngId).queryForFirst();
+        return tuple != null;
+    }
+
+    public int getWordCountByUser(String UserId) throws SQLException {
+        try {
+            // Get all SavedWord tuples associated with the user
+            List<SavedWord> tuples = this.queryBuilder().where().eq("User_id", UserId).query();
+
+            // Return the count of words
+            return tuples.size();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage() + " getWordCountByUser");
+            return 0;
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
-        User hangg = new User("2", "Hang", "Vu");
-        UserDAO.addUser(hangg);
-        SavedWord x = new SavedWord(398, "hang");
-        SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Absent"), "hangg");
-        System.out.println(WordDAO.queryIdByWord("Absent"));
+        //User testUser = new User("5", "Toi", "Test");
+        //UserDAO.addUser(testUser);
+        SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Constitutional"), "testUser");
+        System.out.println(savedWord.getClass());
         SavedWordDAO.addSavedWord(savedWord);
-        List<EngWord> kk = SavedWordDAO.queryListWordByUser("hangg");
+        List<EngWord> kk = SavedWordDAO.queryListWordByUser("testUser");
         System.out.println(kk.size());
         for (EngWord n : kk) {
             System.out.println(n.getWord());

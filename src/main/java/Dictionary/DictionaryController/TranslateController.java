@@ -2,10 +2,10 @@ package Dictionary.DictionaryController;
 
 import Dictionary.Features.TranslateAPI;
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Cursor;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
@@ -40,8 +40,6 @@ public class TranslateController {
     @FXML
     public void initialize() {
         ObservableList<String> languages = FXCollections.observableArrayList("French", "Vietnamese", "Korean", "English", "Japanese", "Chinese");
-        translateButton.setCursor(Cursor.HAND);
-        swapIcon.setCursor(Cursor.HAND);
         sourceLanguageComboBox.setItems(languages);
         targetLanguageComboBox.setItems(languages);
 
@@ -84,12 +82,23 @@ public class TranslateController {
         String sourceText = textToTranslate.getText();
         String sourceLanguage = languageCodes.get(sourceLanguageComboBox.getValue());
         String targetLanguage = languageCodes.get(targetLanguageComboBox.getValue());
-        try {
-            String translation = TranslateAPI.translateWord(sourceText, sourceLanguage, targetLanguage);
-            translatedText.setText(translation);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+
+        // Create a new thread for the translation process
+        Thread thread = new Thread(() -> {
+            try {
+                String translation = TranslateAPI.translateWord(sourceText, sourceLanguage, targetLanguage);
+
+                // Update the UI on the JavaFX Application Thread
+                Platform.runLater(() -> {
+                    translatedText.setText(translation);
+                });
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        // Start the thread
+        thread.start();
     }
 
 }
