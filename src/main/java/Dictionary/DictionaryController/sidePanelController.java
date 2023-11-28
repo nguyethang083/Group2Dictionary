@@ -2,11 +2,13 @@ package Dictionary.DictionaryController;
 
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 
 
@@ -15,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class sidePanelController implements Initializable {
     @FXML
-    private ImageView closeMenu;
+    private ImageView closeMenu, exitApp;
 
     @FXML
     private ImageView addWordMenu, Game1Menu, searchMenu, Game2Menu, translateMenu;
@@ -26,14 +28,13 @@ public class sidePanelController implements Initializable {
         this.dictionaryController = dictionaryController;
     }
 
-    private JFXDrawer drawer; // You need to pass the drawer instance from searchController to here
+    private JFXDrawer drawer;
 
     public void setDrawer(JFXDrawer drawer) {
         this.drawer = drawer;
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        closeMenu.setCursor(Cursor.HAND);
         closeMenu.setOnMouseClicked(event -> {
             TranslateTransition tt = new TranslateTransition(Duration.millis(100), closeMenu);
             tt.setByY(-10);
@@ -78,5 +79,10 @@ public class sidePanelController implements Initializable {
 
             imageView.setEffect(null);
         });
+    }
+
+    @FXML
+    void exitApp(MouseEvent event) {
+        Platform.exit();
     }
 }
