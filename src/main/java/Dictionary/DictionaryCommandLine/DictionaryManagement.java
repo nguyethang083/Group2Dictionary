@@ -8,8 +8,6 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-import Dictionary.Features.Voice;
-
 import static Dictionary.DatabaseConn.WordDAO;
 import static Dictionary.DatabaseConn.SavedWordDAO;
 
@@ -131,12 +129,12 @@ public class DictionaryManagement {
         System.out.println("3, Pronunciation: " + searchingResult.getPronunciation());
         System.out.println("4, Meaning: " + searchingResult.getMeaning());
         System.out.println("5, Example: " + searchingResult.getExample());
-        Voice.textToSpeech(searchingResult.getWord(), "en");
+        //Voice.textToSpeech(searchingResult.getWord(), "en");
     }
 
     public static void main(String[] args) throws SQLException {
         DictionaryManagement k = new DictionaryManagement();
-        User hang = new User("101", "Hang", "vu");
+        User hang = new User("101", "Hang", "vu", "123");
         k.UserSearcher();
     }
 }

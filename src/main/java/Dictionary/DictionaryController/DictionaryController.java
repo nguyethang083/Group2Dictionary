@@ -1,6 +1,7 @@
 package Dictionary.DictionaryController;
 
 import Dictionary.Entities.EngWord;
+import Dictionary.Entities.SavedWord;
 import Dictionary.Features.VoiceAPI;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -10,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -28,12 +30,13 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 
+import static Dictionary.DatabaseConn.SavedWordDAO;
 import static Dictionary.Entities.AllWord.allWord;
 import static Dictionary.DatabaseConn.WordDAO;
 
 public class DictionaryController implements Initializable {
     @FXML
-    private AnchorPane content, container;
+    private AnchorPane content;
 
     @FXML
     private JFXDrawer drawer;
@@ -53,15 +56,21 @@ public class DictionaryController implements Initializable {
     @FXML
     private Label wordLabel;
     @FXML
-    private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll, editButton, deleteIcon, saveButton, intro, exitProgram;
+    private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll, saveThisWord,
+            editButton, deleteIcon, saveButton, intro, exitProgram;
 
     @FXML
-    private Text examplePrompt, synonymPrompt;
+    private Text examplePrompt, synonymPrompt, saveMyWordsMenu;
 
     @FXML
     private Rectangle rectangle;
 
     private String selectedWord;
+
+    private String currentUser = "testUser";
+
+    Image image1 = new Image(Objects.requireNonNull(getClass().getResource("/images/saveIcon.png")).toExternalForm());
+    Image image2 = new Image(Objects.requireNonNull(getClass().getResource("/images/savedIcon.png")).toExternalForm());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -75,7 +84,12 @@ public class DictionaryController implements Initializable {
         }
     }
 
+    public void setSelectedWord(String word) {
+        this.selectedWord = word;
+    }
+
     private void initImageViews() {
+        saveThisWord.setImage(image1);
         List<ImageView> imageViews = Arrays.asList(voiceButton, deleteAll, editButton, deleteIcon, saveButton);
         for (ImageView imageView : imageViews) {
             imageView.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> imageView.setOpacity(0.5));
@@ -90,7 +104,12 @@ public class DictionaryController implements Initializable {
         }
         comboBox.setItems(words);
         searchField.textProperty().addListener((observable, oldValue, newValue) -> updateComboBox(newValue));
-        comboBox.setOnAction(event -> updateView());
+        comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                setSelectedWord(newValue);
+                updateView();
+            }
+        });
     }
 
     private void initHamburger() {
@@ -121,10 +140,12 @@ public class DictionaryController implements Initializable {
     }
 
     @FXML
-    public void showComponent(String path) {
+    public Object showComponent(String path) {
         try {
-            AnchorPane component = FXMLLoader.load(Objects.requireNonNull(DictionaryController.class.getResource(path)));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+            AnchorPane component = loader.load();
             setNode(component);
+            return loader.getController();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -134,7 +155,12 @@ public class DictionaryController implements Initializable {
         if (newValue.isEmpty()) {
             comboBox.hide();
         } else {
-            ObservableList<String> filteredWords = getFilteredWords(newValue);
+            ObservableList<EngWord> filteredEngWords = getFilteredEngWords(newValue);
+            // Extract the word strings from the EngWord objects
+            ObservableList<String> filteredWords = FXCollections.observableArrayList();
+            for (EngWord engWord : filteredEngWords) {
+                filteredWords.add(engWord.getWord());
+            }
             comboBox.setItems(filteredWords);
             if (!filteredWords.isEmpty() && !comboBox.isShowing()) {
                 comboBox.show();
@@ -144,12 +170,13 @@ public class DictionaryController implements Initializable {
         }
     }
 
-    private ObservableList<String> getFilteredWords(String newValue) {
-        ObservableList<String> filteredWords = FXCollections.observableArrayList();
+
+    public ObservableList<EngWord> getFilteredEngWords(String newValue) {
+        ObservableList<EngWord> filteredWords = FXCollections.observableArrayList();
         try {
             List<EngWord> words = WordDAO.containWordByString(newValue);
             for (EngWord e : words) {
-                filteredWords.add(e.getWord());
+                filteredWords.add(e);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -164,6 +191,36 @@ public class DictionaryController implements Initializable {
         meaning.setEditable(true);
         saveButton.setVisible(true);
     }
+
+    @FXML
+    void saveToMyWords(MouseEvent event) throws SQLException {
+        if (saveThisWord.getImage().equals(image2)) {
+            saveThisWord.setImage(image1);
+            SavedWord savedWord = new SavedWord();
+            EngWord engWord = WordDAO.queryWordByString(selectedWord);
+            long EngId = engWord.getId();
+            savedWord.setEnglish_id(EngId);
+            savedWord.setUser_id(currentUser);
+            SavedWordDAO.deleteTuple(savedWord);
+        } else {
+            saveThisWord.setImage(image2);
+            SavedWord saveWord = new SavedWord();
+            EngWord engWord = WordDAO.queryWordByString(selectedWord);
+            long EngId = engWord.getId();
+            saveWord.setEnglish_id(EngId);
+            saveWord.setUser_id(currentUser);
+            SavedWordDAO.addSavedWord(saveWord);
+        }
+    }
+
+    @FXML
+    void switchToMyWords(MouseEvent event) throws SQLException {
+        MyWordsController controller = (MyWordsController) showComponent("/Views/MyWords.fxml");
+        controller.setCurrentUser(currentUser);
+        List<EngWord> savedWords = SavedWordDAO.queryListWordByUser(currentUser);
+        controller.displaySavedWords(savedWords);
+    }
+
 
     @FXML
     void saveWord(MouseEvent event) {
@@ -184,6 +241,7 @@ public class DictionaryController implements Initializable {
         }
     }
 
+    // Temporary alert
     @FXML
     void deleteWord(MouseEvent event) throws SQLException {
         WordDAO.deleteWordByString(selectedWord);
@@ -193,8 +251,8 @@ public class DictionaryController implements Initializable {
         setVisibility(false);
     }
 
-    private void updateView() {
-        selectedWord = comboBox.getSelectionModel().getSelectedItem();
+    public void updateView() {
+        //selectedWord = comboBox.getSelectionModel().getSelectedItem();
         if (selectedWord != null) {
             try {
                 EngWord engWord = WordDAO.queryWordByString(selectedWord);
@@ -206,6 +264,15 @@ public class DictionaryController implements Initializable {
                 example.setText(engWord.getExample());
                 intro.setVisible(false);
                 setVisibility(true);
+
+                SavedWord savedWord = new SavedWord();
+                savedWord.setEnglish_id(engWord.getId());
+                savedWord.setUser_id(currentUser);
+                if (SavedWordDAO.idExists(savedWord)) {
+                    saveThisWord.setImage(image2);
+                } else {
+                    saveThisWord.setImage(image1);
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -214,7 +281,7 @@ public class DictionaryController implements Initializable {
 
     private void setVisibility(boolean isVisible) {
         List<Node> nodes = Arrays.asList(
-                exampleContainer, synonymContainer, examplePrompt, definitionPrompt, synonymPrompt, rectangle,
+                exampleContainer, synonymContainer, examplePrompt, definitionPrompt, synonymPrompt, rectangle, saveThisWord,
                 voiceButton, editButton, deleteIcon, meaning, wordLabel, phonetic, example, synonym, partsofspeech
         );
 

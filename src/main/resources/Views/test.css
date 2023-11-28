@@ -71,7 +71,7 @@
 }
 
 .combo-box-popup .list-cell {
-    -fx-pref-height: 30px; /* Adjust this value as needed */
+    -fx-pref-height: 30px;
 }
 
 /* Adjust the height of the combo box list view */
@@ -144,5 +144,40 @@
     -fx-font-size: 18;
     -fx-font-weight: 100;
 }
+.list-word {
+    -fx-font-family: "Playfair Display";
+    -fx-font-size: 20px;
+    -fx-text-fill: #527B8E;
+    -fx-cell-size: 55px;
+}
 
+.list-word .scroll-bar:vertical {
+    -fx-pref-width: 20px;
+}
 
+.hyperlink {
+    -fx-border-color: transparent;
+}
+
+.list-word {
+    -fx-background-color: -fx-control-inner-background;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.list-word .list-cell:even {
+    -fx-background-color: #F3F3F3;
+}
+
+.list-word .list-cell:odd {
+    -fx-background-color: white;
+}
+
+.list-word .list-cell:filled:selected:focused:even,
+.list-word .list-cell:filled:selected:even {
+    -fx-background-color: #F3F3F3;
+}
+
+.list-word .list-cell:filled:selected:focused:odd,
+.list-word .list-cell:filled:selected:odd {
+    -fx-background-color: white;
+}

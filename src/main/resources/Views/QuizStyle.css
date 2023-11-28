@@ -1,10 +1,10 @@
 @font-face {
     src: url("../fonts/PlayfairDisplay-Bold.ttf"),
-    url("../fonts/PlayfairDisplay-Regular.ttf"),
     url("../fonts/OpenSans-Light.ttf"),
     url("../fonts/NotoSans-Bold.ttf"),
+    url("../fonts/NotoSans-Regular.ttf"),
     url("../fonts/Poppins-Bold.ttf"),
-    url("../fonts/NotoSans-Regular.ttf");
+    url("../fonts/Poppins-Regular.ttf");
 }
 
 .radiobutton {
@@ -13,69 +13,77 @@
     -fx-border-width: 2px;
     -fx-background-color: #ffffff;
     -fx-text-fill: #000000;
-    -fx-font-family: "Noto Sans Regular";
-    -fx-font-size: 20px;
-    -fx-font-weight: 400;
+    -fx-font-family: "Poppins Regular";
+    -fx-font-size: 20;
     -fx-padding: 10px;
+}
+
+.question {
+    -fx-font-family: "Poppins Bold";
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-font-size: 22;
 }
 
 .next-button {
     -fx-background-radius: 10px;
     -fx-border-color: rgba(82, 123, 142, 0.40);
     -fx-border-width: 2px;
-    -fx-background-color: #1a475b;
+    -fx-background-color: #527b8e;
     -fx-text-fill: #ffffff;
-    -fx-font-family: "Noto Sans Regular";
-    -fx-font-size: 20px;
-    -fx-font-weight: 400;
+    -fx-font-family: "Poppins Regular";
+    -fx-font-size: 20;
     -fx-padding: 10px;
 }
 
 .quiz-comment {
     -fx-border-radius: 10px;
-    -fx-font-family: "Noto Sans Regular";
-    -fx-font-size: 20px;
+    -fx-font-family: "Poppins Regular";
+    -fx-font-size: 20;
 }
 
 .score {
-    -fx-font-size: 28px;
-    -fx-font-family: "Noto Sans Regular";
+    -fx-font-size: 28;
+    -fx-font-family: "Poppins Regular";
     -fx-text-fill: #ffffff;
-    -fx-font-weight: 400;
-
 }
 
 .question-no {
-    -fx-font-size: 12px;
-    -fx-font-family: "Noto Sans Regular";
+    -fx-font-size: 12;
+    -fx-font-family: "Poppins Regular";
     -fx-text-fill: #b5b5b5;
-    -fx-font-weight: 400;
 }
 
 .final-score {
-    -fx-font-size: 60px;
-    -fx-font-family: "Noto Sans Bold";
+    -fx-font-size: 60;
+    -fx-font-family: "Poppins Bold";
     -fx-text-fill: #ffffff;
-    -fx-font-weight: 400;
 }
 
 .try-again {
     -fx-background-radius: 20px;
     -fx-background-color: #527B8E;
-    -fx-font-family: "Noto Sans Bold";
-    -fx-font-weight: 400;
+    -fx-font-family: "Poppins Bold";
+    -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
-    -fx-font-size: 16px;
+    -fx-font-size: 16;
     -fx-text-alignment: center;
 }
 
-.question {
-    -fx-font-family: "Playfair Display";
-    -fx-text-fill: #000000;
-    -fx-font-size: 22;
+.correct-style {
+    -fx-background-radius: 10px;
+    -fx-background-color: #D6FEB8;
+    -fx-font-family: "Poppins Regular";
+    -fx-min-width: 688px;
+    -fx-text-fill: #6BB52C;
+    -fx-font-size: 20px;
 }
 
-.popupTrans {
-    -fx-font-family: "Poppins Bold";
-    -fx-font-size: 12px;
+.incorrect-style {
+    -fx-background-radius: 10px;
+    -fx-background-color: #FEDEDF;
+    -fx-font-family: "Poppins Regular";
+    -fx-min-width: 688px;
+    -fx-text-fill: #EF6163;
+    -fx-font-size: 20px;
 }

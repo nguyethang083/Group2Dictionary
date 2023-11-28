@@ -48,8 +48,9 @@ public class sidePanelController implements Initializable {
             }
         });
         setupImageView(searchMenu, "/Views/Dictionary.fxml", true);
-        setupImageView(addWordMenu, "/Views/addWord.fxml", false);
-        setupImageView(Game1Menu, "/Views/QuizUI.fxml", true);
+        setupImageView(addWordMenu, "/Views/addWord.fxml", true);
+        setupImageView(Game1Menu, "/Views/QuizMenu.fxml", true);
+        setupImageView(Game2Menu, "/Views/WordleMenu.fxml", true);
         setupImageView(translateMenu, "/Views/Translate.fxml", true);
     }
 
