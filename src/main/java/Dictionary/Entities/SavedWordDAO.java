@@ -39,13 +39,25 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         List<SavedWord> savedWords = new ArrayList<>(this.queryBuilder().where().eq("User_id", user).query());
         List<EngWord> res = new ArrayList<>();
         for(SavedWord x : savedWords) {
-            res.add(WordDAO.queryBuilder().where().in("Id", x.getEnglish_id()).queryForFirst());
+            res.add(WordDAO.queryEngWordbyId(x.getEnglish_id()));
         }
         return res;
     }
 
     public List<SavedWord> queryListSavedWordByUser(String user) throws SQLException {
         return new ArrayList<>(this.queryBuilder().where().eq("User_id", user).query());
+    }
+
+    public List<EngWord> searchWordbyUser(String user, String prefix) throws SQLException {
+        QueryBuilder<SavedWord, Long> IdWordByUser = this.queryBuilder().where().eq("User_id", user).queryBuilder();
+        Where<EngWord, Long> english = WordDAO.queryBuilder().where().in("Id", IdWordByUser.selectColumns("English_id")).and().like("Word", prefix + "%");
+        return new ArrayList<>(english.query());
+    }
+
+    public List<SavedWord> searchSavedWordByUser(String user, String prefix) throws SQLException {
+        QueryBuilder<SavedWord, Long> containWord = this.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
+        Where<SavedWord, Long> res = this.queryBuilder().where().eq("User_id", user).and().in("English_id", containWord.selectColumns("Id"));
+        return new ArrayList<>(res.query());
     }
 
     /**
