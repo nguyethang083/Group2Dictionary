@@ -7,10 +7,12 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import org.apache.commons.text.StringEscapeUtils;
+
 import org.json.JSONObject;
 
-public class TranslateAPI {
+import org.apache.commons.text.StringEscapeUtils;
+
+public class TranslateAPI implements APIGeneral {
     private static final String API_KEY = System.getenv("RAPIDAPI_KEY");  // Read API key from environment variable
 
     public static String translateWord(String textToTranslate, String sourceLanguage, String targetLanguage) {
@@ -48,6 +50,6 @@ public class TranslateAPI {
     }
 
     public static void main(String[] args) {
-        System.out.println(translateWord("Bạn bị sao thế", "vi", "en"));
+        System.out.println(translateWord("Hằng bị gì thế", "vi", "en"));
     }
 }

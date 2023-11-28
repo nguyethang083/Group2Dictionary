@@ -5,20 +5,62 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.addWordController">
    <children>
       <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/addWordGUI.png" />
+            <Image url="@../images/Frame1.png" />
          </image>
       </ImageView>
-      <TextField fx:id="newWord" layoutX="260.0" layoutY="213.0" prefHeight="26.0" prefWidth="265.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newPhonetic" layoutX="594.0" layoutY="213.0" prefHeight="26.0" prefWidth="266.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newType" layoutX="260.0" layoutY="274.0" prefHeight="26.0" prefWidth="239.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newSynonym" layoutX="596.0" layoutY="273.0" prefHeight="26.0" prefWidth="266.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newDefinition" alignment="TOP_LEFT" layoutX="256.0" layoutY="337.0" prefHeight="58.0" prefWidth="602.0" styleClass="meaning" stylesheets="@test.css" />
-      <TextField fx:id="newExample" alignment="TOP_LEFT" layoutX="256.0" layoutY="435.0" prefHeight="82.0" prefWidth="602.0" styleClass="meaning" stylesheets="@test.css" />
-      <Button fx:id="addButton" contentDisplay="CENTER" layoutX="502.0" layoutY="553.0" mnemonicParsing="false" onMouseClicked="#addWord" prefHeight="26.0" prefWidth="110.0" styleClass="addButton" stylesheets="@test.css" text="Add" textAlignment="CENTER" />
+      <TextField fx:id="newWord" layoutX="77.0" layoutY="213.0" prefHeight="27.0" prefWidth="325.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newPhonetic" layoutX="505.0" layoutY="213.0" prefHeight="27.0" prefWidth="326.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newType" layoutX="80.0" layoutY="286.0" prefHeight="27.0" prefWidth="318.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newSynonym" layoutX="505.0" layoutY="286.0" prefHeight="27.0" prefWidth="318.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newDefinition" alignment="TOP_LEFT" layoutX="77.0" layoutY="369.0" prefHeight="58.0" prefWidth="750.0" styleClass="meaning" stylesheets="@test.css" />
+      <TextField fx:id="newExample" alignment="TOP_LEFT" layoutX="77.0" layoutY="467.0" prefHeight="58.0" prefWidth="750.0" styleClass="meaning" stylesheets="@test.css" />
+      <Button fx:id="addButton" contentDisplay="CENTER" layoutX="415.0" layoutY="547.0" mnemonicParsing="false" onMouseClicked="#addWord" prefHeight="26.0" prefWidth="110.0" styleClass="addButton" stylesheets="@test.css" text="Add" textAlignment="CENTER" />
+      <Text fill="WHITE" layoutX="80.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Word" textAlignment="CENTER" wrappingWidth="48.509952545166016">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="80.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" textAlignment="CENTER" wrappingWidth="48.509952545166016">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="80.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Definition" textAlignment="CENTER" wrappingWidth="78.90991592407227">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="68.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adding a new word">
+         <font>
+            <Font name="Poppins Bold" size="26.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="77.0" layoutY="458.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Example" textAlignment="CENTER" wrappingWidth="78.90991592407227">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="505.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phonetic" textAlignment="CENTER" wrappingWidth="78.90991592407227">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="511.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Synonyms" textAlignment="CENTER" wrappingWidth="78.90991592407227">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="68.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="If your word has more than one part of speech/synonym, seperate them with a comma!" wrappingWidth="642.1368713378906">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

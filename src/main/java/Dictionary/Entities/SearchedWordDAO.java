@@ -31,6 +31,16 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
         return new ArrayList<>(english.query());
     }
 
+    // ham theo newest
+    public List<EngWord> queryListWordByUserNewest(String user) throws SQLException {
+        List<SearchedWord> searchedWords = new ArrayList<>(this.queryBuilder().where().eq("User_id", user).query());
+        List<EngWord> res = new ArrayList<>();
+        for(SearchedWord x : searchedWords) {
+            res.add(WordDAO.queryBuilder().where().in("Id", x.getEnglish_id()).queryForFirst());
+        }
+        return res;
+    }
+
     /**
      * hàm add id từ vào user được chọn
      * @param x bao gồm Userid và Englishid
@@ -68,6 +78,19 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
             return true;
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " deleteSWord");
+            return false;
+        }
+    }
+
+    public boolean deleteAllWordsByUser(String UserId) throws SQLException {
+        try {
+            List<SearchedWord> tuples = this.queryBuilder().where().eq("User_id", UserId).query();
+            for (SearchedWord tuple : tuples) {
+                this.delete(tuple);
+            }
+            return true;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage() + " deleteAllWordsByUser");
             return false;
         }
     }
