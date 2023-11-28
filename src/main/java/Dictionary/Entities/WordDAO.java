@@ -142,15 +142,17 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             return false;
         }
         try {
-            EngWord engWord = this.queryBuilder().where().eq("Word", x.getWord()).queryForFirst();
+            String addWord = x.getWord().substring(0, 1).toUpperCase() + x.getWord().substring(1).toLowerCase();
+            EngWord engWord = this.queryBuilder().where().eq("Word", addWord).queryForFirst();
             if (engWord != null && !engWord.getWord().isEmpty()) {
-                engWord.setMeaning(x.getMeaning());
-                engWord.setType(x.getType());
-                engWord.setPronunciation(x.getPronunciation());
-                engWord.setAntonyms(x.getAntonyms());
-                engWord.setSynonym(x.getSynonym());
-                engWord.setExample(x.getExample());
-                this.update(engWord);
+//                engWord.setMeaning(x.getMeaning());
+////                engWord.setType(x.getType());
+////                engWord.setPronunciation(x.getPronunciation());
+////                engWord.setAntonyms(x.getAntonyms());
+////                engWord.setSynonym(x.getSynonym());
+////                engWord.setExample(x.getExample());
+////                this.update(engWord);
+                return false;
             } else {
                 this.create(x);
             }

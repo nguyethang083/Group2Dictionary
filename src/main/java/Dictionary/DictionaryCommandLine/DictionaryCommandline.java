@@ -10,8 +10,8 @@ public class DictionaryCommandline {
 //        insertDict.dictionarySearcher();
 //        //insertDict.dictionarySearcher2();
 //        insertDict.lookup();
-        insertDict.addSavedWord();
-        insertDict.deleteSavedWord();
+//        insertDict.addSavedWord();
+//        insertDict.deleteSavedWord();
 //        insertDict.UserSearcher();
     }
 
