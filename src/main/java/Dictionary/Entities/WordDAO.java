@@ -148,6 +148,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
         }
         String word = x.getWord();
         word = StringProcessing.normalizeString(word);
+        x.setWord(word);
         try {
             EngWord engWord = this.queryBuilder().where().eq("Word", word).queryForFirst();
             if (engWord != null && !engWord.getWord().isEmpty()) {

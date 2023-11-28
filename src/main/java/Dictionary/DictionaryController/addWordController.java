@@ -36,6 +36,10 @@ public class addWordController {
                 showAlert("Bạn đã thêm từ này vào từ điển!");
                 clearTextFields();
             }
+            else {
+                showAlert("Từ này đã tồn tại!");
+                clearTextFields();
+            }
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " addWord");
         }
