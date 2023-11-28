@@ -8,10 +8,15 @@ module DICTIONARY {
     requires ormlite.jdbc;
     requires jlayer;
     requires com.jfoenix;
+    requires httpcore;
+    requires httpclient;
+    requires json;
+    requires java.net.http;
+    requires org.apache.commons.text;
     opens Dictionary.DictionaryController to javafx.fxml;
     opens Dictionary to javafx.graphics;
-    opens Dictionary.models to ormlite.jdbc;
-    exports Dictionary.models;
+    opens Dictionary.Entities to ormlite.jdbc;
+    exports Dictionary.Entities;
     exports Dictionary.DictionaryController;
     exports Dictionary;
 }

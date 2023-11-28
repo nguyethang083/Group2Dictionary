@@ -12,14 +12,8 @@ import java.util.Objects;
 public class DictionaryApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load());
-        //stage.setTitle("Hello!");
-        //stage.setScene(scene);
-        //stage.show();
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/search.fxml")));
-        primaryStage.setTitle("VLexi Dictionary App");
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/Dictionary.fxml")));
+        primaryStage.setTitle("Vlexi Dictionary App");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 

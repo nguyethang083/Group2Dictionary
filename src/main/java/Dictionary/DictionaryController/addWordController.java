@@ -1,6 +1,6 @@
 package Dictionary.DictionaryController;
 
-import Dictionary.models.EngWord;
+import Dictionary.Entities.EngWord;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -16,29 +16,13 @@ public class addWordController {
     private Button addButton;
 
     @FXML
-    private TextField newDefinition;
+    private TextField newDefinition, newExample, newPhonetic, newSynonym, newType, newWord;
 
-    @FXML
-    private TextField newExample;
-
-    @FXML
-    private TextField newPhonetic;
-
-    @FXML
-    private TextField newSynonym;
-
-    @FXML
-    private TextField newType;
-
-    @FXML
-    private TextField newWord;
 
     @FXML
     void addWord(MouseEvent event) {
-        // Create a new EngWord object
         EngWord newEngWord = new EngWord();
 
-        // Set the properties of the newEngWord object based on the text fields
         newEngWord.setWord(newWord.getText());
         newEngWord.setMeaning(newDefinition.getText());
         newEngWord.setType(newType.getText());
@@ -47,10 +31,7 @@ public class addWordController {
         newEngWord.setExample(newExample.getText());
 
         try {
-            // Add the new word to the database
             boolean isAdded = WordDAO.addWord(newEngWord);
-
-            // If the word was added successfully, show an alert and clear the text fields
             if (isAdded) {
                 showAlert("Bạn đã thêm từ này vào từ điển!");
                 clearTextFields();
