@@ -24,8 +24,37 @@
     -fx-border-radius: 15px;
 }
 
+.invalid-warning {
+    -fx-background-color: #606060;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Poppins Bold";
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-min-width: 200px;
+    -fx-min-height: 30px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 30px;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-background-radius: 10px;
+}
+
 .tile-with-letter {
     -fx-border-color: #878a8c;
+    -fx-background-color: white;
+    -fx-text-fill: black;
+    -fx-font-family: "Poppins Bold";
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-border-width: 2px;
+    -fx-min-width: 45px;
+    -fx-min-height: 45px;
+    -fx-pref-width: 45px;
+    -fx-pref-height: 45px;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
 }
 
 .present-letter {
@@ -251,14 +280,14 @@
 }
 
 .menu-button {
-    -fx-background-color: #527b8e;
-    -fx-background-radius: 15px;
+    -fx-background-color: linear-gradient(to right, #2B576B, #1A475B, #2B576B);
+    -fx-background-radius: 25px;
     -fx-text-fill: white;
     -fx-font-family: "Poppins Regular";
-    -fx-font-size: 22px;
-    -fx-min-width: 305px;
-    -fx-min-height: 54px;
-    -fx-pref-width: 305px;
-    -fx-pref-height: 54px;
+    -fx-font-size: 16px;
+    -fx-min-width: 260px;
+    -fx-min-height: 50px;
+    -fx-pref-width: 260px;
+    -fx-pref-height: 50px;
     -fx-text-alignment: center;
 }

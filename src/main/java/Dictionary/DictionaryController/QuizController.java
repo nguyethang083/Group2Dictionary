@@ -148,6 +148,7 @@ public class QuizController implements Initializable {
 //            Result.setTextFill(Color.web("#ef6163"));
 //            Result.setBackground(Background.fill(Color.web("#fededf")));
         }
+        Score.setText("" + quiz.getScore());
         Result.setVisible(true);
         NextButton.setVisible(true);
     }
