@@ -49,7 +49,8 @@ public class WordleController implements Initializable {
     private ImageView restartIcon;
     @FXML
     private Button TryAgain;
-
+    @FXML
+    private Label Invalid;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createGrid();
@@ -307,6 +308,9 @@ public class WordleController implements Initializable {
 
     // xử lí submit
     private void onEnterPressed() {
+        for (int i = 1; i <= MAX_COLUMN; i++) {
+            getLabel(currentRow, i).setTranslateX(0.0);
+        }
         if (currentRow <= MAX_ROW && currentColumn == MAX_COLUMN) {
             String guess = getWordFromCurrentRow().toLowerCase();
             if (guess.equals(wordle.getAnswer())) {
@@ -322,6 +326,31 @@ public class WordleController implements Initializable {
 
                 currentRow++;
                 currentColumn = 1;
+            } else {
+                SequentialTransition seq = new SequentialTransition();
+                Invalid.setVisible(true);
+                FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(50), Invalid);
+                fadeTransition1.setFromValue(0.1);
+                fadeTransition1.setToValue(1);
+                FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(3000), Invalid);
+                fadeTransition2.setFromValue(1);
+                fadeTransition2.setToValue(0);
+                seq.getChildren().add(fadeTransition1);
+                seq.getChildren().add(fadeTransition2);
+                seq.setOnFinished(e -> Invalid.setVisible(false));
+                seq.play();
+
+                for (int i = 1; i <= MAX_COLUMN; i++) {
+                    Label currentBlock = getLabel(currentRow, i);
+                    Timeline timeline = new Timeline(
+                            new KeyFrame(Duration.seconds(0.1), new KeyValue(currentBlock.translateXProperty(), -5.0)),
+                            new KeyFrame(Duration.seconds(0.2), new KeyValue(currentBlock.translateXProperty(), 5.0)),
+                            new KeyFrame(Duration.seconds(0.3), new KeyValue(currentBlock.translateXProperty(), -5.0)),
+                            new KeyFrame(Duration.seconds(0.4), new KeyValue(currentBlock.translateXProperty(), 5.0)),
+                            new KeyFrame(Duration.seconds(0.5), new KeyValue(currentBlock.translateXProperty(), 0))
+                    );
+                    timeline.play();
+                }
             }
         }
     }
@@ -391,6 +420,7 @@ public class WordleController implements Initializable {
         TryAgain.setVisible(!status);
         GameStatus.setVisible(!status);
         WinningWord.setVisible(!status);
+        Invalid.setVisible(false);
     }
 }
 
