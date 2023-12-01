@@ -1,14 +1,11 @@
 package Dictionary.Entities;
 
 import com.j256.ormlite.dao.BaseDaoImpl;
-import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
+import static Dictionary.DatabaseConn.CurrentUser;
 import static Dictionary.DatabaseConn.ScoreWordleDAO;
 
 public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
@@ -21,16 +18,16 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
     // còn cái tuple thì != null
 
     /**
-     * @param user chọn 1 user (lúc login - biến static toàn cục)
+     *
      */
-    public long getStreakbyUser(String user) throws SQLException {
-        ScoreWordle streak = this.queryBuilder().where().in("User_id", user).queryForFirst();
+    public long getStreakbyUser() throws SQLException {
+        ScoreWordle streak = this.queryBuilder().where().in("User_id", CurrentUser).queryForFirst();
         if (streak == null) return 0;
         return streak.getStreak();
     }
 
-    public ScoreWordle getTupleStreakbyUser(String user) throws SQLException {
-        return this.queryBuilder().where().in("User_id", user).queryForFirst();
+    public ScoreWordle getTupleStreakbyUser() throws SQLException {
+        return this.queryBuilder().where().in("User_id", CurrentUser).queryForFirst();
     }
 
     // đã bao gồm cả update nếu bị lỗi constraint pk Userid
@@ -60,22 +57,22 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
         return true;
     }
 
-    public long getNumPlaybyUser(String user) throws SQLException {
-        ScoreWordle streak = this.queryBuilder().where().in("User_id", user).queryForFirst();
+    public long getNumPlaybyUser() throws SQLException {
+        ScoreWordle streak = this.queryBuilder().where().in("User_id", CurrentUser).queryForFirst();
         if (streak == null) return 0;
         return streak.getNum_play();
     }
 
-    public long getNumWinbyUser(String user) throws SQLException {
-        ScoreWordle streak = this.queryBuilder().where().in("User_id", user).queryForFirst();
+    public long getNumWinbyUser() throws SQLException {
+        ScoreWordle streak = this.queryBuilder().where().in("User_id", CurrentUser).queryForFirst();
         if (streak == null) return 0;
         return streak.getNum_win();
     }
 
     // Xóa lượt chơi khi xóa user nè
-    public boolean deleteScoreWordlebyUser(String user) throws SQLException {
+    public boolean deleteScoreWordlebyUser() throws SQLException {
         try {
-            ScoreWordle tuple = this.queryBuilder().where().eq("User_id", user).queryForFirst();;
+            ScoreWordle tuple = this.queryBuilder().where().eq("User_id", CurrentUser).queryForFirst();;
             if (tuple == null) return false;
             this.delete(tuple);
             return true;
@@ -95,9 +92,9 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
         ScoreWordleDAO.addScoreWordle(score1);
         ScoreWordleDAO.addScoreWordle(score3);
         ScoreWordleDAO.addScoreWordle(score4);
-        ScoreWordleDAO.deleteScoreWordlebyUser("hang");
-        System.out.println(ScoreWordleDAO.getStreakbyUser("lam"));
-        System.out.println(ScoreWordleDAO.getNumPlaybyUser("lam"));
-        System.out.println(ScoreWordleDAO.getNumWinbyUser("lam"));
+        ScoreWordleDAO.deleteScoreWordlebyUser();
+        System.out.println(ScoreWordleDAO.getStreakbyUser());
+        System.out.println(ScoreWordleDAO.getNumPlaybyUser());
+        System.out.println(ScoreWordleDAO.getNumWinbyUser());
     }
 }

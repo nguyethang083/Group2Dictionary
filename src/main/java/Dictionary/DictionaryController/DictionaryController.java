@@ -33,6 +33,7 @@ import com.jfoenix.controls.JFXHamburger;
 import static Dictionary.DatabaseConn.SavedWordDAO;
 import static Dictionary.Entities.AllWord.allWord;
 import static Dictionary.DatabaseConn.WordDAO;
+import static Dictionary.DatabaseConn.CurrentUser;
 
 public class DictionaryController implements Initializable {
     @FXML
@@ -66,8 +67,6 @@ public class DictionaryController implements Initializable {
     private Rectangle rectangle;
 
     private String selectedWord;
-
-    private String currentUser = "testUser";
 
     Image image1 = new Image(Objects.requireNonNull(getClass().getResource("/images/saveIcon.png")).toExternalForm());
     Image image2 = new Image(Objects.requireNonNull(getClass().getResource("/images/savedIcon.png")).toExternalForm());
@@ -200,7 +199,7 @@ public class DictionaryController implements Initializable {
             EngWord engWord = WordDAO.queryWordByString(selectedWord);
             long EngId = engWord.getId();
             savedWord.setEnglish_id(EngId);
-            savedWord.setUser_id(currentUser);
+            savedWord.setUser_id(CurrentUser);
             SavedWordDAO.deleteTuple(savedWord);
         } else {
             saveThisWord.setImage(image2);
@@ -208,7 +207,7 @@ public class DictionaryController implements Initializable {
             EngWord engWord = WordDAO.queryWordByString(selectedWord);
             long EngId = engWord.getId();
             saveWord.setEnglish_id(EngId);
-            saveWord.setUser_id(currentUser);
+            saveWord.setUser_id(CurrentUser);
             SavedWordDAO.addSavedWord(saveWord);
         }
     }
@@ -216,8 +215,8 @@ public class DictionaryController implements Initializable {
     @FXML
     void switchToMyWords(MouseEvent event) throws SQLException {
         MyWordsController controller = (MyWordsController) showComponent("/Views/MyWords.fxml");
-        controller.setCurrentUser(currentUser);
-        List<EngWord> savedWords = SavedWordDAO.queryListWordByUser(currentUser);
+        controller.setCurrentUser(CurrentUser);
+        List<EngWord> savedWords = SavedWordDAO.queryListWordByUser();
         controller.displaySavedWords(savedWords);
     }
 
@@ -267,7 +266,7 @@ public class DictionaryController implements Initializable {
 
                 SavedWord savedWord = new SavedWord();
                 savedWord.setEnglish_id(engWord.getId());
-                savedWord.setUser_id(currentUser);
+                savedWord.setUser_id(CurrentUser);
                 if (SavedWordDAO.idExists(savedWord)) {
                     saveThisWord.setImage(image2);
                 } else {
