@@ -41,6 +41,10 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         return res;
     }
 
+    public List<SavedWord> queryListSavedWordByUserNewest() throws SQLException {
+        return new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+    }
+
     public List<SavedWord> queryListSavedWordByUser() throws SQLException {
         return new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
     }
@@ -52,7 +56,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     }
 
     public List<SavedWord> searchSavedWordByUser(String prefix) throws SQLException {
-        QueryBuilder<SavedWord, Long> containWord = this.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
+        QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
         Where<SavedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
         return new ArrayList<>(res.query());
     }

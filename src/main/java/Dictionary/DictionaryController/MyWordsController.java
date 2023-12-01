@@ -2,6 +2,7 @@ package Dictionary.DictionaryController;
 
 import Dictionary.Entities.EngWord;
 import Dictionary.Entities.SavedWord;
+import Dictionary.Entities.SavedWordDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -27,6 +28,9 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import static Dictionary.DatabaseConn.SavedWordDAO;
+import Dictionary.Entities.SearchedWordDAO;
+import static Dictionary.DatabaseConn.CurrentUser;
+
 
 public class MyWordsController {
     @FXML
@@ -39,7 +43,9 @@ public class MyWordsController {
     private Text deleteAll;
 
     @FXML
-    private Label count;
+    private Label count, alphabetSort, newestSort;
+
+    private DictionaryController dictionaryController = new DictionaryController();
 
     private String currentUser;
 
@@ -47,18 +53,37 @@ public class MyWordsController {
         this.currentUser = currentUser;
     }
 
-    private DictionaryController dictionaryController = new DictionaryController();
 
     @FXML
     public void initialize() {
         searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
-            List<EngWord> savedWords = null;
+            List<SavedWord> savedWords = null;
             try {
-                savedWords = SavedWordDAO.queryListWordByUser();
+                savedWords = SavedWordDAO.queryListSavedWordByUser();
+                displaySavedWords(savedWords);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            displaySavedWords(savedWords);
+        });
+
+        alphabetSort.setOnMouseClicked(event -> {
+            try {
+                displaySavedWords(SavedWordDAO.queryListSavedWordByUser());
+                alphabetSort.setStyle("-fx-background-color:  #1a475b; -fx-text-fill: white; -fx-font-weight: bold;");
+                newestSort.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color:  #527B8E; -fx-font-weight: normal;");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        newestSort.setOnMouseClicked(event -> {
+            try {
+                displaySavedWords(SavedWordDAO.queryListSavedWordByUserNewest());
+                newestSort.setStyle("-fx-background-color:  #1a475b; -fx-text-fill: white; -fx-font-weight: bold;");
+                alphabetSort.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color:  #527B8E; -fx-font-weight: normal;");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         });
     }
 
@@ -89,7 +114,7 @@ public class MyWordsController {
         deleteIcon.setOnMouseClicked(event -> {
             try {
                 SavedWordDAO.deleteTuple(savedWord);
-                displaySavedWords(SavedWordDAO.queryListWordByUser());
+                displaySavedWords(SavedWordDAO.queryListSavedWordByUser());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -107,16 +132,13 @@ public class MyWordsController {
     }
 
 
-    public void displaySavedWords(List<EngWord> words) {
+    public void displaySavedWords(List<SavedWord> words) throws SQLException {
         ObservableList<HBox> observableList = FXCollections.observableArrayList();
         String filter = searchbar.getText().toLowerCase();
-        for (EngWord word : words) {
-            SavedWord savedWord = new SavedWord();
-            long EngId = word.getId();
-            savedWord.setEnglish_id(EngId);
-            savedWord.setUser_id(currentUser);
+        for (SavedWord word : words) {
             if (word.getWord().toLowerCase().contains(filter)) {
-                observableList.add(createHyperlink(word.getWord(), savedWord));
+                System.out.println(word.getWord());
+                observableList.add(createHyperlink(word.getWord(), word));
             }
         }
         wordlist.setItems(observableList);
@@ -143,8 +165,8 @@ public class MyWordsController {
     @FXML
     public void handleDeleteAll(MouseEvent event) {
         try {
-            SavedWordDAO.deleteAllWordsByUser(currentUser);
-            displaySavedWords(SavedWordDAO.queryListWordByUser());
+            SavedWordDAO.deleteAllWordsByUser(CurrentUser);
+            displaySavedWords(SavedWordDAO.queryListSavedWordByUser());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

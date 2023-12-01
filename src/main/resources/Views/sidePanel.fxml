@@ -20,27 +20,39 @@
                         <Image url="@../images/menuGUI.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="searchMenu" fitHeight="57.0" fitWidth="200.0" layoutX="1.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="searchMenu" fitHeight="57.0" fitWidth="200.0" layoutX="2.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/HomePage.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <ImageView fx:id="translateMenu" fitHeight="67.0" fitWidth="200.0" layoutX="2.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/translateMenu.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <ImageView fx:id="addWordMenu" fitHeight="78.0" fitWidth="200.0" layoutX="2.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/addWordMenu.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
-                  <ImageView fx:id="Game1Menu" fitHeight="150.0" fitWidth="200.0" layoutX="1.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Game1Menu" fitHeight="150.0" fitWidth="200.0" layoutX="2.0" layoutY="305.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Game1Menu.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
-                  <ImageView fx:id="Game2Menu" fitHeight="51.0" fitWidth="215.0" layoutX="1.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="Game2Menu" fitHeight="51.0" fitWidth="215.0" layoutX="2.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Game2Menu.png" />
                      </image>
@@ -69,6 +81,14 @@
                         <Font name="Playfair Display Bold" size="19.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="RecentsMenu" fitHeight="150.0" fitWidth="200.0" layoutX="2.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/RecentsMenu.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>
