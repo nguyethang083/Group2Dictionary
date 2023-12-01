@@ -52,13 +52,13 @@ public class MyWordsController {
     @FXML
     public void initialize() {
         searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
-            List<SavedWord> savedWords = null;
+            List<EngWord> savedWords = null;
             try {
-                savedWords = SavedWordDAO.queryListSavedWordByUser(currentUser);
+                savedWords = SavedWordDAO.queryListWordByUser();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-            //displaySavedWords(savedWords);
+            displaySavedWords(savedWords);
         });
     }
 
@@ -89,7 +89,7 @@ public class MyWordsController {
         deleteIcon.setOnMouseClicked(event -> {
             try {
                 SavedWordDAO.deleteTuple(savedWord);
-                //displaySavedWords(SavedWordDAO.queryListSavedWordByUser(currentUser));
+                displaySavedWords(SavedWordDAO.queryListWordByUser());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -107,10 +107,14 @@ public class MyWordsController {
     }
 
 
-    /*public void displaySavedWords(List<SavedWord> words) {
+    public void displaySavedWords(List<EngWord> words) {
         ObservableList<HBox> observableList = FXCollections.observableArrayList();
         String filter = searchbar.getText().toLowerCase();
-        for (SavedWord word : words) {
+        for (EngWord word : words) {
+            SavedWord savedWord = new SavedWord();
+            long EngId = word.getId();
+            savedWord.setEnglish_id(EngId);
+            savedWord.setUser_id(currentUser);
             if (word.getWord().toLowerCase().contains(filter)) {
                 observableList.add(createHyperlink(word.getWord(), savedWord));
             }
@@ -119,13 +123,13 @@ public class MyWordsController {
         adjustListViewHeight(wordlist);
 
         try {
-            int wordCount = SavedWordDAO.getWordCountByUser(currentUser);
+            int wordCount = SavedWordDAO.getWordCountByUser();
             count.setText(Integer.toString(wordCount));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    */
+
     private void adjustListViewHeight(ListView<HBox> listView) {
         int totalItems = listView.getItems().size();
         int itemHeight = 47;
@@ -140,7 +144,7 @@ public class MyWordsController {
     public void handleDeleteAll(MouseEvent event) {
         try {
             SavedWordDAO.deleteAllWordsByUser(currentUser);
-            //displaySavedWords(SavedWordDAO.queryListSavedWordByUser(currentUser));
+            displaySavedWords(SavedWordDAO.queryListWordByUser());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

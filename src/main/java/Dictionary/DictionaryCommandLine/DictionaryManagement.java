@@ -94,7 +94,7 @@ public class DictionaryManagement {
         System.out.print("SearchWho: ");
         Scanner sc = new Scanner(System.in);
         String user = sc.nextLine();
-        List<EngWord> searchingResult = SavedWordDAO.queryListWordByUser(user);
+        List<EngWord> searchingResult = SavedWordDAO.queryListWordByUser();
         System.out.println("Result:");
         System.out.println("No\t | English         | Meaning");
         for (int i = 0; i < ((List<?>) searchingResult).size(); i++) {

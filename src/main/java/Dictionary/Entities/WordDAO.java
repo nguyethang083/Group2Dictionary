@@ -1,5 +1,6 @@
 package Dictionary.Entities;
 
+import Dictionary.Features.StringProcessing;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
@@ -16,6 +17,10 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
     // lỗi null pointer cần sửa lại!!!
     public long queryIdByWord(String word) throws SQLException {
         return this.queryBuilder().where().eq("Word", word).queryForFirst().getId();
+    }
+
+    public EngWord queryEngWordbyId(long id) throws SQLException {
+        return this.queryBuilder().where().eq("Id", id).queryForFirst();
     }
 
     public boolean updatePronunciation(String word, String pronunciation) throws SQLException {
@@ -141,16 +146,14 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
         if (x.getWord().isEmpty() || x.getMeaning().isEmpty()) {
             return false;
         }
+        String word = x.getWord();
+        word = StringProcessing.normalizeString(word);
+        x.setWord(word);
         try {
-            EngWord engWord = this.queryBuilder().where().eq("Word", x.getWord()).queryForFirst();
+            EngWord engWord = this.queryBuilder().where().eq("Word", word).queryForFirst();
             if (engWord != null && !engWord.getWord().isEmpty()) {
-                engWord.setMeaning(x.getMeaning());
-                engWord.setType(x.getType());
-                engWord.setPronunciation(x.getPronunciation());
-                engWord.setAntonyms(x.getAntonyms());
-                engWord.setSynonym(x.getSynonym());
-                engWord.setExample(x.getExample());
-                this.update(engWord);
+                System.out.println("Từ này đã có");
+                return false;
             } else {
                 this.create(x);
             }

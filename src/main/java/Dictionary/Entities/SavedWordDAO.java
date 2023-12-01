@@ -1,6 +1,5 @@
 package Dictionary.Entities;
 
-import Dictionary.DatabaseConn;
 import com.j256.ormlite.dao.BaseDaoImpl;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
@@ -11,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Dictionary.DatabaseConn.WordDAO;
-import static Dictionary.DatabaseConn.UserDAO;
 import static Dictionary.DatabaseConn.SavedWordDAO;
+import static Dictionary.DatabaseConn.CurrentUser;
 
 public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     public SavedWordDAO(ConnectionSource connectionSource) throws SQLException {
@@ -23,29 +22,39 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     // thì có thể dùng hàm WordDAO.queryIdbyWord
 
     /**
-     *
-     * @param user chọn 1 user (lúc login)
      * @return Danh sách kiểu ArrayList<EngWord> của User đó (lúc hiện lên màn thì dùng hàm này)
      * @throws SQLException
      */
-    public List<EngWord> queryListWordByUser(String user) throws SQLException {
-        QueryBuilder<SavedWord, Long> IdWordByUser = this.queryBuilder().where().eq("User_id", user).queryBuilder();
+    public List<EngWord> queryListWordByUser() throws SQLException {
+        QueryBuilder<SavedWord, Long> IdWordByUser = this.queryBuilder().where().eq("User_id", CurrentUser).queryBuilder();
         Where<EngWord, Long> english = WordDAO.queryBuilder().where().in("Id", IdWordByUser.selectColumns("English_id"));
         return new ArrayList<>(english.query());
     }
 
     // ham theo newest
-    public List<EngWord> queryListWordByUserNewest(String user) throws SQLException {
-        List<SavedWord> savedWords = new ArrayList<>(this.queryBuilder().where().eq("User_id", user).query());
+    public List<EngWord> queryListWordByUserNewest() throws SQLException {
+        List<SavedWord> savedWords = new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
         List<EngWord> res = new ArrayList<>();
         for(SavedWord x : savedWords) {
-            res.add(WordDAO.queryBuilder().where().in("Id", x.getEnglish_id()).queryForFirst());
+            res.add(WordDAO.queryEngWordbyId(x.getEnglish_id()));
         }
         return res;
     }
 
-    public List<SavedWord> queryListSavedWordByUser(String user) throws SQLException {
-        return new ArrayList<>(this.queryBuilder().where().eq("User_id", user).query());
+    public List<SavedWord> queryListSavedWordByUser() throws SQLException {
+        return new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+    }
+
+    public List<EngWord> searchWordbyUser(String prefix) throws SQLException {
+        QueryBuilder<SavedWord, Long> IdWordByUser = this.queryBuilder().where().eq("User_id", CurrentUser).queryBuilder();
+        Where<EngWord, Long> english = WordDAO.queryBuilder().where().in("Id", IdWordByUser.selectColumns("English_id")).and().like("Word", prefix + "%");
+        return new ArrayList<>(english.query());
+    }
+
+    public List<SavedWord> searchSavedWordByUser(String prefix) throws SQLException {
+        QueryBuilder<SavedWord, Long> containWord = this.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
+        Where<SavedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
+        return new ArrayList<>(res.query());
     }
 
     /**
@@ -110,10 +119,10 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         return tuple != null;
     }
 
-    public int getWordCountByUser(String UserId) throws SQLException {
+    public int getWordCountByUser() throws SQLException {
         try {
             // Get all SavedWord tuples associated with the user
-            List<SavedWord> tuples = this.queryBuilder().where().eq("User_id", UserId).query();
+            List<SavedWord> tuples = this.queryBuilder().where().eq("User_id", CurrentUser).query();
 
             // Return the count of words
             return tuples.size();
@@ -129,7 +138,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         /*SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Constitutional"), "testUser");
         System.out.println(savedWord.getClass());
         SavedWordDAO.addSavedWord(savedWord);*/
-        List<EngWord> kk = SavedWordDAO.queryListWordByUserNewest("testUser");
+        List<EngWord> kk = SavedWordDAO.queryListWordByUserNewest();
         System.out.println(kk.size());
         for (EngWord n : kk) {
             System.out.println(n.getWord());
