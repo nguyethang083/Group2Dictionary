@@ -217,7 +217,7 @@ public class DictionaryController implements Initializable {
     void switchToMyWords(MouseEvent event) throws SQLException {
         MyWordsController controller = (MyWordsController) showComponent("/Views/MyWords.fxml");
         controller.setCurrentUser(currentUser);
-        List<EngWord> savedWords = SavedWordDAO.queryListWordByUser(currentUser);
+        List<SavedWord> savedWords = SavedWordDAO.queryListSavedWordByUser(currentUser);
         controller.displaySavedWords(savedWords);
     }
 
