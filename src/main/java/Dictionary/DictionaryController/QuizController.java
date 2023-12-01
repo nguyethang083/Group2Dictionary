@@ -1,5 +1,9 @@
 package Dictionary.DictionaryController;
+import Dictionary.Entities.ScoreQuiz;
 import Dictionary.Game.Quiz;
+
+import static Dictionary.DatabaseConn.SavedWordDAO;
+import static Dictionary.DatabaseConn.ScoreQuizDAO;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -50,6 +54,8 @@ public class QuizController implements Initializable {
     private Button TryAgain = new Button();
 
 
+
+
     public QuizController() throws SQLException {
         quiz = new Quiz();
     }
@@ -94,6 +100,12 @@ public class QuizController implements Initializable {
 
     public void handleNext(ActionEvent event) {
         if (quiz.getNumberofQuestion() % 10 == 0) {
+            try {
+                ScoreQuiz gameScore = new ScoreQuiz("Lam", quiz.getScore());
+                ScoreQuizDAO.addScoreQuiz(gameScore);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             FinalScore.setText(String.format("%d", quiz.getScore()));
             handleResultVisible();
 

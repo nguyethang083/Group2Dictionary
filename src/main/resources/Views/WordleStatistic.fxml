@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@wordle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.WordleStatisticController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Dictionary_Statistic.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutY="83.0" prefWidth="200.0" styleClass="statistic-value" text="5" />
+      <Label alignment="CENTER" layoutX="200.0" layoutY="83.0" prefWidth="200.0" styleClass="statistic-value" text="5" />
+      <Label alignment="CENTER" layoutX="400.0" layoutY="83.0" prefWidth="200.0" styleClass="statistic-value" text="5" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="145.0" prefWidth="200.0" styleClass="statistic-title" text="PLAYED" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="145.0" prefWidth="200.0" styleClass="statistic-title" text="WIN" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="400.0" layoutY="145.0" prefWidth="200.0" styleClass="statistic-title" text="STREAK" />
+      <Label layoutX="40.0" layoutY="176.0" styleClass="statistic-guess-distribution" text="GUESS DISTRIBUTION" />
+   </children>
+</AnchorPane>

@@ -1,5 +1,7 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.Entities.ScoreWordle;
+import Dictionary.Entities.ScoreWordleDAO;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -16,10 +18,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.net.URL;
 
 import Dictionary.Game.Wordle;
+import static Dictionary.DatabaseConn.ScoreWordleDAO;
 
 public class WordleController implements Initializable {
     private final Wordle wordle;
@@ -315,9 +319,11 @@ public class WordleController implements Initializable {
             String guess = getWordFromCurrentRow().toLowerCase();
             if (guess.equals(wordle.getAnswer())) {
                 updateRowColor(currentRow, "win");
+                updateScore(true);
                 updateKeyboardColor();
             } else if (wordle.valid(guess)) {
                 if (currentRow == MAX_ROW) {
+                    updateScore(false);
                     updateRowColor(currentRow, "lose");
                 } else {
                     updateRowColor(currentRow, "playing");
@@ -402,6 +408,31 @@ public class WordleController implements Initializable {
         rotateTransition.setToAngle(360);
         rotateTransition.setOnFinished(ae -> reset());
         rotateTransition.play();
+    }
+
+    public void updateScore(boolean win) {
+        try {
+            ScoreWordle current = ScoreWordleDAO.getTupleStreakbyUser("lam");
+            if (win) {
+                long streak = current.getStreak() + 1;
+                long  num_play = current.getNum_play() + 1;
+                long num_win = current.getNum_win() + 1;
+                current.setNum_play(num_play);
+                current.setNum_play(num_win);
+                current.setStreak(streak);
+                ScoreWordleDAO.addScoreWordle(current);
+            } else {
+                long streak = 0;
+                long  num_play = current.getNum_play() + 1;
+                long num_win = current.getNum_win();
+                current.setNum_play(num_play);
+                current.setNum_play(num_win);
+                current.setStreak(streak);
+                ScoreWordleDAO.addScoreWordle(current);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
