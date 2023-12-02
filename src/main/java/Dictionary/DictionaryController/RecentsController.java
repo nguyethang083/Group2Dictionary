@@ -12,8 +12,6 @@ import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,6 +26,7 @@ import java.util.List;
 
 import static Dictionary.DatabaseConn.CurrentUser;
 import static Dictionary.DatabaseConn.SearchedWordDAO;
+import static Dictionary.Features.StringProcessing.normalizeString;
 
 public class RecentsController {
     @FXML
@@ -37,7 +36,7 @@ public class RecentsController {
     private TextField searchbar;
 
     public void initialize() {
-        searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
+        //searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
             List<SearchedWord> savedWords = null;
             try {
                 savedWords = SearchedWordDAO.queryListSearchedWordByUser();
@@ -45,7 +44,7 @@ public class RecentsController {
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        });
+        //});
     }
 
     private HBox createHyperlink(String item, SearchedWord savedWord) {
@@ -94,12 +93,13 @@ public class RecentsController {
 
     public void displaySavedWords(List<SearchedWord> words) throws SQLException {
         ObservableList<HBox> observableList = FXCollections.observableArrayList();
-        String filter = searchbar.getText().toLowerCase();
+        String filter = searchbar.getText();
+        filter = normalizeString(filter);
         for (SearchedWord word : words) {
-            if (word.getWord().toLowerCase().contains(filter)) {
+            //if (word.getWord().toLowerCase().contains(filter)) {
                 System.out.println(word.getWord());
                 observableList.add(createHyperlink(word.getWord(), word));
-            }
+            //}
         }
         searchedList.setItems(observableList);
         //adjustListViewHeight(wordlist);

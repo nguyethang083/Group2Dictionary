@@ -30,10 +30,8 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 
-import static Dictionary.DatabaseConn.SavedWordDAO;
+import static Dictionary.DatabaseConn.*;
 import static Dictionary.Entities.AllWord.allWord;
-import static Dictionary.DatabaseConn.WordDAO;
-import static Dictionary.DatabaseConn.CurrentUser;
 
 public class DictionaryController implements Initializable {
     @FXML
@@ -255,6 +253,9 @@ public class DictionaryController implements Initializable {
         if (selectedWord != null) {
             try {
                 EngWord engWord = WordDAO.queryWordByString(selectedWord);
+                if (SearchedWordDAO.addSearchedWord(engWord)) {
+                    System.out.println("hi");
+                };
                 wordLabel.setText(engWord.getWord());
                 phonetic.setText(engWord.getPronunciation());
                 partsofspeech.setText(engWord.getType().toLowerCase());

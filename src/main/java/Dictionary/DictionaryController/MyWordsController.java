@@ -3,6 +3,7 @@ package Dictionary.DictionaryController;
 import Dictionary.Entities.EngWord;
 import Dictionary.Entities.SavedWord;
 import Dictionary.Entities.SavedWordDAO;
+import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -26,10 +27,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 import static Dictionary.DatabaseConn.SavedWordDAO;
-import Dictionary.Entities.SearchedWordDAO;
 import static Dictionary.DatabaseConn.CurrentUser;
+import static Dictionary.Features.StringProcessing.normalizeString;
 
 
 public class MyWordsController {
@@ -47,25 +49,8 @@ public class MyWordsController {
 
     private DictionaryController dictionaryController = new DictionaryController();
 
-    private String currentUser;
-
-    public void setCurrentUser(String currentUser) {
-        this.currentUser = currentUser;
-    }
-
-
     @FXML
     public void initialize() {
-        searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
-            List<SavedWord> savedWords = null;
-            try {
-                savedWords = SavedWordDAO.queryListSavedWordByUser();
-                displaySavedWords(savedWords);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-
         alphabetSort.setOnMouseClicked(event -> {
             try {
                 displaySavedWords(SavedWordDAO.queryListSavedWordByUser());
@@ -81,6 +66,28 @@ public class MyWordsController {
                 displaySavedWords(SavedWordDAO.queryListSavedWordByUserNewest());
                 newestSort.setStyle("-fx-background-color:  #1a475b; -fx-text-fill: white; -fx-font-weight: bold;");
                 alphabetSort.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color:  #527B8E; -fx-font-weight: normal;");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                // Normalize the search string
+                String normalizedValue = normalizeString(newValue);
+
+                // Get the words that start with the search string
+                List<SavedWord> words;
+                if (alphabetSort.getStyle().contains("-fx-background-color:  #1a475b")) {
+                    // If alphabetSort is selected, sort by alphabet
+                    words = SavedWordDAO.searchSavedWordByUser(normalizedValue);
+                } else {
+                    // If newestSort is selected, sort by newest
+                    words = SavedWordDAO.searchSavedWordByUserNewest(normalizedValue);
+                }
+
+                // Display the sorted words
+                displaySavedWords(words);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -134,12 +141,8 @@ public class MyWordsController {
 
     public void displaySavedWords(List<SavedWord> words) throws SQLException {
         ObservableList<HBox> observableList = FXCollections.observableArrayList();
-        String filter = searchbar.getText().toLowerCase();
         for (SavedWord word : words) {
-            if (word.getWord().toLowerCase().contains(filter)) {
-                System.out.println(word.getWord());
-                observableList.add(createHyperlink(word.getWord(), word));
-            }
+            observableList.add(createHyperlink(word.getWord(), word));
         }
         wordlist.setItems(observableList);
         adjustListViewHeight(wordlist);

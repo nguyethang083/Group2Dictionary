@@ -52,9 +52,10 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
      * @return true nếu add thành công, false nếu đã có tuple đó rồi (từ đã lưu mà bị ngáo cố ấn)
      * @throws SQLException
      */
-    public boolean addSearchedWord(SearchedWord x) throws SQLException {
-        long EngId = x.getEnglish_id();
-        String UserId = x.getUser_id();
+    public boolean addSearchedWord(EngWord x) throws SQLException {
+        long EngId = x.getId();
+        String UserId = CurrentUser;
+        SearchedWord y = new SearchedWord(EngId, UserId);
         if (EngId == 0 || UserId.isEmpty()) {
             return false;
         }
@@ -64,7 +65,7 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
                 this.delete(tuple);
                 System.out.println("Đã xóa bản ghi cũ");
             }
-            this.create(x);
+            this.create(y);
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " insertSWord");
             return false;

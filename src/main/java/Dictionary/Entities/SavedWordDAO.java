@@ -7,6 +7,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static Dictionary.DatabaseConn.WordDAO;
@@ -46,7 +47,14 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     }
 
     public List<SavedWord> queryListSavedWordByUser() throws SQLException {
-        return new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+        QueryBuilder<SavedWord, Long> IdWordByUser = this.queryBuilder().where().eq("User_id", CurrentUser).queryBuilder();
+        Where<EngWord, Long> english = WordDAO.queryBuilder().where().in("Id", IdWordByUser.selectColumns("English_id"));
+        List<EngWord> alphabetList =  new ArrayList<>(english.query());
+        List<SavedWord> res = new ArrayList<>();
+        for(EngWord x : alphabetList) {
+            res.add(this.queryBuilder().where().eq("English_id", x.getId()).queryForFirst());
+        }
+        return res;
     }
 
     public List<EngWord> searchWordbyUser(String prefix) throws SQLException {
