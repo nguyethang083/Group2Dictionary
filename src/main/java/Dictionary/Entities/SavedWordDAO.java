@@ -7,6 +7,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static Dictionary.DatabaseConn.WordDAO;
@@ -41,8 +42,19 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         return res;
     }
 
+    public List<SavedWord> queryListSavedWordByUserNewest() throws SQLException {
+        List<SavedWord> res = new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+        Collections.reverse(res);
+        return res;
+    }
+
     public List<SavedWord> queryListSavedWordByUser() throws SQLException {
-        return new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+        List<EngWord> alphabetList = queryListWordByUser();
+        List<SavedWord> res = new ArrayList<>();
+        for(EngWord x : alphabetList) {
+            res.add(this.queryBuilder().where().eq("English_id", x.getId()).queryForFirst());
+        }
+        return res;
     }
 
     public List<EngWord> searchWordbyUser(String prefix) throws SQLException {
@@ -51,10 +63,21 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         return new ArrayList<>(english.query());
     }
 
-    public List<SavedWord> searchSavedWordByUser(String prefix) throws SQLException {
-        QueryBuilder<SavedWord, Long> containWord = this.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
+    public List<SavedWord> searchSavedWordByUserNewest(String prefix) throws SQLException {
+        QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
         Where<SavedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
-        return new ArrayList<>(res.query());
+        List<SavedWord> r = new ArrayList<>(res.query());
+        Collections.reverse(r);
+        return r;
+    }
+
+    public List<SavedWord> searchSavedWordByUser(String prefix) throws SQLException {
+        List<EngWord> engWords = searchWordbyUser(prefix);
+        List<SavedWord> res = new ArrayList<>();
+        for(EngWord x : engWords) {
+            res.add(this.queryBuilder().where().eq("English_id", x.getId()).queryForFirst());
+        }
+        return res;
     }
 
     /**
@@ -138,9 +161,15 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         /*SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Constitutional"), "testUser");
         System.out.println(savedWord.getClass());
         SavedWordDAO.addSavedWord(savedWord);*/
-        List<EngWord> kk = SavedWordDAO.queryListWordByUserNewest();
+        /*List<EngWord> kk = SavedWordDAO.queryListWordByUserNewest();
         System.out.println(kk.size());
         for (EngWord n : kk) {
+            System.out.println(n.getWord());
+        }*/
+
+        List<SavedWord> k = SavedWordDAO.searchSavedWordByUser("h");
+        System.out.println(k.size());
+        for (SavedWord n : k) {
             System.out.println(n.getWord());
         }
     }

@@ -2,6 +2,7 @@ package Dictionary.Features;
 
 public class StringProcessing {
     public static String normalizeString(String searchTerm) {
+        if (searchTerm.length() < 2) return searchTerm;
         searchTerm = searchTerm.toLowerCase();
         searchTerm = searchTerm.strip();
         searchTerm = searchTerm.trim();

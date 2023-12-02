@@ -7,6 +7,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static Dictionary.DatabaseConn.CurrentUser;
@@ -42,6 +43,7 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
     // theo newest
     public List<SearchedWord> queryListSearchedWordByUser() throws SQLException {
         ArrayList<SearchedWord> res = new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+        Collections.reverse(res);
         if (res.size() < 51) return res;
         return res.subList(0, 49);
     }
@@ -52,9 +54,10 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
      * @return true nếu add thành công, false nếu đã có tuple đó rồi (từ đã lưu mà bị ngáo cố ấn)
      * @throws SQLException
      */
-    public boolean addSearchedWord(SearchedWord x) throws SQLException {
-        long EngId = x.getEnglish_id();
-        String UserId = x.getUser_id();
+    public boolean addSearchedWord(EngWord x) throws SQLException {
+        long EngId = x.getId();
+        String UserId = CurrentUser;
+        SearchedWord y = new SearchedWord(EngId, UserId);
         if (EngId == 0 || UserId.isEmpty()) {
             return false;
         }
@@ -64,7 +67,7 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
                 this.delete(tuple);
                 System.out.println("Đã xóa bản ghi cũ");
             }
-            this.create(x);
+            this.create(y);
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " insertSWord");
             return false;
