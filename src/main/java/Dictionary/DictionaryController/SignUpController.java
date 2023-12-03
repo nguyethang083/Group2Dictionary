@@ -35,14 +35,24 @@ public class SignUpController implements Initializable {
     private Label usernameNotification;
 
     @FXML
+    private Label nameNotification;
+
+    @FXML
+    private Label passwordNotification;
+
+    @FXML
     private PasswordField passwordfill;
 
     @FXML
     void signupButtonOnAction(ActionEvent event) throws SQLException {
         if (!usernamefill.getText().isBlank() && !passwordfill.getText().isBlank() && !firstnamefill.getText().isBlank() && !lastnamefill.getText().isBlank())
             signup();
-        //else
-            //invalidLabel.setText("Please enter your information.");
+        else {
+            if (usernamefill.getText().isBlank()) usernameNotification.setText("Please enter your username.");
+            if (firstnamefill.getText().isBlank() || lastnamefill.getText().isBlank()) nameNotification.setText("Please enter your name.");
+            if (passwordfill.getText().isBlank()) passwordNotification.setText("Please enter your password.");
+        }
+
     }
 
     public void signup() throws SQLException {
@@ -57,19 +67,62 @@ public class SignUpController implements Initializable {
        } //else invalidLabel.setText("Account already exists. Please try again.");
     }
 
+    private void setUsernameNotification() {
+        usernamefill.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()){
+                usernameNotification.setText("Please enter your username.");
+            } else if (UserDAO.checkNewUser(newValue)) {
+                usernameNotification.setText("");
+            } else {
+                usernameNotification.setText("This username has been existed.");
+            }
+        });
+    }
+
+    private void setNameNotification() {
+        firstnamefill.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()){
+                nameNotification.setText("Please enter your name.");
+            } else if (lastnamefill.getText().isEmpty()) {
+                nameNotification.setText("Please enter your name.");
+            } else {
+                nameNotification.setText("");
+            }
+        });
+
+        lastnamefill.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()){
+                nameNotification.setText("Please enter your name.");
+            } else if (firstnamefill.getText().isEmpty()) {
+                nameNotification.setText("Please enter your name.");
+            } else {
+                nameNotification.setText("");
+            }
+        });
+    }
+
+    private void setPasswordNotification() {
+        passwordfill.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()){
+                passwordNotification.setText("Please enter your password.");
+            } else {
+                usernameNotification.setText("");
+            }
+        });
+    }
+
+    @FXML
+    private void returnToSignIn() {
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernamefill.setFocusTraversable(false);
         passwordfill.setFocusTraversable(false);
-        usernamefill.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.isEmpty()){
-                usernameNotification.setText("Please enter username.");
-            } else if (UserDAO.checkNewUser(newValue)) {
-                usernameNotification.setText("");
-            } else {
-                usernameNotification.setText("Username is existed.");
-            }
-        });
+        setUsernameNotification();
+        setNameNotification();
+        setPasswordNotification();
     }
 
 }

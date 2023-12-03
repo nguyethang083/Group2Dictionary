@@ -49,8 +49,11 @@
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="40.0" layoutX="72.0" layoutY="252.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="270.0" />
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="40.0" layoutX="72.0" layoutY="337.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="270.0" />
         <Line endX="8.5999755859375" layoutX="180.0" layoutY="496.0" opacity="0.5" startX="-100.0" stroke="WHITE" />
-        <TextField fx:id="usernamefill" layoutX="76.0" layoutY="256.0" prefHeight="35.0" prefWidth="259.0" style="-fx-background-color: #1A475B;" />
-        <Text fill="#fdfaf5" layoutX="265.0" layoutY="546.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in" underline="true" wrappingWidth="59.11592102050781">
+        <TextField fx:id="usernamefill" layoutX="76.0" layoutY="256.0" prefHeight="35.0" prefWidth="259.0" style="-fx-background-color: #1A475B; -fx-text-fill: white;">
+         <font>
+            <Font name="Poppins SemiBold" size="14.0" />
+         </font></TextField>
+        <Text fill="#fdfaf5" layoutX="265.0" layoutY="546.0" onMouseClicked="#returnToSignIn" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in" underline="true" wrappingWidth="59.11592102050781">
             <font>
                 <Font name="Poppins Light" size="14.0" />
             </font>
@@ -78,14 +81,21 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </JFXButton>
-      <TextField fx:id="lastnamefill" layoutX="75.0" layoutY="169.0" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: transparent; -fx-text-fill: white;" text="Lam">
+      <TextField fx:id="lastnamefill" layoutX="75.0" layoutY="169.0" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: transparent; -fx-text-fill: white;">
          <font>
-            <Font name="Poppins Regular" size="12.0" />
+            <Font name="Poppins SemiBold" size="14.0" />
          </font>
       </TextField>
-      <TextField fx:id="firstnamefill" layoutX="226.0" layoutY="169.0" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: transparent;" />
-      <PasswordField fx:id="passwordfill" layoutX="76.0" layoutY="339.0" prefHeight="35.0" prefWidth="259.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="firstnamefill" layoutX="226.0" layoutY="169.0" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: transparent; -fx-text-fill: white;">
+         <font>
+            <Font name="Poppins SemiBold" size="14.0" />
+         </font></TextField>
+      <PasswordField fx:id="passwordfill" layoutX="76.0" layoutY="339.0" prefHeight="35.0" prefWidth="259.0" style="-fx-background-color: transparent; -fx-text-fill: white;">
+         <font>
+            <Font name="Poppins Regular" size="14.0" />
+         </font></PasswordField>
       <Label fx:id="usernameNotification" layoutX="78.0" layoutY="293.0" prefHeight="17.0" prefWidth="259.0" style="-fx-text-fill: #dbb534; -fx-font-family: Poppins;" />
       <Label fx:id="passwordNotification" layoutX="76.0" layoutY="377.0" prefHeight="17.0" prefWidth="259.0" style="-fx-text-fill: #dbb534; -fx-font-family: Poppins;" />
+      <Label fx:id="nameNotification" layoutX="76.0" layoutY="204.0" prefHeight="17.0" prefWidth="259.0" style="-fx-text-fill: #dbb534; -fx-font-family: Poppins;" />
     </children>
 </AnchorPane>
