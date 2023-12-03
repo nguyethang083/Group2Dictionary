@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -32,7 +32,7 @@
             <Font name="Poppins Regular" size="16.0" />
          </font>
       </Text>
-      <JFXListView fx:id="searchedList" layoutX="456.0" layoutY="237.0" prefHeight="299.0" prefWidth="354.0" />
-      <TextField fx:id="searchbar" layoutX="72.0" layoutY="315.0" prefHeight="35.0" prefWidth="174.0" />
+      <TextField fx:id="searchbar" layoutX="72.0" layoutY="315.0" prefHeight="35.0" prefWidth="174.0" stylesheets="@test.css" />
+      <ListView fx:id="searchedList" layoutX="430.0" layoutY="198.0" prefHeight="329.0" prefWidth="374.0" />
    </children>
 </AnchorPane>

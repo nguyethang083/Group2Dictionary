@@ -43,7 +43,9 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     }
 
     public List<SavedWord> queryListSavedWordByUserNewest() throws SQLException {
-        return new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+        List<SavedWord> res = new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+        Collections.reverse(res);
+        return res;
     }
 
     public List<SavedWord> queryListSavedWordByUser() throws SQLException {
@@ -161,9 +163,9 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         /*SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Constitutional"), "testUser");
         System.out.println(savedWord.getClass());
         SavedWordDAO.addSavedWord(savedWord);*/
-        List<EngWord> kk = SavedWordDAO.queryListWordByUserNewest();
-        System.out.println(kk.size());
-        for (EngWord n : kk) {
+        List<SavedWord> k = SavedWordDAO.searchSavedWordByUser("b");
+        System.out.println(k.size());
+        for (SavedWord n : k) {
             System.out.println(n.getWord());
         }
     }

@@ -1,20 +1,16 @@
 package Dictionary.DictionaryController;
 
-import Dictionary.Entities.SavedWord;
 import Dictionary.Entities.SearchedWord;
 import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -24,8 +20,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import static Dictionary.DatabaseConn.CurrentUser;
-import static Dictionary.DatabaseConn.SearchedWordDAO;
+import static Dictionary.DatabaseConn.*;
 import static Dictionary.Features.StringProcessing.normalizeString;
 
 public class RecentsController {
@@ -37,17 +32,17 @@ public class RecentsController {
 
     public void initialize() {
         //searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
-            List<SearchedWord> savedWords = null;
+            List<SearchedWord> searchedWords = null;
             try {
-                savedWords = SearchedWordDAO.queryListSearchedWordByUser();
-                displaySavedWords(savedWords);
+                searchedWords = SearchedWordDAO.queryListSearchedWordByUser();
+                displaySavedWords(searchedWords);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         //});
     }
 
-    private HBox createHyperlink(String item, SearchedWord savedWord) {
+    private HBox createHyperlink(String item, SearchedWord searchedWord) {
         Hyperlink hyperlink = new Hyperlink(item);
         hyperlink.setStyle("-fx-focus-color: transparent;");
         hyperlink.setStyle("-fx-text-fill: #527B8E;");
@@ -67,25 +62,12 @@ public class RecentsController {
             stage.show();
         });
 
-        ImageView deleteIcon = new ImageView(new Image(getClass().getResource("/images/recycle-bin.png").toExternalForm()));
-        deleteIcon.setFitHeight(20);
-        deleteIcon.setFitWidth(15);
-        deleteIcon.setCursor(Cursor.HAND);
-        /*deleteIcon.setOnMouseClicked(event -> {
-            try {
-                SavedWordDAO.deleteTuple(savedWord);
-                displaySavedWords(SavedWordDAO.queryListSavedWordByUser());
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        */
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        HBox hbox = new HBox(hyperlink, spacer, deleteIcon);
+        HBox hbox = new HBox(hyperlink, spacer);
         hbox.setSpacing(10);
-        HBox.setMargin(deleteIcon, new Insets(10, 20, 0, 0));
+        //HBox.setMargin(deleteIcon, new Insets(10, 20, 0, 0));
 
 
         return hbox;
@@ -96,12 +78,19 @@ public class RecentsController {
         String filter = searchbar.getText();
         filter = normalizeString(filter);
         for (SearchedWord word : words) {
-            //if (word.getWord().toLowerCase().contains(filter)) {
-                System.out.println(word.getWord());
-                observableList.add(createHyperlink(word.getWord(), word));
-            //}
+            observableList.add(createHyperlink(word.getWord(), word));
         }
         searchedList.setItems(observableList);
-        //adjustListViewHeight(wordlist);
+        adjustListViewHeight(searchedList);
+    }
+
+    private void adjustListViewHeight(ListView<HBox> listView) {
+        int totalItems = listView.getItems().size();
+        int itemHeight = 47;
+        int verticalPadding = 6;
+        totalItems = Math.min(totalItems, 6);
+        double totalHeight = totalItems * itemHeight + verticalPadding;
+
+        listView.setPrefHeight(totalHeight);
     }
 }

@@ -24,6 +24,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -53,6 +54,7 @@ public class MyWordsController {
     public void initialize() {
         alphabetSort.setOnMouseClicked(event -> {
             try {
+                searchbar.clear();
                 displaySavedWords(SavedWordDAO.queryListSavedWordByUser());
                 alphabetSort.setStyle("-fx-background-color:  #1a475b; -fx-text-fill: white; -fx-font-weight: bold;");
                 newestSort.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color:  #527B8E; -fx-font-weight: normal;");
@@ -63,6 +65,7 @@ public class MyWordsController {
 
         newestSort.setOnMouseClicked(event -> {
             try {
+                searchbar.clear();
                 displaySavedWords(SavedWordDAO.queryListSavedWordByUserNewest());
                 newestSort.setStyle("-fx-background-color:  #1a475b; -fx-text-fill: white; -fx-font-weight: bold;");
                 alphabetSort.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-border-color:  #527B8E; -fx-font-weight: normal;");
@@ -73,20 +76,14 @@ public class MyWordsController {
 
         searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
-                // Normalize the search string
                 String normalizedValue = normalizeString(newValue);
-
-                // Get the words that start with the search string
                 List<SavedWord> words;
-                if (alphabetSort.getStyle().contains("-fx-background-color:  #1a475b")) {
-                    // If alphabetSort is selected, sort by alphabet
-                    words = SavedWordDAO.searchSavedWordByUser(normalizedValue);
-                } else {
-                    // If newestSort is selected, sort by newest
+                if (newestSort.getStyle().contains("-fx-background-color:  #1a475b")) {
                     words = SavedWordDAO.searchSavedWordByUserNewest(normalizedValue);
+                } else {
+                    words = SavedWordDAO.searchSavedWordByUser(normalizedValue);
                 }
 
-                // Display the sorted words
                 displaySavedWords(words);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
@@ -95,24 +92,7 @@ public class MyWordsController {
     }
 
     private HBox createHyperlink(String item, SavedWord savedWord) {
-        Hyperlink hyperlink = new Hyperlink(item);
-        hyperlink.setStyle("-fx-focus-color: transparent;");
-        hyperlink.setStyle("-fx-text-fill: #527B8E;");
-        hyperlink.setOnAction(event -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dictionary.fxml"));
-            Parent root = null;
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            DictionaryController dictionaryController = loader.getController();
-            dictionaryController.setSelectedWord(item);
-            dictionaryController.updateView();
-            Stage stage = (Stage) wordlist.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        });
+        Hyperlink hyperlink = getHyperlink(item);
 
         ImageView deleteIcon = new ImageView(new Image(getClass().getResource("/images/recycle-bin.png").toExternalForm()));
         deleteIcon.setFitHeight(20);
@@ -136,6 +116,29 @@ public class MyWordsController {
 
 
         return hbox;
+    }
+
+    @NotNull
+    private Hyperlink getHyperlink(String item) {
+        Hyperlink hyperlink = new Hyperlink(item);
+        hyperlink.setStyle("-fx-focus-color: transparent;");
+        hyperlink.setStyle("-fx-text-fill: #527B8E;");
+        hyperlink.setOnAction(event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/Dictionary.fxml"));
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            DictionaryController dictionaryController = loader.getController();
+            dictionaryController.setSelectedWord(item);
+            dictionaryController.updateView();
+            Stage stage = (Stage) wordlist.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        });
+        return hyperlink;
     }
 
 
