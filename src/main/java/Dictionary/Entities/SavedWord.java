@@ -45,10 +45,6 @@ public class SavedWord {
         English_id = Eng;
         User_id = User;
     }
-
-    public String getWord () throws SQLException {
-        return WordDAO.queryEngWordbyId(this.getEnglish_id()).getWord();
-    }
     @Override
     public String toString(){
         return "The word is " + User_id + English_id + "\n";
