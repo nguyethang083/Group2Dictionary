@@ -1,13 +1,11 @@
 package Dictionary.Entities;
 
 import com.j256.ormlite.dao.BaseDaoImpl;
-import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 import static Dictionary.DatabaseConn.UserDAO;
 import static Dictionary.DatabaseConn.ScoreWordleDAO;
@@ -18,6 +16,21 @@ import static Dictionary.DatabaseConn.SearchedWordDAO;
 public class UserDAO extends BaseDaoImpl<User, Long> {
     public UserDAO(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, User.class);
+    }
+
+    public boolean checkValidUser (String user, String pass) {
+        try {
+            Where<User, Long> tuple = this.queryBuilder().where().eq("Id", user);
+            if (tuple.queryForFirst() != null) {
+                User test = tuple.queryForFirst();
+                if (test.getPass().equals(pass)) return true;
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage() + " checkUser");
+            return false;
+        }
+        return false;
     }
 
     /**
@@ -55,10 +68,10 @@ public class UserDAO extends BaseDaoImpl<User, Long> {
         try {
             User tuple = this.queryBuilder().where().eq("Id", userid).queryForFirst();
             System.out.println(tuple.toString());
-            ScoreWordleDAO.deleteScoreWordlebyUser(userid);
-            ScoreQuizDAO.deleteScoreQuizbyUser(userid);
+            ScoreWordleDAO.deleteScoreWordlebyUser();
+            ScoreQuizDAO.deleteScoreQuizbyUser();
             SavedWordDAO.deleteAllWordsByUser(userid);
-            SearchedWordDAO.deleteAllWordsByUser(userid);
+            SearchedWordDAO.deleteAllWordsByUser();
             this.delete(tuple);
             return true;
         } catch (SQLException e) {

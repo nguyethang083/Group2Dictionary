@@ -26,6 +26,7 @@ public class DatabaseConn {
     public static SearchedWordDAO SearchedWordDAO;
     public static ScoreQuizDAO ScoreQuizDAO;
     public static ScoreWordleDAO ScoreWordleDAO;
+    public static String CurrentUser;
 
     static {
         try {
@@ -35,6 +36,7 @@ public class DatabaseConn {
             UserDAO = new UserDAO(connectionSource);
             ScoreQuizDAO = new ScoreQuizDAO(connectionSource);
             ScoreWordleDAO = new ScoreWordleDAO(connectionSource);
+            CurrentUser = "testUser";
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

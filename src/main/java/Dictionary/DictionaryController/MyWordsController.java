@@ -54,7 +54,7 @@ public class MyWordsController {
         searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
             List<EngWord> savedWords = null;
             try {
-                savedWords = SavedWordDAO.queryListWordByUser(currentUser);
+                savedWords = SavedWordDAO.queryListWordByUser();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -89,7 +89,7 @@ public class MyWordsController {
         deleteIcon.setOnMouseClicked(event -> {
             try {
                 SavedWordDAO.deleteTuple(savedWord);
-                displaySavedWords(SavedWordDAO.queryListWordByUser(currentUser));
+                displaySavedWords(SavedWordDAO.queryListWordByUser());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -123,7 +123,7 @@ public class MyWordsController {
         adjustListViewHeight(wordlist);
 
         try {
-            int wordCount = SavedWordDAO.getWordCountByUser(currentUser);
+            int wordCount = SavedWordDAO.getWordCountByUser();
             count.setText(Integer.toString(wordCount));
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -144,7 +144,7 @@ public class MyWordsController {
     public void handleDeleteAll(MouseEvent event) {
         try {
             SavedWordDAO.deleteAllWordsByUser(currentUser);
-            displaySavedWords(SavedWordDAO.queryListWordByUser(currentUser));
+            displaySavedWords(SavedWordDAO.queryListWordByUser());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

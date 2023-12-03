@@ -1,7 +1,6 @@
 package Dictionary.Entities;
 
 import com.j256.ormlite.dao.BaseDaoImpl;
-import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 
@@ -10,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static Dictionary.DatabaseConn.ScoreQuizDAO;
+import static Dictionary.DatabaseConn.CurrentUser;
 
 public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
     public ScoreQuizDAO(ConnectionSource connectionSource) throws SQLException {
@@ -20,13 +20,11 @@ public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
     // phải kiểm tra .isEmpty() = 0 thì mới dùng được tiếp
 
     /**
-     *
-     * @param user chọn 1 user (lúc login - biến static toàn cục)
      * @return Danh sách kiểu ArrayList<ScoreQuiz> của User đó (lúc hiện lên màn thì dùng hàm này)
      * @throws SQLException
      */
-    public List<ScoreQuiz> queryListScoreByUser(String user) throws SQLException {
-        Where<ScoreQuiz, Long> score = this.queryBuilder().where().in("User_id", user);
+    public List<ScoreQuiz> queryListScoreByUser() throws SQLException {
+        Where<ScoreQuiz, Long> score = this.queryBuilder().where().in("User_id", CurrentUser);
         return new ArrayList<>(score.query());
     }
 
@@ -45,9 +43,9 @@ public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
         return true;
     }
 
-    public long getTotalScorebyUser(String user) throws SQLException {
+    public long getTotalScorebyUser() throws SQLException {
         long res = 0;
-        List<ScoreQuiz> listScoreByUser = ScoreQuizDAO.queryListScoreByUser(user);
+        List<ScoreQuiz> listScoreByUser = ScoreQuizDAO.queryListScoreByUser();
         if (listScoreByUser.isEmpty()) return res;
         for (ScoreQuiz x : listScoreByUser) {
             res += x.getScore();
@@ -55,16 +53,16 @@ public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
         return res;
     }
 
-    public long getNumPlaybyUser(String user) throws SQLException {
-        return this.queryBuilder().where().in("User_id", user).countOf();
+    public long getNumPlaybyUser() throws SQLException {
+        return this.queryBuilder().where().in("User_id", CurrentUser).countOf();
     }
 
     // Xóa lượt chơi khi xóa user nè
-    public boolean deleteScoreQuizbyUser(String user) throws SQLException {
+    public boolean deleteScoreQuizbyUser() throws SQLException {
         try {
             ScoreQuiz tuple;
             do {
-                tuple = this.queryBuilder().where().eq("User_id", user).queryForFirst();
+                tuple = this.queryBuilder().where().eq("User_id", CurrentUser).queryForFirst();
                 this.delete(tuple);
             } while (tuple != null);
             return true;
@@ -83,13 +81,13 @@ public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
         ScoreQuizDAO.addScoreQuiz(scoreQuiz1);
         ScoreQuizDAO.addScoreQuiz(scoreQuiz3);
         ScoreQuizDAO.addScoreQuiz(scoreQuiz4);
-        List<ScoreQuiz> hi = ScoreQuizDAO.queryListScoreByUser("lam");
+        List<ScoreQuiz> hi = ScoreQuizDAO.queryListScoreByUser();
         System.out.println(hi.size());
         for (ScoreQuiz n : hi) {
             System.out.println(n.getUser_id() + " " + n.getScore());
         }
-        System.out.println(ScoreQuizDAO.getTotalScorebyUser("Lam"));
-        System.out.println(ScoreQuizDAO.getNumPlaybyUser("Lam"));
+        System.out.println(ScoreQuizDAO.getTotalScorebyUser());
+        System.out.println(ScoreQuizDAO.getNumPlaybyUser());
         //ScoreQuizDAO.deleteScoreQuizbyUser("lam");
     }
 }

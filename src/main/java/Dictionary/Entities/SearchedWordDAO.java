@@ -7,8 +7,10 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import static Dictionary.DatabaseConn.CurrentUser;
 import static Dictionary.DatabaseConn.WordDAO;
 
 public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
@@ -16,29 +18,34 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
         super(connectionSource, SearchedWord.class);
     }
 
-    // lưu ý cực mạnh: nếu ko muốn dùng id của word để làm input mà dùng word dạng string
-    // thì có thể dùng hàm WordDAO.queryIdbyWord
-
-    /**
-     *
-     * @param user chọn 1 user (lúc login)
-     * @return Danh sách kiểu ArrayList<EngWord> của User đó (lúc hiện lên màn thì dùng hàm này)
-     * @throws SQLException
-     */
-    public List<EngWord> queryListWordByUser(String user) throws SQLException {
-        QueryBuilder<SearchedWord, Long> IdWordByUser = this.queryBuilder().where().eq("User_id", user).queryBuilder();
+    // theo alphabet (thích thì dùng)
+    public List<EngWord> queryListWordByUser() throws SQLException {
+        QueryBuilder<SearchedWord, Long> IdWordByUser = this.queryBuilder().where().eq("User_id", CurrentUser).queryBuilder();
         Where<EngWord, Long> english = WordDAO.queryBuilder().where().in("Id", IdWordByUser.selectColumns("English_id"));
-        return new ArrayList<>(english.query());
+        ArrayList<EngWord> res = new ArrayList<>(english.query());
+        if (res.size() < 51) return res;
+        return res.subList(0, 49);
     }
 
     // ham theo newest
-    public List<EngWord> queryListWordByUserNewest(String user) throws SQLException {
-        List<SearchedWord> searchedWords = new ArrayList<>(this.queryBuilder().where().eq("User_id", user).query());
+    public List<EngWord> queryListWordByUserNewest() throws SQLException {
+        List<SearchedWord> searchedWords = new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
         List<EngWord> res = new ArrayList<>();
+        int i = 0;
         for(SearchedWord x : searchedWords) {
+            i++;
+            if (i > 50) break;
             res.add(WordDAO.queryBuilder().where().in("Id", x.getEnglish_id()).queryForFirst());
         }
         return res;
+    }
+
+    // theo newest
+    public List<SearchedWord> queryListSearchedWordByUser() throws SQLException {
+        ArrayList<SearchedWord> res = new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+        Collections.reverse(res);
+        if (res.size() < 51) return res;
+        return res.subList(0, 49);
     }
 
     /**
@@ -47,9 +54,10 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
      * @return true nếu add thành công, false nếu đã có tuple đó rồi (từ đã lưu mà bị ngáo cố ấn)
      * @throws SQLException
      */
-    public boolean addSearchedWord(SearchedWord x) throws SQLException {
-        long EngId = x.getEnglish_id();
-        String UserId = x.getUser_id();
+    public boolean addSearchedWord(EngWord x) throws SQLException {
+        long EngId = x.getId();
+        String UserId = CurrentUser;
+        SearchedWord y = new SearchedWord(EngId, UserId);
         if (EngId == 0 || UserId.isEmpty()) {
             return false;
         }
@@ -59,7 +67,7 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
                 this.delete(tuple);
                 System.out.println("Đã xóa bản ghi cũ");
             }
-            this.create(x);
+            this.create(y);
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " insertSWord");
             return false;
@@ -82,9 +90,9 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
         }
     }
 
-    public boolean deleteAllWordsByUser(String UserId) throws SQLException {
+    public boolean deleteAllWordsByUser() throws SQLException {
         try {
-            List<SearchedWord> tuples = this.queryBuilder().where().eq("User_id", UserId).query();
+            List<SearchedWord> tuples = this.queryBuilder().where().eq("User_id", CurrentUser).query();
             for (SearchedWord tuple : tuples) {
                 this.delete(tuple);
             }

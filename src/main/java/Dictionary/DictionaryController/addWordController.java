@@ -1,6 +1,5 @@
 package Dictionary.DictionaryController;
 
-import Dictionary.Alerts.Alerts;
 import Dictionary.Entities.EngWord;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -19,8 +18,6 @@ public class addWordController {
     @FXML
     private TextField newDefinition, newExample, newPhonetic, newSynonym, newType, newWord;
 
-    private Alerts alerts = new Alerts();
-
 
     @FXML
     void addWord(MouseEvent event) {
@@ -33,31 +30,27 @@ public class addWordController {
         newEngWord.setSynonym(newSynonym.getText());
         newEngWord.setExample(newExample.getText());
 
-        boolean status = alerts.showAlertConfirmation("Confirmation", "Ban co chac chan muon them tu nay vao tu dien?");
-        if (status) {
-            try {
-                boolean isAdded = WordDAO.addWord(newEngWord);
-                if (isAdded) {
-                    alerts.showAlertInfo("Information", "Them thanh cong");
-                    clearTextFields();
-                } else {
-                    alerts.showAlertWarning("Warning", "Tu nay da ton tai trong tu dien");
-                }
-            } catch (SQLException e) {
-                System.err.println(e.getMessage() + " addWord");
+        try {
+            boolean isAdded = WordDAO.addWord(newEngWord);
+            if (isAdded) {
+                showAlert("Bạn đã thêm từ này vào từ điển!");
+                clearTextFields();
             }
-        } else {
-            alerts.showAlertInfo("Information", "Ban da huy thao tac them");
+            else {
+                showAlert("Từ này đã tồn tại!");
+                clearTextFields();
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage() + " addWord");
         }
     }
 
     private void showAlert(String message) {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        alert.setTitle("Information Dialog");
-//        alert.setHeaderText(null);
-//        alert.setContentText(message);
-//        alert.showAndWait();
-        alerts.showAlertWarning("Warning", message);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private void clearTextFields() {
@@ -68,5 +61,4 @@ public class addWordController {
         newSynonym.clear();
         newExample.clear();
     }
-
 }
