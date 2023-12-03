@@ -43,9 +43,21 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
                 long streak = x.getStreak();
                 long play = x.getNum_play();
                 long win = x.getNum_win();
+                long g1 = x.getGuess1();
+                long g2 = x.getGuess2();
+                long g3 = x.getGuess3();
+                long g4 = x.getGuess4();
+                long g5 = x.getGuess5();
+                long g6 = x.getGuess6();
                 tuple.setStreak(streak);
                 tuple.setNum_play(play);
                 tuple.setNum_win(win);
+                tuple.setGuess1(g1);
+                tuple.setGuess2(g2);
+                tuple.setGuess3(g3);
+                tuple.setGuess4(g4);
+                tuple.setGuess5(g5);
+                tuple.setGuess6(g6);
                 this.update(tuple);
             }
             else this.create(x);

@@ -48,6 +48,14 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
         return res.subList(0, 49);
     }
 
+    public List<SearchedWord> searchSearchedWordByUserNewest(String prefix) throws SQLException {
+        QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
+        Where<SearchedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
+        List<SearchedWord> r = new ArrayList<>(res.query());
+        Collections.reverse(r);
+        return r;
+    }
+
     /**
      * hàm add id từ vào user được chọn
      * @param x bao gồm Userid và Englishid

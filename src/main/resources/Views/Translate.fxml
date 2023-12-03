@@ -49,5 +49,24 @@
             <Image url="@../images/TranslateText.png" />
          </image>
       </ImageView>
+      <JFXButton fx:id="VoiceRight" layoutX="456.0" layoutY="468.0" onMouseClicked="#PlayVoiceT" prefHeight="25.0" prefWidth="0.0">
+         <graphic>
+            <ImageView fitHeight="14.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/voiceButton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton />
+      <JFXButton fx:id="VoiceLeft" layoutX="35.0" layoutY="466.0" onMouseClicked="#PlayVoiceS" prefHeight="34.0" prefWidth="28.0">
+         <graphic>
+            <ImageView fitHeight="14.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/voiceButton.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
    </children>
 </AnchorPane>
