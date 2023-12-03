@@ -253,9 +253,7 @@ public class DictionaryController implements Initializable {
         if (selectedWord != null) {
             try {
                 EngWord engWord = WordDAO.queryWordByString(selectedWord);
-                if (SearchedWordDAO.addSearchedWord(engWord)) {
-                    System.out.println("hi");
-                };
+                SearchedWordDAO.addSearchedWord(engWord);
                 wordLabel.setText(engWord.getWord());
                 phonetic.setText(engWord.getPronunciation());
                 partsofspeech.setText(engWord.getType().toLowerCase());

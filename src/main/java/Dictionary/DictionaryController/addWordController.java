@@ -36,6 +36,8 @@ public class addWordController {
             if (isAdded) {
                 showAlert("Bạn đã thêm từ này vào từ điển!");
                 clearTextFields();
+            } else if (newEngWord.getWord().isEmpty() || newEngWord.getMeaning().isEmpty()) {
+                showAlert("Bạn chưa điền thông tin cho từ");
             }
             else {
                 showAlert("Từ này đã tồn tại!");

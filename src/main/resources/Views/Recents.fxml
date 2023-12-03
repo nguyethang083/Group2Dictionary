@@ -33,6 +33,6 @@
          </font>
       </Text>
       <TextField fx:id="searchbar" layoutX="72.0" layoutY="315.0" prefHeight="35.0" prefWidth="174.0" stylesheets="@test.css" />
-      <ListView fx:id="searchedList" layoutX="430.0" layoutY="198.0" prefHeight="329.0" prefWidth="374.0" />
+      <ListView fx:id="searchedList" layoutX="430.0" layoutY="198.0" prefHeight="329.0" prefWidth="374.0" styleClass="list-word" stylesheets="@test.css" />
    </children>
 </AnchorPane>

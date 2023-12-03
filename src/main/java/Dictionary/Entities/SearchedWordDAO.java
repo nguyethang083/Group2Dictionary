@@ -7,6 +7,7 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static Dictionary.DatabaseConn.CurrentUser;
@@ -42,6 +43,7 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
     // theo newest
     public List<SearchedWord> queryListSearchedWordByUser() throws SQLException {
         ArrayList<SearchedWord> res = new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
+        Collections.reverse(res);
         if (res.size() < 51) return res;
         return res.subList(0, 49);
     }
@@ -71,6 +73,14 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
             return false;
         }
         return true;
+    }
+
+    public List<SearchedWord> searchSearchedWordByUserNewest(String prefix) throws SQLException {
+        QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
+        Where<SearchedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
+        List<SearchedWord> r = new ArrayList<>(res.query());
+        Collections.reverse(r);
+        return r;
     }
 
     // Chức năng ngược add còn các cái khác (in & out) giống hoàn toàn

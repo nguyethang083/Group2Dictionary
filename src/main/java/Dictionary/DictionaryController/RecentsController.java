@@ -1,7 +1,7 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.Entities.SavedWord;
 import Dictionary.Entities.SearchedWord;
-import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,21 +25,22 @@ import static Dictionary.Features.StringProcessing.normalizeString;
 
 public class RecentsController {
     @FXML
-    private JFXListView<HBox> searchedList;
+    private ListView<HBox> searchedList;
 
     @FXML
     private TextField searchbar;
 
-    public void initialize() {
-        //searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
-            List<SearchedWord> searchedWords = null;
+    public void initialize() throws SQLException {
+        displaySavedWords(SearchedWordDAO.queryListSearchedWordByUser());
+        searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
             try {
-                searchedWords = SearchedWordDAO.queryListSearchedWordByUser();
-                displaySavedWords(searchedWords);
-            } catch (SQLException e) {
+                String normalizedValue = normalizeString(newValue);
+                List<SearchedWord> words = SearchedWordDAO.searchSearchedWordByUserNewest(normalizedValue);
+                displaySavedWords(words);
+                } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        //});
+        });
     }
 
     private HBox createHyperlink(String item, SearchedWord searchedWord) {
@@ -75,8 +76,6 @@ public class RecentsController {
 
     public void displaySavedWords(List<SearchedWord> words) throws SQLException {
         ObservableList<HBox> observableList = FXCollections.observableArrayList();
-        String filter = searchbar.getText();
-        filter = normalizeString(filter);
         for (SearchedWord word : words) {
             observableList.add(createHyperlink(word.getWord(), word));
         }
