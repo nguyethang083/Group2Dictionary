@@ -5,6 +5,7 @@ import com.j256.ormlite.stmt.Where;
 import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
+import java.util.Objects;
 
 import static Dictionary.DatabaseConn.UserDAO;
 import static Dictionary.DatabaseConn.ScoreWordleDAO;
@@ -17,12 +18,13 @@ public class UserDAO extends BaseDaoImpl<User, Long> {
         super(connectionSource, User.class);
     }
 
-    public boolean checkValidUser (String user) {
+    public boolean checkValidUser (String user, String pass) {
         try {
             Where<User, Long> tuple = this.queryBuilder().where().eq("Id", user);
             if (tuple.queryForFirst() != null) {
-                System.out.println("User này tồn tại");
-                return true;
+                User test = tuple.queryForFirst();
+                if (test.getPass().equals(pass)) return true;
+                return false;
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " checkUser");

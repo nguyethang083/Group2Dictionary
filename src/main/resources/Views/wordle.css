@@ -291,3 +291,42 @@
     -fx-pref-height: 50px;
     -fx-text-alignment: center;
 }
+
+.statistic-value {
+    -fx-text-fill: #1A475B;
+    -fx-font-family: "Poppins Regular";
+    -fx-font-weight: normal;
+    -fx-font-size: 48px;
+}
+
+.statistic-title {
+    -fx-text-fill: #000000;
+    -fx-font-family: "Poppins Regular";
+    -fx-font-weight: normal ;
+    -fx-font-size: 12px;
+}
+
+.statistic-guess-distribution {
+    -fx-text-alignment: center;
+    -fx-text-fill: #000000;
+    -fx-font-family: "Poppins Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+
+.bar-chart {
+    -fx-text-fill: white;
+    -fx-font-family: "Poppins Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-min-height: 20px;
+    -fx-background-color: #527B8E;
+}
+
+.bar-chart-label {
+    -fx-text-fill: black;
+    -fx-font-family: "Poppins Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-min-height: 20px;
+}

@@ -32,7 +32,6 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
 
     // đã bao gồm cả update nếu bị lỗi constraint pk Userid
     public boolean addScoreWordle(ScoreWordle x) throws SQLException {
-        long Streak = x.getStreak();
         String UserId = x.getUser_id();
         if (UserId.isEmpty()) {
             return false;
@@ -44,9 +43,21 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
                 long streak = x.getStreak();
                 long play = x.getNum_play();
                 long win = x.getNum_win();
+                long g1 = x.getGuess1();
+                long g2 = x.getGuess2();
+                long g3 = x.getGuess3();
+                long g4 = x.getGuess4();
+                long g5 = x.getGuess5();
+                long g6 = x.getGuess6();
                 tuple.setStreak(streak);
                 tuple.setNum_play(play);
                 tuple.setNum_win(win);
+                tuple.setGuess1(g1);
+                tuple.setGuess2(g2);
+                tuple.setGuess3(g3);
+                tuple.setGuess4(g4);
+                tuple.setGuess5(g5);
+                tuple.setGuess6(g6);
                 this.update(tuple);
             }
             else this.create(x);
@@ -67,6 +78,24 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
         ScoreWordle streak = this.queryBuilder().where().in("User_id", CurrentUser).queryForFirst();
         if (streak == null) return 0;
         return streak.getNum_win();
+    }
+    public long getGuessbyNum(int numGuess) throws SQLException {
+        ScoreWordle tuple = this.queryBuilder().where().in("User_id", CurrentUser).queryForFirst();
+        if (tuple == null) return 0;
+        switch(numGuess) {
+            case 1:
+                return tuple.getGuess1();
+            case 2:
+                return tuple.getGuess2();
+            case 3:
+                return tuple.getGuess3();
+            case 4:
+                return tuple.getGuess4();
+            case 5:
+                return tuple.getGuess5();
+            default:
+                return tuple.getGuess6();
+        }
     }
 
     // Xóa lượt chơi khi xóa user nè

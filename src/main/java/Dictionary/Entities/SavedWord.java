@@ -7,6 +7,9 @@ import static Dictionary.DatabaseConn.WordDAO;
 
 import java.sql.SQLException;
 
+import java.sql.SQLException;
+
+import static Dictionary.DatabaseConn.WordDAO;
 
 @DatabaseTable(tableName = "SavedWord", daoClass = SavedWordDAO.class)
 public class SavedWord {
@@ -26,7 +29,9 @@ public class SavedWord {
     public void setEnglish_id(long x) {
         English_id = x;
     }
-
+    public String getWord () throws SQLException {
+        return WordDAO.queryEngWordbyId(this.getEnglish_id()).getWord();
+    }
     public String getUser_id() {
         return User_id;
     }
