@@ -1,8 +1,9 @@
 package Dictionary.DictionaryController;
+
 import Dictionary.Entities.ScoreQuiz;
 import Dictionary.Game.Quiz;
 
-import static Dictionary.DatabaseConn.SavedWordDAO;
+import static Dictionary.DatabaseConn.CurrentUser;
 import static Dictionary.DatabaseConn.ScoreQuizDAO;
 
 import javafx.event.ActionEvent;
@@ -102,7 +103,7 @@ public class QuizController implements Initializable {
     public void handleNext(ActionEvent event) {
         if (quiz.getNumberofQuestion() % 10 == 0) {
             try {
-                ScoreQuiz gameScore = new ScoreQuiz("Lam", quiz.getScore());
+                ScoreQuiz gameScore = new ScoreQuiz(CurrentUser, quiz.getScore());
                 ScoreQuizDAO.addScoreQuiz(gameScore);
             } catch (SQLException e) {
                 throw new RuntimeException(e);

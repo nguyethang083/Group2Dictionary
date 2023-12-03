@@ -1,24 +1,9 @@
 package Dictionary.DictionaryController;
 
 import Dictionary.Entities.ScoreWordle;
-import Dictionary.Entities.ScoreWordleDAO;
-import javafx.animation.*;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.util.Duration;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -48,19 +33,20 @@ public class WordleStatisticController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        setLabels();
-        setBarChart();
-    }
-
-    public void setLabels() {
+        ScoreWordle score = new ScoreWordle();
         try {
-            ScoreWordle score = ScoreWordleDAO.getTupleStreakbyUser("lam");
-            Played.setText("" + score.getNum_play());
-            Win.setText("" + score.getNum_win());
-            Streak.setText("" + score.getStreak());
+            score = ScoreWordleDAO.getTupleStreakbyUser();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        setLabels(score);
+        setBarChart();
+    }
+
+    public void setLabels(ScoreWordle score) {
+            Played.setText("" + score.getNum_play());
+            Win.setText("" + score.getNum_win());
+            Streak.setText("" + score.getStreak());
     }
 
     public void setBarChart() {

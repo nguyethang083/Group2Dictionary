@@ -36,7 +36,7 @@ public class DatabaseConn {
             UserDAO = new UserDAO(connectionSource);
             ScoreQuizDAO = new ScoreQuizDAO(connectionSource);
             ScoreWordleDAO = new ScoreWordleDAO(connectionSource);
-            CurrentUser = "testUser";
+            CurrentUser = "lam";
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

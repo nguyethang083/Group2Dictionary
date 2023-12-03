@@ -39,7 +39,7 @@ public class QuizStatisticController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<ScoreQuiz> quizScores = null;
         try {
-            quizScores = ScoreQuizDAO.queryListScoreByUser("Lam");
+            quizScores = ScoreQuizDAO.queryListScoreByUser();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -60,14 +60,14 @@ public class QuizStatisticController implements Initializable {
 
     public void setLabels() {
         try {
-            long played = ScoreQuizDAO.getNumPlaybyUser("Lam");
+            long played = ScoreQuizDAO.getNumPlaybyUser();
             Played.setText("" + played);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         try {
-            long totalScore = ScoreQuizDAO.getTotalScorebyUser("Lam");
+            long totalScore = ScoreQuizDAO.getTotalScorebyUser();
             TotalScore.setText("" + totalScore);
         } catch (SQLException e) {
             throw new RuntimeException(e);

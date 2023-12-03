@@ -91,7 +91,7 @@ public class WordleController implements Initializable {
             }
         }
     }
-    
+
     public void createKeyboard() {
         for (int i = 0; i < firstRowLetters.length; i++) {
             Label label = new Label();
@@ -419,7 +419,7 @@ public class WordleController implements Initializable {
 
     public void updateScore(boolean win) {
         try {
-            ScoreWordle current = ScoreWordleDAO.getTupleStreakbyUser("lam");
+            ScoreWordle current = ScoreWordleDAO.getTupleStreakbyUser();
             if (win) {
                 long streak = current.getStreak() + 1;
                 long  num_play = current.getNum_play() + 1;
