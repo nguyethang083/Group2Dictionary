@@ -62,7 +62,7 @@
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </Text>
-      <JFXButton fx:id="addButton" buttonType="RAISED" layoutX="389.0" layoutY="544.0" prefHeight="35.0" prefWidth="142.0" style="-fx-background-color: #1a475b; -fx-border-radius: 20; -fx-background-radius: 20;" text="Add" textFill="WHITE">
+      <JFXButton fx:id="addButton" buttonType="RAISED" layoutX="389.0" layoutY="544.0" onMouseClicked="#addWord" prefHeight="35.0" prefWidth="142.0" style="-fx-background-color: #1a475b; -fx-border-radius: 20; -fx-background-radius: 20;" text="Add" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
