@@ -32,27 +32,17 @@ public class SignUpController implements Initializable {
     private TextField firstnamefill, lastnamefill, usernamefill;
 
     @FXML
-    private Label invalidLabel;
+    private Label usernameNotification;
 
     @FXML
     private PasswordField passwordfill;
 
     @FXML
-    private ProgressBar loading;
-
-    private Timeline timeline;
-    private Stage stage;
-
-    public String getUsernamefill() {
-        return usernamefill.getText();
-    }
-
-    @FXML
     void signupButtonOnAction(ActionEvent event) throws SQLException {
         if (!usernamefill.getText().isBlank() && !passwordfill.getText().isBlank() && !firstnamefill.getText().isBlank() && !lastnamefill.getText().isBlank())
             signup();
-        else
-            invalidLabel.setText("Please enter your information.");
+        //else
+            //invalidLabel.setText("Please enter your information.");
     }
 
     public void signup() throws SQLException {
@@ -62,55 +52,24 @@ public class SignUpController implements Initializable {
         String pass = passwordfill.getText();
         User newUser = new User(user, first, last, pass);
         if (UserDAO.addUser(newUser)) {
-            invalidLabel.setText("User has been registered successfully!");
+//            invalidLabel.setText("User has been registered successfully!");
             // Xử lí sau khi sign up thành công...
-        }
-        else invalidLabel.setText("Account already exists. Please try again.");
-    }
-
-    private void loading(Scene scene) {
-        if (timeline != null) {
-            timeline.stop();
-        }
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
-            loading.setOpacity(1);
-            loading.setProgress(loading.getProgress() + 0.25);
-            if (loading.getProgress() >= 1.0) {
-                timeline.stop();
-                //Pauses 1 second.
-                PauseTransition pause = new PauseTransition(Duration.seconds(1));
-                pause.setOnFinished(event -> stage.setScene(scene));
-                pause.play();
-            }
-        }));
-        //Set cycle of timeline
-        timeline.setCycleCount(-1);
-        timeline.play();
+       } //else invalidLabel.setText("Account already exists. Please try again.");
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernamefill.setFocusTraversable(false);
         passwordfill.setFocusTraversable(false);
+        usernamefill.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()){
+                usernameNotification.setText("Please enter username.");
+            } else if (UserDAO.checkNewUser(newValue)) {
+                usernameNotification.setText("");
+            } else {
+                usernameNotification.setText("Username is existed.");
+            }
+        });
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    public void returnAction(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/data/fxml/background.fxml"));
-            Parent root = fxmlLoader.load();
-
-            LogInController welcomeController = fxmlLoader.getController();
-            welcomeController.initializeStage(stage);
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

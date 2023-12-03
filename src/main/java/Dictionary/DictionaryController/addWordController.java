@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import java.sql.SQLException;
 
 import static Dictionary.DatabaseConn.WordDAO;
+import static Dictionary.Features.StringProcessing.normalizeString;
 
 public class addWordController {
     @FXML
@@ -23,7 +24,7 @@ public class addWordController {
     void addWord(MouseEvent event) {
         EngWord newEngWord = new EngWord();
 
-        newEngWord.setWord(newWord.getText());
+        newEngWord.setWord(normalizeString(newWord.getText()));
         newEngWord.setMeaning(newDefinition.getText());
         newEngWord.setType(newType.getText());
         newEngWord.setPronunciation(newPhonetic.getText());
@@ -35,6 +36,8 @@ public class addWordController {
             if (isAdded) {
                 showAlert("Bạn đã thêm từ này vào từ điển!");
                 clearTextFields();
+            } else if (newEngWord.getWord().isEmpty() || newEngWord.getMeaning().isEmpty()) {
+                showAlert("Bạn chưa điền thông tin cho từ");
             }
             else {
                 showAlert("Từ này đã tồn tại!");

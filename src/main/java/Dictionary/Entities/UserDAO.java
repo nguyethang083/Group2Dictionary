@@ -80,6 +80,19 @@ public class UserDAO extends BaseDaoImpl<User, Long> {
         }
     }
 
+    public boolean checkNewUser (String user) {
+        try {
+            Where<User, Long> tuple = this.queryBuilder().where().eq("Id", user);
+            if (tuple.queryForFirst() != null) {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage() + " checkUser");
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) throws SQLException {
         User hang = new User("hang", "hu", "dog", "123");
         User lam = new User("lam", "hihi", "haah", "ahihi");
