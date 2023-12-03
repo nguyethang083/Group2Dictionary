@@ -1,16 +1,22 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.DictionaryApplication;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -80,6 +86,15 @@ public class sidePanelController implements Initializable {
 
     @FXML
     void exitApp(MouseEvent event) {
-        Platform.exit();
+        try {
+            Parent root = DictionaryApplication.loadFXML("/Views/LogIn.fxml");
+            Stage stage = (Stage) exitApp.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+
 }
