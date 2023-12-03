@@ -30,10 +30,11 @@ public class WordleStatisticController implements Initializable {
     @FXML
     private Label Guess6;
 
+    private ScoreWordle score;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ScoreWordle score = new ScoreWordle();
         try {
             score = ScoreWordleDAO.getTupleStreakbyUser();
         } catch (SQLException e) {
@@ -50,29 +51,27 @@ public class WordleStatisticController implements Initializable {
     }
 
     public void setBarChart() {
-        long guess1 = 0;
-        long guess2 = 2;
-        long guess3 = 1;
-        long guess4 = 5;
-        long guess5 = 9;
-        long guess6 = 14;
+        Long guess[] = {score.getGuess1(), score.getGuess2(), score.getGuess3(), score.getGuess4(),
+                score.getGuess5(), score.getGuess6()};
 
-        Guess1.setText(guess1 + "");
-        Guess1.setPrefWidth(barHeight(guess1, 14));
-        Guess2.setText(guess2 + "");
-        Guess2.setPrefWidth(barHeight(guess2, 14));
-        Guess3.setText(guess3 + "");
-        Guess3.setPrefWidth(barHeight(guess3, 14));
-        Guess4.setText(guess4 + "");
-        Guess4.setPrefWidth(barHeight(guess4, 14));
-        Guess5.setText(guess5 + "");
-        Guess5.setPrefWidth(barHeight(guess5, 14));
-        Guess6.setText(guess6 + "");
-        Guess6.setPrefWidth(barHeight(guess6, 14));
+        long max = Collections.max(Arrays.asList(guess));
+
+        Guess1.setText(guess[0] + "");
+        Guess1.setPrefWidth(barHeight(guess[0], max));
+        Guess2.setText(guess[1] + "");
+        Guess2.setPrefWidth(barHeight(guess[1], max));
+        Guess3.setText(guess[2] + "");
+        Guess3.setPrefWidth(barHeight(guess[2], max));
+        Guess4.setText(guess[3] + "");
+        Guess4.setPrefWidth(barHeight(guess[3], max));
+        Guess5.setText(guess[4] + "");
+        Guess5.setPrefWidth(barHeight(guess[4], max));
+        Guess6.setText(guess[5] + "");
+        Guess6.setPrefWidth(barHeight(guess[5], max));
     }
 
     private double barHeight(long value, long maxValue) {
-        if (value == 0) return 30;
+        if (maxValue == 0) return 30;
         return 30 + 440.0 * value / (double) maxValue;
     }
 }

@@ -29,6 +29,7 @@ import java.net.URL;
 
 import Dictionary.Game.Wordle;
 import static Dictionary.DatabaseConn.ScoreWordleDAO;
+import static Dictionary.DatabaseConn.CurrentUser;
 
 public class WordleController implements Initializable {
     private final Wordle wordle;
@@ -63,7 +64,14 @@ public class WordleController implements Initializable {
     @FXML
     private Label Invalid;
 
+    private ScoreWordle scoreWordle;
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            scoreWordle = ScoreWordleDAO.getTupleStreakbyUser();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         createGrid();
         createKeyboard();
         gridPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -72,9 +80,7 @@ public class WordleController implements Initializable {
                 onKeyPressed(event);
             }
         });
-        wordle.generateRandomWord();
-        WinningWord.setText(wordle.getAnswer().toUpperCase());
-        handleVisible(true);
+        reset();
     }
 
     public WordleController() {
@@ -406,6 +412,8 @@ public class WordleController implements Initializable {
 
         handleVisible(true);
         WinningWord.setText(wordle.getAnswer().toUpperCase());
+        scoreWordle.setNum_play(scoreWordle.getNum_play() + 1);
+        System.out.println(wordle.getAnswer());
     }
 
     @FXML
@@ -418,24 +426,25 @@ public class WordleController implements Initializable {
     }
 
     public void updateScore(boolean win) {
+        long guess[] = {scoreWordle.getGuess1(), scoreWordle.getGuess2(), scoreWordle.getGuess3(), scoreWordle.getGuess4(),
+                scoreWordle.getGuess5(), scoreWordle.getGuess6()};
         try {
-            ScoreWordle current = ScoreWordleDAO.getTupleStreakbyUser();
             if (win) {
-                long streak = current.getStreak() + 1;
-                long  num_play = current.getNum_play() + 1;
-                long num_win = current.getNum_win() + 1;
-                current.setNum_play(num_play);
-                current.setNum_play(num_win);
-                current.setStreak(streak);
-                ScoreWordleDAO.addScoreWordle(current);
+                long streak = scoreWordle.getStreak() + 1;
+                long num_win = scoreWordle.getNum_win() + 1;
+                long played = scoreWordle.getNum_play();
+                System.out.println(currentRow);
+                guess[currentRow - 1]++;
+                for (int i = 0; i < 6; i++) {
+                    System.out.println(guess[i]);
+                }
+                ScoreWordle newScore = new ScoreWordle(CurrentUser, streak, played, num_win, guess);
+                System.out.println(newScore.getUser_id() + " " + newScore.getNum_win() + " " + newScore.getNum_play() + " " + newScore.getStreak() +
+                        " " + newScore.getGuess1() + " " + newScore.getGuess2() + " " + newScore.getGuess3() + " " + newScore.getGuess4() + " " + newScore.getGuess5() + " " + newScore.getGuess6());
+                ScoreWordleDAO.addScoreWordle(newScore);
             } else {
-                long streak = 0;
-                long  num_play = current.getNum_play() + 1;
-                long num_win = current.getNum_win();
-                current.setNum_play(num_play);
-                current.setNum_play(num_win);
-                current.setStreak(streak);
-                ScoreWordleDAO.addScoreWordle(current);
+                scoreWordle.setStreak(0);
+                ScoreWordleDAO.addScoreWordle(scoreWordle);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
