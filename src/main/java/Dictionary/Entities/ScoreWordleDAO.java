@@ -32,7 +32,6 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
 
     // đã bao gồm cả update nếu bị lỗi constraint pk Userid
     public boolean addScoreWordle(ScoreWordle x) throws SQLException {
-        long Streak = x.getStreak();
         String UserId = x.getUser_id();
         if (UserId.isEmpty()) {
             return false;
@@ -67,6 +66,24 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
         ScoreWordle streak = this.queryBuilder().where().in("User_id", CurrentUser).queryForFirst();
         if (streak == null) return 0;
         return streak.getNum_win();
+    }
+    public long getGuessbyNum(int numGuess) throws SQLException {
+        ScoreWordle tuple = this.queryBuilder().where().in("User_id", CurrentUser).queryForFirst();
+        if (tuple == null) return 0;
+        switch(numGuess) {
+            case 1:
+                return tuple.getGuess1();
+            case 2:
+                return tuple.getGuess2();
+            case 3:
+                return tuple.getGuess3();
+            case 4:
+                return tuple.getGuess4();
+            case 5:
+                return tuple.getGuess5();
+            default:
+                return tuple.getGuess6();
+        }
     }
 
     // Xóa lượt chơi khi xóa user nè
