@@ -87,3 +87,39 @@
     -fx-text-fill: #EF6163;
     -fx-font-size: 20px;
 }
+
+.statistic-value {
+    -fx-text-fill: #1A475B;
+    -fx-font-family: "Poppins Regular";
+    -fx-font-weight: normal;
+    -fx-font-size: 48px;
+}
+
+.statistic-title {
+    -fx-text-fill: #000000;
+    -fx-font-family: "Poppins Regular";
+    -fx-font-weight: normal ;
+    -fx-font-size: 12px;
+}
+
+.table-view {
+    -fx-font-family: "Poppins";
+}
+
+.table-view .column-header{
+    -fx-background-color: #527b8e;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+}
+
+.table-view .scroll-bar * {
+    -fx-min-width: 0;
+    -fx-pref-width: 0;
+    -fx-max-width: 0;
+
+    -fx-min-height: 0;
+    -fx-pref-height: 0;
+    -fx-max-height: 0;
+}

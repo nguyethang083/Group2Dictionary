@@ -43,6 +43,11 @@
          <Image url="@../images/Restart.png" />
       </image>
    </ImageView>
+   <ImageView fx:id="statisticIcon" fitHeight="40.0" fitWidth="40.0" layoutX="750.0" layoutY="86.0" onMouseClicked="#handleStatisticIcon" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/Dictionary-14.png" />
+      </image>
+   </ImageView>
    <ImageView fx:id="ResultBack" fitHeight="400.0" fitWidth="600.0" layoutX="150.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../images/Wordle_Result-08.png" />

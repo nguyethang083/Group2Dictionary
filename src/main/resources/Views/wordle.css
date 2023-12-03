@@ -313,3 +313,20 @@
     -fx-font-weight: bold;
     -fx-font-size: 16px;
 }
+
+.bar-chart {
+    -fx-text-fill: white;
+    -fx-font-family: "Poppins Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-min-height: 20px;
+    -fx-background-color: #527B8E;
+}
+
+.bar-chart-label {
+    -fx-text-fill: black;
+    -fx-font-family: "Poppins Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-min-height: 20px;
+}

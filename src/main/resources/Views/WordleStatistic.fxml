@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@wordle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.WordleStatisticController">
    <children>
@@ -13,12 +15,68 @@
             <Image url="@../images/Dictionary_Statistic.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutY="83.0" prefWidth="200.0" styleClass="statistic-value" text="5" />
-      <Label alignment="CENTER" layoutX="200.0" layoutY="83.0" prefWidth="200.0" styleClass="statistic-value" text="5" />
-      <Label alignment="CENTER" layoutX="400.0" layoutY="83.0" prefWidth="200.0" styleClass="statistic-value" text="5" />
+      <Label fx:id="Played" alignment="CENTER" layoutY="83.0" prefWidth="200.0" styleClass="statistic-value" text="5">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font></Label>
+      <Label fx:id="Win" alignment="CENTER" layoutX="200.0" layoutY="83.0" prefWidth="200.0" styleClass="statistic-value" text="5">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font></Label>
+      <Label fx:id="Streak" alignment="CENTER" layoutX="400.0" layoutY="83.0" prefWidth="200.0" styleClass="statistic-value" text="5">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font></Label>
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="145.0" prefWidth="200.0" styleClass="statistic-title" text="PLAYED" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="200.0" layoutY="145.0" prefWidth="200.0" styleClass="statistic-title" text="WIN" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutX="400.0" layoutY="145.0" prefWidth="200.0" styleClass="statistic-title" text="STREAK" />
-      <Label layoutX="40.0" layoutY="176.0" styleClass="statistic-guess-distribution" text="GUESS DISTRIBUTION" />
+      <Label layoutX="40.0" layoutY="176.0" styleClass="statistic-guess-distribution" text="GUESS DISTRIBUTION">
+         <font>
+            <Font name="Poppins Regular" size="12.0" />
+         </font></Label>
+      <VBox layoutX="75.0" layoutY="212.0" prefHeight="173.0" prefWidth="485.0" spacing="8.0">
+         <children>
+            <Label fx:id="Guess1" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minHeight="20.0" minWidth="30.0" prefHeight="20.0" styleClass="bar-chart" text="0">
+               <padding>
+                  <Insets right="3.0" />
+               </padding>
+            </Label>
+            <Label fx:id="Guess2" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minHeight="20.0" minWidth="30.0" prefHeight="20.0" styleClass="bar-chart" text="1">
+               <padding>
+                  <Insets right="3.0" />
+               </padding>
+            </Label>
+            <Label fx:id="Guess3" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minHeight="20.0" minWidth="30.0" prefHeight="20.0" styleClass="bar-chart" text="2">
+               <padding>
+                  <Insets right="3.0" />
+               </padding>
+            </Label>
+            <Label fx:id="Guess4" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minHeight="20.0" minWidth="30.0" prefHeight="20.0" styleClass="bar-chart" text="3">
+               <padding>
+                  <Insets right="3.0" />
+               </padding>
+            </Label>
+            <Label fx:id="Guess5" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minHeight="20.0" minWidth="30.0" prefHeight="20.0" styleClass="bar-chart" text="10">
+               <padding>
+                  <Insets right="3.0" />
+               </padding>
+            </Label>
+            <Label fx:id="Guess6" alignment="CENTER_RIGHT" contentDisplay="RIGHT" minHeight="20.0" minWidth="30.0" prefHeight="20.0" styleClass="bar-chart" text="20">
+               <padding>
+                  <Insets right="3.0" />
+               </padding>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="46.0" layoutY="212.0" prefHeight="173.0" prefWidth="39.0" spacing="8.0">
+         <children>
+            <Label styleClass="bar-chart-label" text="1" />
+            <Label styleClass="bar-chart-label" text="2" />
+            <Label styleClass="bar-chart-label" text="3" />
+            <Label styleClass="bar-chart-label" text="4" />
+            <Label styleClass="bar-chart-label" text="5" />
+            <Label styleClass="bar-chart-label" text="6" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

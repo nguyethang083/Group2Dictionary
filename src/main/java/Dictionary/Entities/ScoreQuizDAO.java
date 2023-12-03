@@ -47,7 +47,7 @@ public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
 
     public long getTotalScorebyUser(String user) throws SQLException {
         long res = 0;
-        List<ScoreQuiz> listScoreByUser = ScoreQuizDAO.queryListScoreByUser("lam");
+        List<ScoreQuiz> listScoreByUser = ScoreQuizDAO.queryListScoreByUser(user);
         if (listScoreByUser.isEmpty()) return res;
         for (ScoreQuiz x : listScoreByUser) {
             res += x.getScore();
@@ -88,8 +88,8 @@ public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
         for (ScoreQuiz n : hi) {
             System.out.println(n.getUser_id() + " " + n.getScore());
         }
-        System.out.println(ScoreQuizDAO.getTotalScorebyUser("lam"));
-        System.out.println(ScoreQuizDAO.getNumPlaybyUser("lam"));
+        System.out.println(ScoreQuizDAO.getTotalScorebyUser("Lam"));
+        System.out.println(ScoreQuizDAO.getNumPlaybyUser("Lam"));
         //ScoreQuizDAO.deleteScoreQuizbyUser("lam");
     }
 }

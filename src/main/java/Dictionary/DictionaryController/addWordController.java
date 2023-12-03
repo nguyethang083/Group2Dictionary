@@ -68,4 +68,5 @@ public class addWordController {
         newSynonym.clear();
         newExample.clear();
     }
+
 }
