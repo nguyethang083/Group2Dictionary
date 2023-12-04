@@ -112,7 +112,6 @@ public class QuizController implements Initializable {
 
         } else {
             startQuiz();
-            System.out.println("Submit button clicked!");
         }
     }
 
@@ -151,15 +150,11 @@ public class QuizController implements Initializable {
             Result.setText("Correct!");
             Result.getStyleClass().clear();
             Result.getStyleClass().add("correct-style");
-//            Result.setTextFill(Color.web("#6bb52c"));
-//            Result.setBackground(Background.fill(Color.web("#d6feb8")));
         } else {
             Result.setText("Incorrect! The answer is " + quiz.getCorrectAnswer() + ".");
 
             Result.getStyleClass().clear();
             Result.getStyleClass().add("incorrect-style");
-//            Result.setTextFill(Color.web("#ef6163"));
-//            Result.setBackground(Background.fill(Color.web("#fededf")));
         }
         Score.setText("" + quiz.getScore());
         Result.setVisible(true);
@@ -195,11 +190,7 @@ public class QuizController implements Initializable {
             e.printStackTrace();
         }
 
-        // Set the title of the new Stage
         Statistic.setTitle("Quiz statistic");
-        //Instruction.initStyle(StageStyle.TRANSPARENT);
-
-        // Show the new Stage
         Statistic.show();
     }
 

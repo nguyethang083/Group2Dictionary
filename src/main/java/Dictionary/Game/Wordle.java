@@ -11,7 +11,6 @@ public class Wordle {
     long seed = System.currentTimeMillis();
     Random random = new Random(seed);
     private String answer;
-    private int numberofGuess = 0;
     private static final List<String> wordleWord = new ArrayList<>();
 
     static {
@@ -67,15 +66,7 @@ public class Wordle {
         return answer;
     }
 
-    public int getNumberofGuess() {
-        return numberofGuess;
-    }
-
-    public void setNumberofGuess(int numberofGuess) {
-        this.numberofGuess = numberofGuess;
-    }
-
-    public void increaseNumberofGuess() {
-        this.numberofGuess++;
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }

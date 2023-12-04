@@ -1,10 +1,8 @@
 package Dictionary.DictionaryController;
 
 import Dictionary.Entities.ScoreWordle;
-import Dictionary.Entities.ScoreWordleDAO;
+import Dictionary.Game.Wordle;
 import javafx.animation.*;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,18 +16,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.*;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-import Dictionary.Game.Wordle;
-import static Dictionary.DatabaseConn.ScoreWordleDAO;
 import static Dictionary.DatabaseConn.CurrentUser;
+import static Dictionary.DatabaseConn.ScoreWordleDAO;
 
 public class WordleController implements Initializable {
     private final Wordle wordle;
@@ -66,22 +63,14 @@ public class WordleController implements Initializable {
 
     private ScoreWordle scoreWordle;
 
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public WordleController() {
+        wordle = new Wordle();
+    }
 
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         createGrid();
         createKeyboard();
         reset();
-        gridPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                onKeyPressed(event);
-            }
-        });
-
-    }
-
-    public WordleController() {
-        wordle = new Wordle();
     }
 
     // tạo ra bảng gồm các từ hiển thị
@@ -132,8 +121,10 @@ public class WordleController implements Initializable {
             Integer r = GridPane.getRowIndex(child);
             Integer c = GridPane.getColumnIndex(child);
             // nếu = null thì đặt = 0, nếu not null trả về đúng giá trị
-            int row = r == null ? 0 : r;
-            int column = c == null ? 0 : c;
+            int row = 0;
+            if (r != null) row = r;
+            int column = 0;
+            if (c != null) column = c;
             if (row == searchRow && column == searchColumn && (child instanceof Label))
                 return (Label) child;
         }
@@ -249,7 +240,7 @@ public class WordleController implements Initializable {
 
             if (currentCharacter.equals(winningCharacter))
                 styleClass = "keyboardCorrectColor";
-            else if (wordle.getAnswer().contains("" + currentCharacter))
+            else if (wordle.getAnswer().contains(currentCharacter))
                 styleClass = "keyboardPresentColor";
             else
                 styleClass = "keyboardWrongColor";
@@ -271,7 +262,6 @@ public class WordleController implements Initializable {
     //xử lí sự kiện bàn phím
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
-        System.out.println(keyEvent.getCode());
         if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
             onBackspacePressed();
         } else if (keyEvent.getCode().isLetterKey()) {
@@ -301,7 +291,6 @@ public class WordleController implements Initializable {
     private void onLetterPressed(KeyEvent keyEvent) {
         if (Objects.equals(getBlockText(currentRow, currentColumn), "")) {
             setBlockText(currentRow, currentColumn, keyEvent.getText());
-            System.out.println(keyEvent.getText());
             Label label = getLabel(currentRow, currentColumn);
             ScaleTransition bounceTransition1 = new ScaleTransition(Duration.millis(100), label);
             bounceTransition1.fromXProperty().setValue(1);
@@ -320,7 +309,6 @@ public class WordleController implements Initializable {
         }
     }
 
-    // xử lí submit
     private void onEnterPressed() {
         for (int i = 1; i <= MAX_COLUMN; i++) {
             getLabel(currentRow, i).setTranslateX(0.0);
@@ -399,7 +387,7 @@ public class WordleController implements Initializable {
         for (Node child : keyboardRow3.getChildren())
             if (child instanceof Label) {
                 label = (Label) child;
-                if (label.getText() == "↵" || label.getText() ==  "←") continue;
+                if (label.getText() == "↵" || label.getText() == "←") continue;
                 label.getStyleClass().clear();
                 label.getStyleClass().add("keyboard-tile");
             }
@@ -411,8 +399,7 @@ public class WordleController implements Initializable {
 
         try {
             scoreWordle = ScoreWordleDAO.getTupleStreakbyUser();
-            if (scoreWordle == null)
-            {
+            if (scoreWordle == null) {
                 long[] guess = {0, 0, 0, 0, 0, 0};
                 scoreWordle = new ScoreWordle(CurrentUser, 0, 0, 0, guess);
             }
@@ -435,26 +422,18 @@ public class WordleController implements Initializable {
     }
 
     public void updateScore(boolean win) {
-        long guess[] = {scoreWordle.getGuess1(), scoreWordle.getGuess2(), scoreWordle.getGuess3(), scoreWordle.getGuess4(),
+        long[] guess = {scoreWordle.getGuess1(), scoreWordle.getGuess2(), scoreWordle.getGuess3(), scoreWordle.getGuess4(),
                 scoreWordle.getGuess5(), scoreWordle.getGuess6()};
         try {
             if (win) {
                 long streak = scoreWordle.getStreak() + 1;
                 long num_win = scoreWordle.getNum_win() + 1;
                 long played = scoreWordle.getNum_play();
-                System.out.println(currentRow);
                 guess[currentRow - 1]++;
-                for (int i = 0; i < 6; i++) {
-                    System.out.println(guess[i]);
-                }
                 ScoreWordle newScore = new ScoreWordle(CurrentUser, streak, played, num_win, guess);
-                System.out.println(newScore.getUser_id() + " " + newScore.getNum_win() + " " + newScore.getNum_play() + " " + newScore.getStreak() +
-                        " " + newScore.getGuess1() + " " + newScore.getGuess2() + " " + newScore.getGuess3() + " " + newScore.getGuess4() + " " + newScore.getGuess5() + " " + newScore.getGuess6());
                 ScoreWordleDAO.addScoreWordle(newScore);
             } else {
                 scoreWordle.setStreak(0);
-                System.out.println(scoreWordle.getUser_id() + " " + scoreWordle.getNum_win() + " " + scoreWordle.getNum_play() + " " + scoreWordle.getStreak() +
-                        " " + scoreWordle.getGuess1() + " " + scoreWordle.getGuess2() + " " + scoreWordle.getGuess3() + " " + scoreWordle.getGuess4() + " " + scoreWordle.getGuess5() + " " + scoreWordle.getGuess6());
                 ScoreWordleDAO.addScoreWordle(scoreWordle);
             }
         } catch (SQLException e) {
@@ -478,11 +457,8 @@ public class WordleController implements Initializable {
             e.printStackTrace();
         }
 
-        // Set the title of the new Stage
         Statistic.setTitle("Wordle statistic");
-        //Instruction.initStyle(StageStyle.TRANSPARENT);
 
-        // Show the new Stage
         Statistic.show();
     }
 
@@ -500,4 +476,3 @@ public class WordleController implements Initializable {
         Invalid.setVisible(false);
     }
 }
-
