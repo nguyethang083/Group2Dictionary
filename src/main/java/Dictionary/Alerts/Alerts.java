@@ -20,6 +20,7 @@ public class Alerts {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(content);
+        alert.showAndWait();
     }
 
     public boolean showAlertConfirmation(String title, String content) {

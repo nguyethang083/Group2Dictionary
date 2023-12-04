@@ -6,6 +6,7 @@ public class StringProcessing {
         searchTerm = searchTerm.toLowerCase();
         searchTerm = searchTerm.strip();
         searchTerm = searchTerm.trim();
+        if (searchTerm.length() < 2) return searchTerm;
         searchTerm = searchTerm.substring(0, 1).toUpperCase() + searchTerm.substring(1);
         return searchTerm;
     }

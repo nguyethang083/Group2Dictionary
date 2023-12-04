@@ -22,7 +22,7 @@
       <TextField fx:id="newSynonym" layoutX="505.0" layoutY="286.0" prefHeight="27.0" prefWidth="318.0" styleClass="meaning" stylesheets="@test.css" />
       <TextField fx:id="newDefinition" alignment="TOP_LEFT" layoutX="77.0" layoutY="369.0" prefHeight="58.0" prefWidth="750.0" styleClass="meaning" stylesheets="@test.css" />
       <TextField fx:id="newExample" alignment="TOP_LEFT" layoutX="77.0" layoutY="467.0" prefHeight="58.0" prefWidth="750.0" styleClass="meaning" stylesheets="@test.css" />
-      <Text fill="WHITE" layoutX="80.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Word" textAlignment="CENTER" wrappingWidth="48.509952545166016">
+      <Text fill="WHITE" layoutX="83.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Word*" textAlignment="CENTER" wrappingWidth="48.509952545166016">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>
@@ -32,7 +32,7 @@
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="80.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Definition" textAlignment="CENTER" wrappingWidth="78.90991592407227">
+      <Text fill="WHITE" layoutX="81.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meaning*" textAlignment="CENTER" wrappingWidth="78.90991592407227">
          <font>
             <Font name="Poppins Regular" size="14.0" />
          </font>

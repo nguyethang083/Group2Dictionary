@@ -68,20 +68,17 @@ public class WordleController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            scoreWordle = ScoreWordleDAO.getTupleStreakbyUser();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
         createGrid();
         createKeyboard();
+        reset();
         gridPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 onKeyPressed(event);
             }
         });
-        reset();
+
     }
 
     // tạo ra bảng gồm các từ hiển thị
@@ -408,6 +405,17 @@ public class WordleController implements Initializable {
         currentRow = 1;
 
         handleVisible(true);
+
+        try {
+            scoreWordle = ScoreWordleDAO.getTupleStreakbyUser();
+            if (scoreWordle == null) {
+                long[] guess = {0, 0, 0, 0, 0, 0};
+                scoreWordle = new ScoreWordle(CurrentUser, 0, 0, 0, guess);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         WinningWord.setText(wordle.getAnswer().toUpperCase());
         scoreWordle.setNum_play(scoreWordle.getNum_play() + 1);
         System.out.println(wordle.getAnswer());
