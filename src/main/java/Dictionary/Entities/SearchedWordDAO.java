@@ -32,7 +32,7 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
         List<SearchedWord> searchedWords = new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
         List<EngWord> res = new ArrayList<>();
         int i = 0;
-        for(SearchedWord x : searchedWords) {
+        for (SearchedWord x : searchedWords) {
             i++;
             if (i > 50) break;
             res.add(WordDAO.queryBuilder().where().in("Id", x.getEnglish_id()).queryForFirst());
@@ -48,8 +48,17 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
         return res.subList(0, 49);
     }
 
+    public List<SearchedWord> searchSearchedWordByUserNewest(String prefix) throws SQLException {
+        QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
+        Where<SearchedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
+        List<SearchedWord> r = new ArrayList<>(res.query());
+        Collections.reverse(r);
+        return r;
+    }
+
     /**
      * hàm add id từ vào user được chọn
+     *
      * @param x bao gồm Userid và Englishid
      * @return true nếu add thành công, false nếu đã có tuple đó rồi (từ đã lưu mà bị ngáo cố ấn)
      * @throws SQLException
@@ -62,10 +71,9 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
             return false;
         }
         try {
-            SearchedWord tuple = this.queryBuilder().where().eq("User_id", UserId).and().eq("English_id",EngId).queryForFirst();
+            SearchedWord tuple = this.queryBuilder().where().eq("User_id", UserId).and().eq("English_id", EngId).queryForFirst();
             if (tuple != null) {
                 this.delete(tuple);
-                System.out.println("Đã xóa bản ghi cũ");
             }
             this.create(y);
         } catch (SQLException e) {
@@ -73,14 +81,6 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
             return false;
         }
         return true;
-    }
-
-    public List<SearchedWord> searchSearchedWordByUserNewest(String prefix) throws SQLException {
-        QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
-        Where<SearchedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
-        List<SearchedWord> r = new ArrayList<>(res.query());
-        Collections.reverse(r);
-        return r;
     }
 
     // Chức năng ngược add còn các cái khác (in & out) giống hoàn toàn

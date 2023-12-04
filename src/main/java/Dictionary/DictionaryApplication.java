@@ -3,38 +3,32 @@ package Dictionary;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
-import Dictionary.DictionaryController.WordleController;
 
-import java.util.Objects;
+import java.io.IOException;
 
 public class DictionaryApplication extends Application {
+    public static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(DictionaryApplication.class.getResource(fxml));
+        return fxmlLoader.load();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("search.fxml"));
-        //Scene scene = new Scene(fxmlLoader.load());
-        //stage.setTitle("Hello!");
-        //stage.setScene(scene);
-        //stage.show();
-
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/Dictionary.fxml")));
+        Parent root = loadFXML("/Views/LogIn.fxml");
         primaryStage.setTitle("VLexi Dictionary App");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-
 
         primaryStage.setOnCloseRequest(event -> {
             Platform.exit();
             System.exit(0);
         });
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
-
-

@@ -1,6 +1,7 @@
 package Dictionary.DictionaryController;
 
 import Dictionary.Features.TranslateAPI;
+import Dictionary.Features.VoiceAPI;
 import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -35,6 +36,12 @@ public class TranslateController {
     @FXML
     private ComboBox<String> targetLanguageComboBox;
 
+    @FXML
+    private JFXButton VoiceLeft;
+
+    @FXML
+    private JFXButton VoiceRight;
+
     private Map<String, String> languageCodes;
 
     @FXML
@@ -56,16 +63,32 @@ public class TranslateController {
 
         translateButton.setVisible(false);
         transContainer.setVisible(false);
+        VoiceLeft.setVisible(false);
+        VoiceRight.setVisible(false);
 
         textToTranslate.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && !newValue.isEmpty()) {
                 translateButton.setVisible(true);
                 transContainer.setVisible(true);
                 translateButton.setDisable(false);
+                VoiceLeft.setVisible(true);
+                VoiceLeft.setDisable(false);
             } else {
                 translateButton.setVisible(false);
                 transContainer.setVisible(false);
                 translateButton.setDisable(true);
+                VoiceLeft.setVisible(false);
+                VoiceLeft.setDisable(true);
+            }
+        });
+
+        translatedText.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.isEmpty()) {
+                VoiceRight.setVisible(true);
+                VoiceRight.setDisable(false);
+            } else {
+                VoiceRight.setVisible(false);
+                VoiceRight.setDisable(true);
             }
         });
     }
@@ -101,4 +124,37 @@ public class TranslateController {
         thread.start();
     }
 
+    @FXML
+    void PlayVoiceT(MouseEvent event) {
+        String targetLanguage = languageCodes.get(targetLanguageComboBox.getValue());
+
+        // Create a new thread for the voiceplay process
+        Thread thread = new Thread(() -> {
+            try {
+                VoiceAPI.textToSpeech(translatedText.getText(), targetLanguage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        // Start the thread
+        thread.start();
+    }
+
+    @FXML
+    void PlayVoiceS(MouseEvent event) {
+        String sourceLanguage = languageCodes.get(sourceLanguageComboBox.getValue());
+
+        // Create a new thread for the voiceplay process
+        Thread thread = new Thread(() -> {
+            try {
+                VoiceAPI.textToSpeech(textToTranslate.getText(), sourceLanguage);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        // Start the thread
+        thread.start();
+    }
 }

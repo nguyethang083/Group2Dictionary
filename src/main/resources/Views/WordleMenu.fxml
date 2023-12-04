@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="content" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.WordleMenuController">
     <children>
@@ -16,7 +17,10 @@
         <Button fx:id="Start" layoutX="100.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleStart" styleClass="menu-button" stylesheets="@wordle.css" text="Start">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </cursor>
+         <font>
+            <Font name="Poppins SemiBold" size="12.0" />
+         </font></Button>
         <Button fx:id="HowtoPlay" layoutX="100.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleHowtoPlay" styleClass="menu-button" stylesheets="@wordle.css" text="How to play">
          <cursor>
             <Cursor fx:constant="HAND" />

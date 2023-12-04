@@ -1,8 +1,11 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.Alerts.Alerts;
 import Dictionary.Entities.EngWord;
 import Dictionary.Entities.SavedWord;
 import Dictionary.Features.VoiceAPI;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -10,7 +13,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -27,47 +33,36 @@ import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
-
 import static Dictionary.DatabaseConn.*;
 import static Dictionary.Entities.AllWord.allWord;
+import static Dictionary.Features.StringProcessing.normalizeString;
 
 public class DictionaryController implements Initializable {
+    Image image1 = new Image(Objects.requireNonNull(getClass().getResource("/images/saveIcon.png")).toExternalForm());
+    Image image2 = new Image(Objects.requireNonNull(getClass().getResource("/images/savedIcon.png")).toExternalForm());
     @FXML
     private AnchorPane content;
-
     @FXML
     private JFXDrawer drawer;
-
     @FXML
     private JFXHamburger myHamburger;
-
     @FXML
     private ComboBox<String> comboBox;
-
     @FXML
     private TextArea meaning, synonym, example;
-
     @FXML
     private TextField partsofspeech, phonetic, definitionPrompt, searchField;
-
     @FXML
     private Label wordLabel;
     @FXML
     private ImageView exampleContainer, synonymContainer, voiceButton, deleteAll, saveThisWord,
             editButton, deleteIcon, saveButton, intro, exitProgram;
-
     @FXML
     private Text examplePrompt, synonymPrompt, saveMyWordsMenu;
-
     @FXML
     private Rectangle rectangle;
-
     private String selectedWord;
-
-    Image image1 = new Image(Objects.requireNonNull(getClass().getResource("/images/saveIcon.png")).toExternalForm());
-    Image image2 = new Image(Objects.requireNonNull(getClass().getResource("/images/savedIcon.png")).toExternalForm());
+    private final Alerts alert = new Alerts();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -100,7 +95,7 @@ public class DictionaryController implements Initializable {
             words.add(engword.getWord());
         }
         comboBox.setItems(words);
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> updateComboBox(newValue));
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> updateComboBox(normalizeString(newValue)));
         comboBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 setSelectedWord(newValue);
@@ -122,13 +117,13 @@ public class DictionaryController implements Initializable {
     }
 
     private void initDrawer() throws IOException {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/sidePanel.fxml"));
-            VBox vbox = loader.load();
-            drawer.setSidePane(vbox);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/sidePanel.fxml"));
+        VBox vbox = loader.load();
+        drawer.setSidePane(vbox);
 
-            sidePanelController sidePanelController = loader.getController();
-            sidePanelController.setDrawer(drawer);
-            sidePanelController.setDictionaryController(this);
+        sidePanelController sidePanelController = loader.getController();
+        sidePanelController.setDrawer(drawer);
+        sidePanelController.setDictionaryController(this);
     }
 
     public void setNode(Node node) {
@@ -183,6 +178,7 @@ public class DictionaryController implements Initializable {
 
     @FXML
     void editWord(MouseEvent event) {
+        alert.showAlertInfo("Notice", "You can now edit the word");
         partsofspeech.setEditable(true);
         example.setEditable(true);
         meaning.setEditable(true);
@@ -213,7 +209,6 @@ public class DictionaryController implements Initializable {
     @FXML
     void switchToMyWords(MouseEvent event) throws SQLException {
         MyWordsController controller = (MyWordsController) showComponent("/Views/MyWords.fxml");
-        //controller.setCurrentUser(CurrentUser);
         List<SavedWord> savedWords = SavedWordDAO.queryListSavedWordByUser();
         controller.displaySavedWords(savedWords);
     }
@@ -221,6 +216,7 @@ public class DictionaryController implements Initializable {
 
     @FXML
     void saveWord(MouseEvent event) {
+        alert.showAlertInfo("Save Word", "The word has been modified");
         String newType = partsofspeech.getText();
         String newMeaning = meaning.getText();
         String newExample = example.getText();
@@ -238,18 +234,16 @@ public class DictionaryController implements Initializable {
         }
     }
 
-    // Temporary alert
     @FXML
     void deleteWord(MouseEvent event) throws SQLException {
-        WordDAO.deleteWordByString(selectedWord);
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setContentText("Xóa thành công");
-        alert.showAndWait();
-        setVisibility(false);
+        boolean check = alert.showAlertConfirmation("Notice", "Do you want to delete this word?");
+        if (check) {
+            WordDAO.deleteWordByString(selectedWord);
+            setVisibility(false);
+        }
     }
 
     public void updateView() {
-        //selectedWord = comboBox.getSelectionModel().getSelectedItem();
         if (selectedWord != null) {
             try {
                 EngWord engWord = WordDAO.queryWordByString(selectedWord);
@@ -287,7 +281,6 @@ public class DictionaryController implements Initializable {
             node.setVisible(isVisible);
         }
     }
-
 
 
     @FXML

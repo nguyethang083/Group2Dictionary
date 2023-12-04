@@ -1,6 +1,5 @@
 package Dictionary.DictionaryController;
 
-import Dictionary.Entities.SavedWord;
 import Dictionary.Entities.SearchedWord;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,7 +19,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import static Dictionary.DatabaseConn.*;
+import static Dictionary.DatabaseConn.SearchedWordDAO;
 import static Dictionary.Features.StringProcessing.normalizeString;
 
 public class RecentsController {
@@ -37,7 +36,7 @@ public class RecentsController {
                 String normalizedValue = normalizeString(newValue);
                 List<SearchedWord> words = SearchedWordDAO.searchSearchedWordByUserNewest(normalizedValue);
                 displaySavedWords(words);
-                } catch (SQLException e) {
+            } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         });

@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,28 +12,22 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.LogInController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#fdfaf5" height="600.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
-      <Text layoutX="69.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Vlexi!">
+      <Text layoutX="69.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Vlexi!">
          <font>
-            <Font name="Playfair Display Bold" size="28.0" />
+            <Font name="Playfair Display Bold" size="30.0" />
          </font>
       </Text>
-      <Text layoutX="68.0" layoutY="144.0" opacity="0.9" strokeType="OUTSIDE" strokeWidth="0.0" text="Get access to a new way of learning English Language" wrappingWidth="223.11599731445312">
+      <Text layoutX="70.0" layoutY="146.0" opacity="0.9" strokeType="OUTSIDE" strokeWidth="0.0" text="Get access to a new way of learning English Language" wrappingWidth="263.1159973144531">
          <font>
             <Font name="Poppins Light" size="14.0" />
          </font>
       </Text>
-      <Text layoutX="69.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="223.11599731445312">
+      <Text layoutX="69.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="223.11599731445312">
          <font>
-            <Font name="Poppins Regular" size="14.0" />
-         </font>
-      </Text>
-      <Text layoutX="69.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="223.11599731445312">
-         <font>
-            <Font name="Poppins Light" size="14.0" />
+            <Font name="Poppins SemiBold" size="14.0" />
          </font>
       </Text>
       <Text layoutX="181.0" layoutY="474.0" opacity="0.6" strokeType="OUTSIDE" strokeWidth="0.0" text="or" wrappingWidth="20.715957641601562">
@@ -40,10 +35,13 @@
             <Font name="Poppins Light" size="14.0" />
          </font>
       </Text>
-      <Text layoutX="79.0" layoutY="520.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an account" wrappingWidth="223.11599731445312">
+      <Text fx:id="signUpPage" layoutX="79.0" layoutY="520.0" onMouseClicked="#changetoSignUp" strokeType="OUTSIDE" strokeWidth="0.0" text="Create an account" wrappingWidth="223.11599731445312">
          <font>
             <Font name="Poppins Light" size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Text>
       <ImageView fitHeight="546.0" fitWidth="471.0" layoutX="401.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -53,17 +51,35 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1b2a35" height="29.0" layoutX="431.0" layoutY="53.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="35.0" layoutX="69.0" layoutY="230.0" stroke="#0000005d" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="230.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="35.0" layoutX="69.0" layoutY="314.0" stroke="#0000005d" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="230.0" />
-      <JFXButton buttonType="RAISED" layoutX="68.0" layoutY="394.0" prefHeight="35.0" prefWidth="230.0" style="-fx-background-radius: 20; -fx-border-radius: 20; -fx-background-color: #c24935;" text="Log In" textFill="WHITE">
+      <Line endX="-7.1999969482421875" endY="-3.0517578125E-5" layoutX="176.0" layoutY="471.0" opacity="0.5" startX="-100.0" />
+      <Line endX="-16.800003051757812" endY="-3.0517578125E-5" layoutX="315.0" layoutY="471.0" opacity="0.5" startX="-109.39997863769531" />
+      <TextField fx:id="username" layoutX="73.0" layoutY="234.0" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: #fdfaf5;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <JFXButton fx:id="LogInButton" buttonType="RAISED" layoutX="68.0" layoutY="402.0" onAction="#loginButtonOnAction" prefHeight="35.0" prefWidth="231.0" style="-fx-background-color: #c24935; -fx-border-radius: 20; -fx-background-radius: 20;" text="Log In" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
       </JFXButton>
-      <Line endX="-7.1999969482421875" endY="-3.0517578125E-5" layoutX="176.0" layoutY="471.0" opacity="0.5" startX="-100.0" />
-      <Line endX="-16.800003051757812" endY="-3.0517578125E-5" layoutX="315.0" layoutY="471.0" opacity="0.5" startX="-109.39997863769531" />
-      <TextField layoutX="73.0" layoutY="235.0" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: #fdfaf5;" />
-      <TextField layoutX="73.0" layoutY="318.0" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: #fdfaf5;" />
+      <PasswordField fx:id="password" layoutX="75.0" layoutY="318.0" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: #fdfaf5;">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </PasswordField>
+      <Text fx:id="LogInError" fill="#860b0b" layoutX="70.0" layoutY="372.0" opacity="0.9" strokeType="OUTSIDE" strokeWidth="0.0" text="Username/password do not match any existing accounts" visible="false" wrappingWidth="263.1159973144531">
+         <font>
+            <Font name="Poppins Light" size="12.0" />
+         </font>
+      </Text>
+      <Text layoutX="69.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" wrappingWidth="223.11599731445312">
+         <font>
+            <Font name="Poppins SemiBold" size="14.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

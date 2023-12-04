@@ -19,11 +19,10 @@ public class addWordController {
     @FXML
     private TextField newDefinition, newExample, newPhonetic, newSynonym, newType, newWord;
 
-    private Alerts alert = new Alerts();
+    private final Alerts alert = new Alerts();
 
     @FXML
-    void addWord(MouseEvent event) {
-        //alert.showAlertWarning("Warning", "You have to fill in the blanks");
+    void addWord(MouseEvent event) throws SQLException {
         EngWord newEngWord = new EngWord();
 
         newEngWord.setWord(normalizeString(newWord.getText()));
@@ -33,19 +32,14 @@ public class addWordController {
         newEngWord.setSynonym(newSynonym.getText());
         newEngWord.setExample(newExample.getText());
 
-        try {
-            boolean isAdded = WordDAO.addWord(newEngWord);
-            if (isAdded) {
-                alert.showAlertInfo("Add new word", "This word is successfully added");
-                clearTextFields();
-            } else if (newEngWord.getWord().isEmpty() || newEngWord.getMeaning().isEmpty()) {
-                alert.showAlertWarning("Warning", "You have to fill in the blanks");
-            } else {
-                alert.showAlertWarning("Warning", "This word existed");
-                clearTextFields();
-            }
-        } catch (SQLException e) {
-            System.err.println(e.getMessage() + " addWord");
+        if (WordDAO.addWord(newEngWord)) {
+            alert.showAlertInfo("Add new word", "This word is successfully added");
+            clearTextFields();
+        } else if (newEngWord.getWord().isEmpty() || newEngWord.getMeaning().isEmpty()) {
+            alert.showAlertWarning("Warning", "You have to fill in the blanks");
+        } else {
+            alert.showAlertWarning("Warning", "This word existed");
+            clearTextFields();
         }
     }
 

@@ -1,10 +1,8 @@
 package Dictionary.DictionaryController;
 
 import Dictionary.Entities.ScoreWordle;
-import Dictionary.Entities.ScoreWordleDAO;
+import Dictionary.Game.Wordle;
 import javafx.animation.*;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,18 +16,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.*;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-import Dictionary.Game.Wordle;
-import static Dictionary.DatabaseConn.ScoreWordleDAO;
 import static Dictionary.DatabaseConn.CurrentUser;
+import static Dictionary.DatabaseConn.ScoreWordleDAO;
 
 public class WordleController implements Initializable {
     private final Wordle wordle;
@@ -66,6 +63,10 @@ public class WordleController implements Initializable {
 
     private ScoreWordle scoreWordle;
 
+    public WordleController() {
+        wordle = new Wordle();
+    }
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         createGrid();
@@ -78,10 +79,6 @@ public class WordleController implements Initializable {
             }
         });
 
-    }
-
-    public WordleController() {
-        wordle = new Wordle();
     }
 
     // tạo ra bảng gồm các từ hiển thị
@@ -249,7 +246,7 @@ public class WordleController implements Initializable {
 
             if (currentCharacter.equals(winningCharacter))
                 styleClass = "keyboardCorrectColor";
-            else if (wordle.getAnswer().contains("" + currentCharacter))
+            else if (wordle.getAnswer().contains(currentCharacter))
                 styleClass = "keyboardPresentColor";
             else
                 styleClass = "keyboardWrongColor";
@@ -399,7 +396,7 @@ public class WordleController implements Initializable {
         for (Node child : keyboardRow3.getChildren())
             if (child instanceof Label) {
                 label = (Label) child;
-                if (label.getText() == "↵" || label.getText() ==  "←") continue;
+                if (label.getText() == "↵" || label.getText() == "←") continue;
                 label.getStyleClass().clear();
                 label.getStyleClass().add("keyboard-tile");
             }
@@ -411,8 +408,7 @@ public class WordleController implements Initializable {
 
         try {
             scoreWordle = ScoreWordleDAO.getTupleStreakbyUser();
-            if (scoreWordle == null)
-            {
+            if (scoreWordle == null) {
                 long[] guess = {0, 0, 0, 0, 0, 0};
                 scoreWordle = new ScoreWordle(CurrentUser, 0, 0, 0, guess);
             }
@@ -435,7 +431,7 @@ public class WordleController implements Initializable {
     }
 
     public void updateScore(boolean win) {
-        long guess[] = {scoreWordle.getGuess1(), scoreWordle.getGuess2(), scoreWordle.getGuess3(), scoreWordle.getGuess4(),
+        long[] guess = {scoreWordle.getGuess1(), scoreWordle.getGuess2(), scoreWordle.getGuess3(), scoreWordle.getGuess4(),
                 scoreWordle.getGuess5(), scoreWordle.getGuess6()};
         try {
             if (win) {
@@ -453,8 +449,6 @@ public class WordleController implements Initializable {
                 ScoreWordleDAO.addScoreWordle(newScore);
             } else {
                 scoreWordle.setStreak(0);
-                System.out.println(scoreWordle.getUser_id() + " " + scoreWordle.getNum_win() + " " + scoreWordle.getNum_play() + " " + scoreWordle.getStreak() +
-                        " " + scoreWordle.getGuess1() + " " + scoreWordle.getGuess2() + " " + scoreWordle.getGuess3() + " " + scoreWordle.getGuess4() + " " + scoreWordle.getGuess5() + " " + scoreWordle.getGuess6());
                 ScoreWordleDAO.addScoreWordle(scoreWordle);
             }
         } catch (SQLException e) {

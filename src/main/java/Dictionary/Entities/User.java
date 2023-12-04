@@ -29,15 +29,19 @@ public class User {
     public String getPass() {
         return Pass;
     }
+
     public String getId() {
         return Id;
     }
+
     public void setId(String id) {
         Id = id;
     }
+
     public String getFirstname() {
         return Firstname;
     }
+
     public void setFirstname(String x) {
         Firstname = x;
     }
@@ -45,9 +49,11 @@ public class User {
     public String getLastname() {
         return Lastname;
     }
+
     public void setLastname(String x) {
         Lastname = x;
     }
+
     public User() {
     }
 
@@ -59,7 +65,7 @@ public class User {
     }
 
     @Override
-    public String toString(){
-        return "This user is " + Id + "" + Firstname + "" + Lastname + "\n";
+    public String toString() {
+        return "This user is " + Id + Firstname + Lastname + "\n";
     }
 }
