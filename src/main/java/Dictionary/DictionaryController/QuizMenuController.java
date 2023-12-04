@@ -1,19 +1,15 @@
 package Dictionary.DictionaryController;
 
-import com.j256.ormlite.stmt.query.In;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.stage.StageStyle;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
-
 import java.net.URL;
-import java.util.Dictionary;
 import java.util.Objects;
 import java.util.ResourceBundle;
 

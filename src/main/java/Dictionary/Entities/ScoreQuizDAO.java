@@ -6,10 +6,11 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-import static Dictionary.DatabaseConn.ScoreQuizDAO;
 import static Dictionary.DatabaseConn.CurrentUser;
+import static Dictionary.DatabaseConn.ScoreQuizDAO;
 
 public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
     public ScoreQuizDAO(ConnectionSource connectionSource) throws SQLException {
@@ -25,7 +26,9 @@ public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
      */
     public List<ScoreQuiz> queryListScoreByUser() throws SQLException {
         Where<ScoreQuiz, Long> score = this.queryBuilder().where().in("User_id", CurrentUser);
-        return new ArrayList<>(score.query());
+        List<ScoreQuiz> r = new ArrayList<>(score.query());
+        Collections.reverse(r);
+        return r;
     }
 
     public boolean addScoreQuiz(ScoreQuiz x) throws SQLException {

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@QuizStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.QuizStatisticController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Dictionary_Statistic.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="History" editable="true" layoutX="32.0" layoutY="174.0" maxHeight="194.0" maxWidth="535.0" minHeight="194.0" minWidth="535.0" prefHeight="194.0" prefWidth="535.0" stylesheets="@QuizStyle.css">
+         <columns>
+            <TableColumn fx:id="id" minWidth="70.0" prefWidth="70.0" resizable="false" text="ID" />
+            <TableColumn fx:id="User_id" minWidth="276.0" prefWidth="276.0" resizable="false" text="User" />
+            <TableColumn fx:id="Score" minWidth="187.0" prefWidth="187.0" resizable="false" text="Score" />
+         </columns>
+      </TableView>
+      <Label fx:id="Played" alignment="CENTER" contentDisplay="CENTER" layoutY="75.0" prefWidth="300.0" styleClass="statistic-value" text="0" />
+      <Label fx:id="TotalScore" alignment="CENTER" contentDisplay="CENTER" layoutX="310.0" layoutY="75.0" prefWidth="290.0" styleClass="statistic-value" text="0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="135.0" prefWidth="300.0" styleClass="statistic-title" text="PLAYED" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="135.0" prefWidth="300.0" styleClass="statistic-title" text="CORRECT" />
+   </children>
+</AnchorPane>

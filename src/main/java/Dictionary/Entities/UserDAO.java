@@ -6,23 +6,23 @@ import com.j256.ormlite.support.ConnectionSource;
 
 import java.sql.SQLException;
 
-import static Dictionary.DatabaseConn.UserDAO;
-import static Dictionary.DatabaseConn.ScoreWordleDAO;
-import static Dictionary.DatabaseConn.ScoreQuizDAO;
 import static Dictionary.DatabaseConn.SavedWordDAO;
+import static Dictionary.DatabaseConn.ScoreQuizDAO;
+import static Dictionary.DatabaseConn.ScoreWordleDAO;
 import static Dictionary.DatabaseConn.SearchedWordDAO;
+import static Dictionary.DatabaseConn.UserDAO;
 
 public class UserDAO extends BaseDaoImpl<User, Long> {
     public UserDAO(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, User.class);
     }
 
-    public boolean checkValidUser (String user) {
+    public boolean checkValidUser(String user, String pass) {
         try {
             Where<User, Long> tuple = this.queryBuilder().where().eq("Id", user);
             if (tuple.queryForFirst() != null) {
-                System.out.println("User này tồn tại");
-                return true;
+                User test = tuple.queryForFirst();
+                return test.getPass().equals(pass);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " checkUser");
@@ -33,6 +33,7 @@ public class UserDAO extends BaseDaoImpl<User, Long> {
 
     /**
      * hàm add id từ vào user được chọn
+     *
      * @param x bao gồm Userid và Englishid
      * @return true nếu add thành công, false nếu đã có tuple đó rồi (từ đã lưu mà bị ngáo cố ấn)
      * @throws SQLException
@@ -50,8 +51,7 @@ public class UserDAO extends BaseDaoImpl<User, Long> {
                 System.out.println(tuple.queryForFirst().toString());
                 System.out.println("User này đã được lưu rồi");
                 return false;
-            }
-            else {
+            } else {
                 this.create(x);
             }
         } catch (SQLException e) {
@@ -76,6 +76,19 @@ public class UserDAO extends BaseDaoImpl<User, Long> {
             System.err.println(e.getMessage() + " deleteSWord");
             return false;
         }
+    }
+
+    public boolean checkNewUser(String user) {
+        try {
+            Where<User, Long> tuple = this.queryBuilder().where().eq("Id", user);
+            if (tuple.queryForFirst() != null) {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.err.println(e.getMessage() + " checkUser");
+            return false;
+        }
+        return true;
     }
 
     public static void main(String[] args) throws SQLException {

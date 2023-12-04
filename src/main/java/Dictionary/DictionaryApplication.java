@@ -3,17 +3,26 @@ package Dictionary;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 
-import java.util.Objects;
+import java.io.IOException;
 
 public class DictionaryApplication extends Application {
+    public static Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(DictionaryApplication.class.getResource(fxml));
+        return fxmlLoader.load();
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/Dictionary.fxml")));
-        primaryStage.setTitle("Vlexi Dictionary App");
+        Parent root = loadFXML("/Views/LogIn.fxml");
+        primaryStage.setTitle("VLexi Dictionary App");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
@@ -22,10 +31,4 @@ public class DictionaryApplication extends Application {
             System.exit(0);
         });
     }
-
-    public static void main(String[] args) {
-        launch(args);
-    }
 }
-
-

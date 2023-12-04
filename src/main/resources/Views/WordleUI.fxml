@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
@@ -42,6 +43,17 @@
       <image>
          <Image url="@../images/Restart.png" />
       </image>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
+   </ImageView>
+   <ImageView fx:id="statisticIcon" fitHeight="40.0" fitWidth="40.0" layoutX="750.0" layoutY="86.0" onMouseClicked="#handleStatisticIcon" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@../images/Dictionary-14.png" />
+      </image>
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor>
    </ImageView>
    <ImageView fx:id="ResultBack" fitHeight="400.0" fitWidth="600.0" layoutX="150.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
       <image>
@@ -50,5 +62,8 @@
    </ImageView>
    <Label fx:id="GameStatus" layoutX="150.0" layoutY="182.0" prefWidth="600.0" styleClass="game-status" text="YOU WIN!" />
    <Label fx:id="WinningWord" layoutX="150.0" layoutY="362.0" prefWidth="600.0" styleClass="winning-word" text="RAISE" />
-    <Button fx:id="TryAgain" layoutX="170.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#handleTryAgain" prefHeight="44.0" prefWidth="560.0" style="-fx-border-radius: 20;" styleClass="try-again" text="Try Again" />
+    <Button fx:id="TryAgain" layoutX="170.0" layoutY="478.0" mnemonicParsing="false" onMouseClicked="#handleTryAgain" prefHeight="44.0" prefWidth="560.0" style="-fx-border-radius: 20;" styleClass="try-again" text="Try Again">
+      <cursor>
+         <Cursor fx:constant="HAND" />
+      </cursor></Button>
 </AnchorPane>

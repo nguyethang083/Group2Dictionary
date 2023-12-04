@@ -1,9 +1,6 @@
 package Dictionary.DictionaryController;
 
-import Dictionary.Entities.EngWord;
 import Dictionary.Entities.SavedWord;
-import Dictionary.Entities.SavedWordDAO;
-import com.jfoenix.controls.JFXListView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -28,10 +25,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Comparator;
 import java.util.List;
-import static Dictionary.DatabaseConn.SavedWordDAO;
+
 import static Dictionary.DatabaseConn.CurrentUser;
+import static Dictionary.DatabaseConn.SavedWordDAO;
 import static Dictionary.Features.StringProcessing.normalizeString;
 
 
@@ -48,7 +45,7 @@ public class MyWordsController {
     @FXML
     private Label count, alphabetSort, newestSort;
 
-    private DictionaryController dictionaryController = new DictionaryController();
+    private final DictionaryController dictionaryController = new DictionaryController();
 
     @FXML
     public void initialize() {

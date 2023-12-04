@@ -1,15 +1,15 @@
 package Dictionary.DictionaryCommandLine;
 
+import Dictionary.Entities.EngWord;
 import Dictionary.Entities.SavedWord;
 import Dictionary.Entities.User;
-import Dictionary.Entities.EngWord;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Scanner;
 
-import static Dictionary.DatabaseConn.WordDAO;
 import static Dictionary.DatabaseConn.SavedWordDAO;
+import static Dictionary.DatabaseConn.WordDAO;
 
 public class DictionaryManagement {
     public void removeWord() throws SQLException {
@@ -17,8 +17,7 @@ public class DictionaryManagement {
         Scanner sc = new Scanner(System.in);
         String removeWord = sc.nextLine();
 
-        if (!WordDAO.deleteWordByString(removeWord))
-        {
+        if (!WordDAO.deleteWordByString(removeWord)) {
             System.out.println("This word doesn't exist in the dictionary!");
         }
     }
@@ -31,8 +30,7 @@ public class DictionaryManagement {
         String user = sc.nextLine();
 
         SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord(removeWord), user);
-        if (!SavedWordDAO.deleteTuple(savedWord))
-        {
+        if (!SavedWordDAO.deleteTuple(savedWord)) {
             System.out.println("This word doesn't exist in the saved-word list!");
         }
     }
@@ -46,7 +44,7 @@ public class DictionaryManagement {
         String meaning = sc.nextLine();
         EngWord newWord = new EngWord(word, meaning, null);
 
-        if(WordDAO.addWord(newWord)) System.out.println("thanh cong oi\n");
+        if (WordDAO.addWord(newWord)) System.out.println("thanh cong oi\n");
     }
 
     public void addSavedWord() throws SQLException {
@@ -58,7 +56,7 @@ public class DictionaryManagement {
         String user = sc.nextLine();
         SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord(word), user);
 
-        if(SavedWordDAO.addSavedWord(savedWord)) System.out.println("thanh cong oi\n");
+        if (SavedWordDAO.addSavedWord(savedWord)) System.out.println("thanh cong oi\n");
         else System.out.println("This word doesn't exist in the saved-word list!");
     }
 
@@ -83,10 +81,10 @@ public class DictionaryManagement {
         List<EngWord> searchingResult = WordDAO.containWordByString(prefix);
         System.out.println("Result:");
         System.out.println("No\t | English         | Meaning");
-        for (int i = 0; i < ((List<?>) searchingResult).size(); i++) {
+        for (int i = 0; i < searchingResult.size(); i++) {
             String word = searchingResult.get(i).getWord();
             String meaning = searchingResult.get(i).getMeaning();
-            System.out.printf("%d\t | %-15s | %s\n",i + 1 ,word ,meaning);
+            System.out.printf("%d\t | %-15s | %s\n", i + 1, word, meaning);
         }
     }
 
@@ -97,10 +95,10 @@ public class DictionaryManagement {
         List<EngWord> searchingResult = SavedWordDAO.queryListWordByUser();
         System.out.println("Result:");
         System.out.println("No\t | English         | Meaning");
-        for (int i = 0; i < ((List<?>) searchingResult).size(); i++) {
+        for (int i = 0; i < searchingResult.size(); i++) {
             String word = searchingResult.get(i).getWord();
             String meaning = searchingResult.get(i).getMeaning();
-            System.out.printf("%d\t | %-15s | %s\n",i + 1 ,word ,meaning);
+            System.out.printf("%d\t | %-15s | %s\n", i + 1, word, meaning);
         }
     }
 
