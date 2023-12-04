@@ -59,16 +59,19 @@ public class QuizStatisticController implements Initializable {
     }
 
     public void setLabels() {
+        long played = 0;
+        long totalScore = 0;
         try {
-            long played = ScoreQuizDAO.getNumPlaybyUser();
+            played = ScoreQuizDAO.getNumPlaybyUser();
             Played.setText("" + played);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
         try {
-            long totalScore = ScoreQuizDAO.getTotalScorebyUser();
-            TotalScore.setText("" + totalScore);
+            totalScore = ScoreQuizDAO.getTotalScorebyUser();
+            double ratio = totalScore * 100.0 / (played * 10.0) ;
+            TotalScore.setText(String.format("%.1f", ratio) + "%");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

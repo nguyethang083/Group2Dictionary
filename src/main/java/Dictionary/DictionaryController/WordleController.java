@@ -67,20 +67,17 @@ public class WordleController implements Initializable {
     private ScoreWordle scoreWordle;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            scoreWordle = ScoreWordleDAO.getTupleStreakbyUser();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
         createGrid();
         createKeyboard();
+        reset();
         gridPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
                 onKeyPressed(event);
             }
         });
-        reset();
+
     }
 
     public WordleController() {
@@ -411,6 +408,18 @@ public class WordleController implements Initializable {
         currentRow = 1;
 
         handleVisible(true);
+
+        try {
+            scoreWordle = ScoreWordleDAO.getTupleStreakbyUser();
+            if (scoreWordle == null)
+            {
+                long[] guess = {0, 0, 0, 0, 0, 0};
+                scoreWordle = new ScoreWordle(CurrentUser, 0, 0, 0, guess);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
         WinningWord.setText(wordle.getAnswer().toUpperCase());
         scoreWordle.setNum_play(scoreWordle.getNum_play() + 1);
         System.out.println(wordle.getAnswer());
@@ -444,6 +453,8 @@ public class WordleController implements Initializable {
                 ScoreWordleDAO.addScoreWordle(newScore);
             } else {
                 scoreWordle.setStreak(0);
+                System.out.println(scoreWordle.getUser_id() + " " + scoreWordle.getNum_win() + " " + scoreWordle.getNum_play() + " " + scoreWordle.getStreak() +
+                        " " + scoreWordle.getGuess1() + " " + scoreWordle.getGuess2() + " " + scoreWordle.getGuess3() + " " + scoreWordle.getGuess4() + " " + scoreWordle.getGuess5() + " " + scoreWordle.getGuess6());
                 ScoreWordleDAO.addScoreWordle(scoreWordle);
             }
         } catch (SQLException e) {

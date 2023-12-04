@@ -1,8 +1,8 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.Alerts.Alerts;
 import Dictionary.Entities.EngWord;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -19,9 +19,11 @@ public class addWordController {
     @FXML
     private TextField newDefinition, newExample, newPhonetic, newSynonym, newType, newWord;
 
+    private Alerts alert = new Alerts();
 
     @FXML
     void addWord(MouseEvent event) {
+        //alert.showAlertWarning("Warning", "You have to fill in the blanks");
         EngWord newEngWord = new EngWord();
 
         newEngWord.setWord(normalizeString(newWord.getText()));
@@ -34,26 +36,17 @@ public class addWordController {
         try {
             boolean isAdded = WordDAO.addWord(newEngWord);
             if (isAdded) {
-                showAlert("Bạn đã thêm từ này vào từ điển!");
+                alert.showAlertInfo("Add new word", "This word is successfully added");
                 clearTextFields();
             } else if (newEngWord.getWord().isEmpty() || newEngWord.getMeaning().isEmpty()) {
-                showAlert("Bạn chưa điền thông tin cho từ");
-            }
-            else {
-                showAlert("Từ này đã tồn tại!");
+                alert.showAlertWarning("Warning", "You have to fill in the blanks");
+            } else {
+                alert.showAlertWarning("Warning", "This word existed");
                 clearTextFields();
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " addWord");
         }
-    }
-
-    private void showAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Information Dialog");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     private void clearTextFields() {

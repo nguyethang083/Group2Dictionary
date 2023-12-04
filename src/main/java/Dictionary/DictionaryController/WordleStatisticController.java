@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.*;
 import java.net.URL;
 
+import static Dictionary.DatabaseConn.CurrentUser;
 import static Dictionary.DatabaseConn.ScoreWordleDAO;
 public class WordleStatisticController implements Initializable {
     @FXML
@@ -37,6 +38,11 @@ public class WordleStatisticController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             score = ScoreWordleDAO.getTupleStreakbyUser();
+            if (score == null)
+            {
+                long[] guess = {0, 0, 0, 0, 0, 0};
+                score = new ScoreWordle(CurrentUser, 0, 0, 0, guess);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -62,7 +62,7 @@
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </Text>
-      <Button fx:id="addButton" layoutX="381.0" layoutY="550.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="142.0" style="-fx-background-radius: 15; -fx-background-color: #1a475b;" text="Add" textFill="WHITE">
+      <Button fx:id="addButton" layoutX="381.0" layoutY="550.0" mnemonicParsing="false" onMouseClicked="#addWord" prefHeight="36.0" prefWidth="142.0" style="-fx-background-radius: 15; -fx-background-color: #1a475b;" text="Add" textFill="WHITE">
          <font>
             <Font name="Poppins Bold" size="12.0" />
          </font>

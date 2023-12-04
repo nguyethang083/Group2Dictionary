@@ -106,7 +106,7 @@ public class SignUpController implements Initializable {
             if (newValue.isEmpty()){
                 passwordNotification.setText("Please enter your password.");
             } else {
-                usernameNotification.setText("");
+                passwordNotification.setText("");
             }
         });
     }

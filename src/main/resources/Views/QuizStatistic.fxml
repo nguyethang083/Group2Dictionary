@@ -7,7 +7,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@QuizStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.QuizStatisticController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
@@ -23,8 +22,8 @@
          </columns>
       </TableView>
       <Label fx:id="Played" alignment="CENTER" contentDisplay="CENTER" layoutY="75.0" prefWidth="300.0" styleClass="statistic-value" text="0" />
-      <Label fx:id="TotalScore" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="75.0" prefWidth="300.0" styleClass="statistic-value" text="0" />
+      <Label fx:id="TotalScore" alignment="CENTER" contentDisplay="CENTER" layoutX="310.0" layoutY="75.0" prefWidth="290.0" styleClass="statistic-value" text="0" />
       <Label alignment="CENTER" contentDisplay="CENTER" layoutY="135.0" prefWidth="300.0" styleClass="statistic-title" text="PLAYED" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="135.0" prefWidth="300.0" styleClass="statistic-title" text="TOTAL SCORE" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="135.0" prefWidth="300.0" styleClass="statistic-title" text="CORRECT" />
    </children>
 </AnchorPane>
