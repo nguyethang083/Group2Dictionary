@@ -3,6 +3,9 @@ package Dictionary.Entities;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import static Dictionary.DatabaseConn.WordDAO;
+
+import java.sql.SQLException;
 
 import java.sql.SQLException;
 
@@ -42,7 +45,6 @@ public class SavedWord {
         English_id = Eng;
         User_id = User;
     }
-
     @Override
     public String toString(){
         return "The word is " + User_id + English_id + "\n";

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Dictionary.DictionaryController.RecentsController">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Recents.png" />
+         </image>
+      </ImageView>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1a475b" height="67.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" width="900.0" />
+      <Text layoutX="347.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Lookups">
+         <font>
+            <Font name="Playfair Display Bold" size="32.0" />
+         </font>
+      </Text>
+      <Text layoutX="63.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search:">
+         <font>
+            <Font name="Poppins Regular" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="#527b8e" layoutX="94.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WORDS YOU HAVE LOOKED UP">
+         <font>
+            <Font name="Poppins Regular" size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="searchbar" layoutX="72.0" layoutY="315.0" prefHeight="35.0" prefWidth="174.0" stylesheets="@test.css" />
+      <ListView fx:id="searchedList" layoutX="430.0" layoutY="198.0" prefHeight="329.0" prefWidth="374.0" styleClass="list-word" stylesheets="@test.css" />
+   </children>
+</AnchorPane>

@@ -1,12 +1,17 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.Entities.ScoreWordle;
+import Dictionary.Entities.ScoreWordleDAO;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -14,12 +19,17 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 import java.net.URL;
 
 import Dictionary.Game.Wordle;
+import static Dictionary.DatabaseConn.ScoreWordleDAO;
+import static Dictionary.DatabaseConn.CurrentUser;
 
 public class WordleController implements Initializable {
     private final Wordle wordle;
@@ -48,10 +58,20 @@ public class WordleController implements Initializable {
     @FXML
     private ImageView restartIcon;
     @FXML
+    private ImageView statisticIcon;
+    @FXML
     private Button TryAgain;
+    @FXML
+    private Label Invalid;
 
+    private ScoreWordle scoreWordle;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            scoreWordle = ScoreWordleDAO.getTupleStreakbyUser();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         createGrid();
         createKeyboard();
         gridPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -60,9 +80,7 @@ public class WordleController implements Initializable {
                 onKeyPressed(event);
             }
         });
-        wordle.generateRandomWord();
-        WinningWord.setText(wordle.getAnswer().toUpperCase());
-        handleVisible(true);
+        reset();
     }
 
     public WordleController() {
@@ -79,7 +97,7 @@ public class WordleController implements Initializable {
             }
         }
     }
-    
+
     public void createKeyboard() {
         for (int i = 0; i < firstRowLetters.length; i++) {
             Label label = new Label();
@@ -307,13 +325,18 @@ public class WordleController implements Initializable {
 
     // xử lí submit
     private void onEnterPressed() {
+        for (int i = 1; i <= MAX_COLUMN; i++) {
+            getLabel(currentRow, i).setTranslateX(0.0);
+        }
         if (currentRow <= MAX_ROW && currentColumn == MAX_COLUMN) {
             String guess = getWordFromCurrentRow().toLowerCase();
             if (guess.equals(wordle.getAnswer())) {
                 updateRowColor(currentRow, "win");
+                updateScore(true);
                 updateKeyboardColor();
             } else if (wordle.valid(guess)) {
                 if (currentRow == MAX_ROW) {
+                    updateScore(false);
                     updateRowColor(currentRow, "lose");
                 } else {
                     updateRowColor(currentRow, "playing");
@@ -322,6 +345,31 @@ public class WordleController implements Initializable {
 
                 currentRow++;
                 currentColumn = 1;
+            } else {
+                SequentialTransition seq = new SequentialTransition();
+                Invalid.setVisible(true);
+                FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(50), Invalid);
+                fadeTransition1.setFromValue(0.1);
+                fadeTransition1.setToValue(1);
+                FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(3000), Invalid);
+                fadeTransition2.setFromValue(1);
+                fadeTransition2.setToValue(0);
+                seq.getChildren().add(fadeTransition1);
+                seq.getChildren().add(fadeTransition2);
+                seq.setOnFinished(e -> Invalid.setVisible(false));
+                seq.play();
+
+                for (int i = 1; i <= MAX_COLUMN; i++) {
+                    Label currentBlock = getLabel(currentRow, i);
+                    Timeline timeline = new Timeline(
+                            new KeyFrame(Duration.seconds(0.1), new KeyValue(currentBlock.translateXProperty(), -5.0)),
+                            new KeyFrame(Duration.seconds(0.2), new KeyValue(currentBlock.translateXProperty(), 5.0)),
+                            new KeyFrame(Duration.seconds(0.3), new KeyValue(currentBlock.translateXProperty(), -5.0)),
+                            new KeyFrame(Duration.seconds(0.4), new KeyValue(currentBlock.translateXProperty(), 5.0)),
+                            new KeyFrame(Duration.seconds(0.5), new KeyValue(currentBlock.translateXProperty(), 0))
+                    );
+                    timeline.play();
+                }
             }
         }
     }
@@ -364,6 +412,8 @@ public class WordleController implements Initializable {
 
         handleVisible(true);
         WinningWord.setText(wordle.getAnswer().toUpperCase());
+        scoreWordle.setNum_play(scoreWordle.getNum_play() + 1);
+        System.out.println(wordle.getAnswer());
     }
 
     @FXML
@@ -375,9 +425,54 @@ public class WordleController implements Initializable {
         rotateTransition.play();
     }
 
+    public void updateScore(boolean win) {
+        long guess[] = {scoreWordle.getGuess1(), scoreWordle.getGuess2(), scoreWordle.getGuess3(), scoreWordle.getGuess4(),
+                scoreWordle.getGuess5(), scoreWordle.getGuess6()};
+        try {
+            if (win) {
+                long streak = scoreWordle.getStreak() + 1;
+                long num_win = scoreWordle.getNum_win() + 1;
+                long played = scoreWordle.getNum_play();
+                System.out.println(currentRow);
+                guess[currentRow - 1]++;
+                for (int i = 0; i < 6; i++) {
+                    System.out.println(guess[i]);
+                }
+                ScoreWordle newScore = new ScoreWordle(CurrentUser, streak, played, num_win, guess);
+                System.out.println(newScore.getUser_id() + " " + newScore.getNum_win() + " " + newScore.getNum_play() + " " + newScore.getStreak() +
+                        " " + newScore.getGuess1() + " " + newScore.getGuess2() + " " + newScore.getGuess3() + " " + newScore.getGuess4() + " " + newScore.getGuess5() + " " + newScore.getGuess6());
+                ScoreWordleDAO.addScoreWordle(newScore);
+            } else {
+                scoreWordle.setStreak(0);
+                ScoreWordleDAO.addScoreWordle(scoreWordle);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @FXML
     public void handleTryAgain() {
         reset();
+    }
+
+    @FXML
+    public void handleStatisticIcon() {
+        Stage Statistic = new Stage();
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Views/WordleStatistic.fxml"));
+            Statistic.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Set the title of the new Stage
+        Statistic.setTitle("Wordle statistic");
+        //Instruction.initStyle(StageStyle.TRANSPARENT);
+
+        // Show the new Stage
+        Statistic.show();
     }
 
     public void handleVisible(boolean status) {
@@ -391,6 +486,7 @@ public class WordleController implements Initializable {
         TryAgain.setVisible(!status);
         GameStatus.setVisible(!status);
         WinningWord.setVisible(!status);
+        Invalid.setVisible(false);
     }
 }
 

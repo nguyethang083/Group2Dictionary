@@ -4,6 +4,10 @@ package Dictionary.Entities;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.sql.SQLException;
+
+import static Dictionary.DatabaseConn.WordDAO;
+
 
 @DatabaseTable(tableName = "SearchedWord", daoClass = SearchedWordDAO.class)
 public class SearchedWord {
@@ -37,7 +41,9 @@ public class SearchedWord {
         English_id = Eng;
         User_id = User;
     }
-
+    public String getWord() throws SQLException {
+        return WordDAO.queryEngWordbyId(this.getEnglish_id()).getWord();
+    }
     @Override
     public String toString(){
         return "The word is " + User_id + English_id + "\n";

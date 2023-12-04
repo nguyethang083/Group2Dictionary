@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,7 +22,6 @@
       <TextField fx:id="newSynonym" layoutX="505.0" layoutY="286.0" prefHeight="27.0" prefWidth="318.0" styleClass="meaning" stylesheets="@test.css" />
       <TextField fx:id="newDefinition" alignment="TOP_LEFT" layoutX="77.0" layoutY="369.0" prefHeight="58.0" prefWidth="750.0" styleClass="meaning" stylesheets="@test.css" />
       <TextField fx:id="newExample" alignment="TOP_LEFT" layoutX="77.0" layoutY="467.0" prefHeight="58.0" prefWidth="750.0" styleClass="meaning" stylesheets="@test.css" />
-      <Button fx:id="addButton" contentDisplay="CENTER" layoutX="415.0" layoutY="547.0" mnemonicParsing="false" onMouseClicked="#addWord" prefHeight="26.0" prefWidth="110.0" styleClass="addButton" stylesheets="@test.css" text="Add" textAlignment="CENTER" />
       <Text fill="WHITE" layoutX="80.0" layoutY="202.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Word" textAlignment="CENTER" wrappingWidth="48.509952545166016">
          <font>
             <Font name="Poppins Regular" size="14.0" />
@@ -62,5 +62,13 @@
             <Font name="Poppins Regular" size="14.0" />
          </font>
       </Text>
+      <JFXButton fx:id="addButton" buttonType="RAISED" layoutX="389.0" layoutY="544.0" onMouseClicked="#addWord" prefHeight="35.0" prefWidth="142.0" style="-fx-background-color: #1a475b; -fx-border-radius: 20; -fx-background-radius: 20;" text="Add" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
    </children>
 </AnchorPane>

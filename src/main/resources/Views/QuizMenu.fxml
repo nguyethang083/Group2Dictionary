@@ -12,7 +12,7 @@
             <Image url="@../images/QuizMenu.png" />
          </image>
       </ImageView>
-      <Button fx:id="Start" layoutX="77.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleStart" styleClass="menu-button" stylesheets="@wordle.css" text="Start" />
-      <Button fx:id="HowtoPlay" layoutX="77.0" layoutY="385.0" mnemonicParsing="false" onAction="#handleHowtoPlay" styleClass="menu-button" stylesheets="@wordle.css" text="How to play" />
+      <Button fx:id="Start" layoutX="105.0" layoutY="290.0" mnemonicParsing="false" onAction="#handleStart" styleClass="menu-button" stylesheets="@wordle.css" text="Start" />
+      <Button fx:id="HowtoPlay" layoutX="105.0" layoutY="354.0" mnemonicParsing="false" onAction="#handleHowtoPlay" styleClass="menu-button" stylesheets="@wordle.css" text="How to play" />
    </children>
 </AnchorPane>

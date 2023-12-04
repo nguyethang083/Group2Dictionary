@@ -1,5 +1,10 @@
 package Dictionary.DictionaryController;
+
+import Dictionary.Entities.ScoreQuiz;
 import Dictionary.Game.Quiz;
+
+import static Dictionary.DatabaseConn.CurrentUser;
+import static Dictionary.DatabaseConn.ScoreQuizDAO;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,8 +16,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -48,7 +55,8 @@ public class QuizController implements Initializable {
     private Label FinalScore = new Label();
     @FXML
     private Button TryAgain = new Button();
-
+    @FXML
+    private ImageView StatisticIcon;
 
     public QuizController() throws SQLException {
         quiz = new Quiz();
@@ -94,6 +102,12 @@ public class QuizController implements Initializable {
 
     public void handleNext(ActionEvent event) {
         if (quiz.getNumberofQuestion() % 10 == 0) {
+            try {
+                ScoreQuiz gameScore = new ScoreQuiz(CurrentUser, quiz.getScore());
+                ScoreQuizDAO.addScoreQuiz(gameScore);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             FinalScore.setText(String.format("%d", quiz.getScore()));
             handleResultVisible();
 
@@ -148,6 +162,7 @@ public class QuizController implements Initializable {
 //            Result.setTextFill(Color.web("#ef6163"));
 //            Result.setBackground(Background.fill(Color.web("#fededf")));
         }
+        Score.setText("" + quiz.getScore());
         Result.setVisible(true);
         NextButton.setVisible(true);
     }
@@ -170,6 +185,25 @@ public class QuizController implements Initializable {
         NextButton.setOnAction(this::handleNext);
     }
 
+    @FXML
+    public void handleStatisticIcon() {
+        Stage Statistic = new Stage();
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/Views/QuizStatistic.fxml"));
+            Statistic.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Set the title of the new Stage
+        Statistic.setTitle("Quiz statistic");
+        //Instruction.initStyle(StageStyle.TRANSPARENT);
+
+        // Show the new Stage
+        Statistic.show();
+    }
+
     public void handlePlayingVisible() {
         Result.setVisible(false);
         for (ToggleButton button : List.of(PlanA, PlanB, PlanC, PlanD)) {
@@ -182,6 +216,7 @@ public class QuizController implements Initializable {
         ResultBack.setVisible(false);
         TryAgain.setVisible(false);
         FinalScore.setVisible(false);
+        StatisticIcon.setVisible(false);
     }
 
     public void handleResultVisible() {
@@ -197,6 +232,6 @@ public class QuizController implements Initializable {
         TryAgain.setVisible(true);
         FinalScore.setVisible(true);
         TryAgain.setOnAction(this::handlePlayAgain);
-
+        StatisticIcon.setVisible(true);
     }
 }

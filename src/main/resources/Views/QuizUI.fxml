@@ -49,5 +49,10 @@
         </ImageView>
         <Label fx:id="FinalScore" alignment="CENTER" contentDisplay="CENTER" layoutX="381.0" layoutY="290.0" prefHeight="78.0" prefWidth="138.0" styleClass="final-score" text="10" textAlignment="CENTER" />
         <Button fx:id="TryAgain" layoutX="170.0" layoutY="478.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="560.0" style="-fx-border-radius: 20;" styleClass="try-again" text="Try Again" />
+        <ImageView fx:id="StatisticIcon" fitHeight="40.0" fitWidth="40.0" layoutX="750.0" layoutY="86.0" onMouseClicked="#handleStatisticIcon" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/Dictionary-14.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>

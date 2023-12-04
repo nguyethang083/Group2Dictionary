@@ -17,7 +17,7 @@
             <Image url="@../images/MyWords.png" />
          </image>
       </ImageView>
-      <ListView fx:id="wordlist" fixedCellSize="0.0" focusTraversable="false" layoutX="467.0" layoutY="205.0" prefHeight="294.0" prefWidth="330.0" styleClass="list-word" stylesheets="@test.css" />
+      <ListView fx:id="wordlist" fixedCellSize="0.0" focusTraversable="false" layoutX="466.0" layoutY="186.0" prefHeight="294.0" prefWidth="330.0" styleClass="list-word" stylesheets="@test.css" />
       <Text layoutX="380.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words">
          <font>
             <Font name="Playfair Display Bold" size="33.0" />
@@ -42,6 +42,32 @@
          </font>
       </Text>
       <Label fx:id="count" layoutX="82.0" layoutY="176.0" text="3" textFill="#527b8e">
+         <font>
+            <Font name="Poppins Regular" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="alphabetSort" alignment="CENTER" layoutX="61.0" layoutY="393.0" prefHeight="44.0" prefWidth="126.0" style="-fx-background-color: #1a475b;" text="alphabet" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Poppins Bold" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label fx:id="newestSort" alignment="CENTER" layoutX="186.0" layoutY="393.0" prefHeight="44.0" prefWidth="126.0" style="-fx-border-color: #527B8E;" text="newest" textAlignment="CENTER">
+         <font>
+            <Font name="Poppins Regular" size="20.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <Label layoutX="60.0" layoutY="363.0" text="Sort by:">
+         <font>
+            <Font name="Poppins Regular" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="57.0" layoutY="250.0" text="Search:">
          <font>
             <Font name="Poppins Regular" size="16.0" />
          </font>

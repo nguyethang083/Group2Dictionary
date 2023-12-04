@@ -1,105 +1,78 @@
 package Dictionary.DictionaryController;
 
-import javafx.animation.KeyFrame;
+import Dictionary.DictionaryApplication;
+import com.jfoenix.controls.JFXButton;
 import javafx.animation.PauseTransition;
-import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-import static Dictionary.DatabaseConn.UserDAO;
+import java.io.IOException;
+
 import static Dictionary.DatabaseConn.CurrentUser;
+
+import static Dictionary.DatabaseConn.UserDAO;
+
 public class LogInController {
-    private Stage stage;
+    @FXML
+    private JFXButton LogInButton;
 
     @FXML
-    private Label invalidLabel;
+    private PasswordField password;
 
     @FXML
-    private PasswordField passwordfill;
+    private Text signUpPage, LogInError;
 
     @FXML
-    private TextField usernamefill;
-
-    @FXML
-    private ProgressBar loading;
-
-    private Timeline timeline;
-
-    @FXML
-    private AnchorPane mainpane;
-
-    @FXML
-    private Button signupbutton;
-
-    public AnchorPane getMainpane() {
-        return mainpane;
-    }
-
-    public String getUsernamefill() {
-        return usernamefill.getText();
-    }
+    private TextField username;
 
     @FXML
     public void loginButtonOnAction(ActionEvent event) {
-        String userid = usernamefill.getText();
-        String pass = passwordfill.getText();
-        if (!userid.isBlank() && !pass.isBlank()) {
-            if (UserDAO.checkValidUser(userid, pass)) {
-                invalidLabel.setText("Congratulations!!!");
-                CurrentUser = userid;
-                // chuyển sang scene chính
-            }
-            invalidLabel.setText("Invalid Login. Please try again.");
+        String userid = username.getText();
+        String pass = password.getText();
+        if (!userid.isBlank() && !pass.isBlank() && UserDAO.checkValidUser(userid, pass)) {
+            CurrentUser = userid;
+            PauseTransition pause = new PauseTransition(Duration.seconds(0.2));
+            pause.setOnFinished(e -> {
+                try {
+                    Parent root = DictionaryApplication.loadFXML("/Views/Dictionary.fxml");
+                    Stage stage = (Stage) LogInButton.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            pause.play();
         } else {
-            invalidLabel.setText("Please enter username and password.");
+            LogInError.setVisible(true);
+            PauseTransition visiblePause = new PauseTransition(Duration.seconds(3));
+            visiblePause.setOnFinished(e -> LogInError.setVisible(false));
+            visiblePause.play();
         }
     }
+
 
     @FXML
-    public void signupButtonOnAction(ActionEvent event) {
+    void changetoSignUp(MouseEvent event) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(SignUpController.class.getResource("/Views/signup.fxml"));
-            Parent root = fxmlLoader.load();
-            SignUpController signupController = fxmlLoader.getController();
-            signupController.setStage(stage);
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            ex.getCause();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/SignUp.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) LogInButton.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-    }
-
-    private void loading(Scene scene) {
-        if (timeline != null) {
-            timeline.stop();
-        }
-        Duration Duration = new Duration(1);
-        timeline = new Timeline(new KeyFrame(Duration, e -> {
-            loading.setOpacity(1);
-            loading.setProgress(loading.getProgress() + 0.25);
-            if (loading.getProgress() >= 1.0) {
-                timeline.stop();
-                //Pauses 1 second.
-                PauseTransition pause = new PauseTransition(Duration.seconds(1));
-                pause.setOnFinished(event -> stage.setScene(scene));
-                pause.play();
-            }
-        }));
-        //Set cycle of timeline
-        timeline.setCycleCount(-1);
-        timeline.play();
-    }
-
-    public void initializeStage(Stage window) {
-        this.stage = window;
     }
 }
+

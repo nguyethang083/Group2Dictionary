@@ -13,6 +13,7 @@ module DICTIONARY {
     requires json;
     requires java.net.http;
     requires org.apache.commons.text;
+    requires annotations;
     opens Dictionary.DictionaryController to javafx.fxml;
     opens Dictionary to javafx.graphics;
     opens Dictionary.Entities to ormlite.jdbc;

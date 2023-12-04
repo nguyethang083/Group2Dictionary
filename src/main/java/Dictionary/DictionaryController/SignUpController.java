@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -32,27 +33,30 @@ public class SignUpController implements Initializable {
     private TextField firstnamefill, lastnamefill, usernamefill;
 
     @FXML
-    private Label invalidLabel;
+    private Label usernameNotification;
+
+    @FXML
+    private Label nameNotification;
+
+    @FXML
+    private Label passwordNotification;
+
+    @FXML
+    private Text returnSignIn;
 
     @FXML
     private PasswordField passwordfill;
 
     @FXML
-    private ProgressBar loading;
-
-    private Timeline timeline;
-    private Stage stage;
-
-    public String getUsernamefill() {
-        return usernamefill.getText();
-    }
-
-    @FXML
     void signupButtonOnAction(ActionEvent event) throws SQLException {
         if (!usernamefill.getText().isBlank() && !passwordfill.getText().isBlank() && !firstnamefill.getText().isBlank() && !lastnamefill.getText().isBlank())
             signup();
-        else
-            invalidLabel.setText("Please enter your information.");
+        else {
+            if (usernamefill.getText().isBlank()) usernameNotification.setText("Please enter your username.");
+            if (firstnamefill.getText().isBlank() || lastnamefill.getText().isBlank()) nameNotification.setText("Please enter your name.");
+            if (passwordfill.getText().isBlank()) passwordNotification.setText("Please enter your password.");
+        }
+
     }
 
     public void signup() throws SQLException {
@@ -62,55 +66,75 @@ public class SignUpController implements Initializable {
         String pass = passwordfill.getText();
         User newUser = new User(user, first, last, pass);
         if (UserDAO.addUser(newUser)) {
-            invalidLabel.setText("User has been registered successfully!");
+//            invalidLabel.setText("User has been registered successfully!");
             // Xử lí sau khi sign up thành công...
-        }
-        else invalidLabel.setText("Account already exists. Please try again.");
+        } //else invalidLabel.setText("Account already exists. Please try again.");
     }
 
-    private void loading(Scene scene) {
-        if (timeline != null) {
-            timeline.stop();
-        }
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
-            loading.setOpacity(1);
-            loading.setProgress(loading.getProgress() + 0.25);
-            if (loading.getProgress() >= 1.0) {
-                timeline.stop();
-                //Pauses 1 second.
-                PauseTransition pause = new PauseTransition(Duration.seconds(1));
-                pause.setOnFinished(event -> stage.setScene(scene));
-                pause.play();
+    private void setUsernameNotification() {
+        usernamefill.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()){
+                usernameNotification.setText("Please enter your username.");
+            } else if (UserDAO.checkNewUser(newValue)) {
+                usernameNotification.setText("");
+            } else {
+                usernameNotification.setText("This username has been existed.");
             }
-        }));
-        //Set cycle of timeline
-        timeline.setCycleCount(-1);
-        timeline.play();
+        });
+    }
+
+    private void setNameNotification() {
+        firstnamefill.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()){
+                nameNotification.setText("Please enter your name.");
+            } else if (lastnamefill.getText().isEmpty()) {
+                nameNotification.setText("Please enter your name.");
+            } else {
+                nameNotification.setText("");
+            }
+        });
+
+        lastnamefill.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()){
+                nameNotification.setText("Please enter your name.");
+            } else if (firstnamefill.getText().isEmpty()) {
+                nameNotification.setText("Please enter your name.");
+            } else {
+                nameNotification.setText("");
+            }
+        });
+    }
+
+    private void setPasswordNotification() {
+        passwordfill.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()){
+                passwordNotification.setText("Please enter your password.");
+            } else {
+                passwordNotification.setText("");
+            }
+        });
+    }
+
+    @FXML
+    private void returnToSignIn() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/LogIn.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) returnSignIn.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         usernamefill.setFocusTraversable(false);
         passwordfill.setFocusTraversable(false);
+        setUsernameNotification();
+        setNameNotification();
+        setPasswordNotification();
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
-    public void returnAction(ActionEvent actionEvent) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/data/fxml/background.fxml"));
-            Parent root = fxmlLoader.load();
-
-            LogInController welcomeController = fxmlLoader.getController();
-            welcomeController.initializeStage(stage);
-
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }

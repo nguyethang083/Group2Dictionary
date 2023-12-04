@@ -1,17 +1,22 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.DictionaryApplication;
 import com.jfoenix.controls.JFXDrawer;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Cursor;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -20,7 +25,7 @@ public class sidePanelController implements Initializable {
     private ImageView closeMenu, exitApp;
 
     @FXML
-    private ImageView addWordMenu, Game1Menu, searchMenu, Game2Menu, translateMenu;
+    private ImageView addWordMenu, Game1Menu, searchMenu, Game2Menu, translateMenu, RecentsMenu;
 
     private DictionaryController dictionaryController;
 
@@ -47,22 +52,20 @@ public class sidePanelController implements Initializable {
                 drawer.setMouseTransparent(true);
             }
         });
-        setupImageView(searchMenu, "/Views/Dictionary.fxml", true);
-        setupImageView(addWordMenu, "/Views/addWord.fxml", true);
-        setupImageView(Game1Menu, "/Views/QuizMenu.fxml", true);
-        setupImageView(Game2Menu, "/Views/WordleMenu.fxml", true);
-        setupImageView(translateMenu, "/Views/Translate.fxml", true);
+        setupImageView(searchMenu, "/Views/Dictionary.fxml");
+        setupImageView(addWordMenu, "/Views/addWord.fxml");
+        setupImageView(Game1Menu, "/Views/QuizMenu.fxml");
+        setupImageView(Game2Menu, "/Views/WordleMenu.fxml");
+        setupImageView(translateMenu, "/Views/Translate.fxml");
+        setupImageView(RecentsMenu, "/Views/Recents.fxml");
     }
 
-    public void setupImageView(ImageView imageView, String scenePath, boolean shouldCloseDrawer) {
-        imageView.setCursor(Cursor.HAND);
+    public void setupImageView(ImageView imageView, String scenePath) {
         imageView.setOnMouseEntered(event -> {
-            // This is the color overlay when the mouse enters the ImageView
             imageView.setEffect(new ColorAdjust(0, 0, -0.5, 0));
         });
 
         imageView.setOnMouseExited(event -> {
-            // Remove the color overlay when the mouse exits the ImageView
             imageView.setEffect(null);
         });
 
@@ -72,8 +75,7 @@ public class sidePanelController implements Initializable {
             // Load the specified scene
             dictionaryController.showComponent(scenePath);
 
-            // Close the drawer if shouldCloseDrawer is true
-            if (shouldCloseDrawer && drawer.isOpened()) {
+            if (drawer.isOpened()) {
                 drawer.close();
                 drawer.setMouseTransparent(true);
             }
@@ -84,6 +86,15 @@ public class sidePanelController implements Initializable {
 
     @FXML
     void exitApp(MouseEvent event) {
-        Platform.exit();
+        try {
+            Parent root = DictionaryApplication.loadFXML("/Views/LogIn.fxml");
+            Stage stage = (Stage) exitApp.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+
 }

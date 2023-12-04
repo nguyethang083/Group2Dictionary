@@ -49,7 +49,9 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     }
 
     public List<SavedWord> queryListSavedWordByUser() throws SQLException {
-        List<EngWord> alphabetList = queryListWordByUser();
+        QueryBuilder<SavedWord, Long> IdWordByUser = this.queryBuilder().where().eq("User_id", CurrentUser).queryBuilder();
+        Where<EngWord, Long> english = WordDAO.queryBuilder().where().in("Id", IdWordByUser.selectColumns("English_id"));
+        List<EngWord> alphabetList =  new ArrayList<>(english.query());
         List<SavedWord> res = new ArrayList<>();
         for(EngWord x : alphabetList) {
             res.add(this.queryBuilder().where().eq("English_id", x.getId()).queryForFirst());
@@ -63,14 +65,6 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         return new ArrayList<>(english.query());
     }
 
-    public List<SavedWord> searchSavedWordByUserNewest(String prefix) throws SQLException {
-        QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
-        Where<SavedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
-        List<SavedWord> r = new ArrayList<>(res.query());
-        Collections.reverse(r);
-        return r;
-    }
-
     public List<SavedWord> searchSavedWordByUser(String prefix) throws SQLException {
         List<EngWord> engWords = searchWordbyUser(prefix);
         List<SavedWord> res = new ArrayList<>();
@@ -78,6 +72,14 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
             res.add(this.queryBuilder().where().eq("English_id", x.getId()).queryForFirst());
         }
         return res;
+    }
+
+    public List<SavedWord> searchSavedWordByUserNewest(String prefix) throws SQLException {
+        QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
+        Where<SavedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
+        List<SavedWord> r = new ArrayList<>(res.query());
+        Collections.reverse(r);
+        return r;
     }
 
     /**
@@ -161,13 +163,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
         /*SavedWord savedWord = new SavedWord(WordDAO.queryIdByWord("Constitutional"), "testUser");
         System.out.println(savedWord.getClass());
         SavedWordDAO.addSavedWord(savedWord);*/
-        /*List<EngWord> kk = SavedWordDAO.queryListWordByUserNewest();
-        System.out.println(kk.size());
-        for (EngWord n : kk) {
-            System.out.println(n.getWord());
-        }*/
-
-        List<SavedWord> k = SavedWordDAO.searchSavedWordByUser("h");
+        List<SavedWord> k = SavedWordDAO.searchSavedWordByUser("b");
         System.out.println(k.size());
         for (SavedWord n : k) {
             System.out.println(n.getWord());
