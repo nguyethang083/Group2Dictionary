@@ -1,6 +1,9 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.DictionaryApplication;
 import Dictionary.Entities.User;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -40,9 +44,14 @@ public class SignUpController implements Initializable {
     private PasswordField passwordfill;
 
     @FXML
+    private ProgressBar progressBar;
+
+    @FXML
     void signupButtonOnAction(ActionEvent event) throws SQLException {
-        if (!usernamefill.getText().isBlank() && !passwordfill.getText().isBlank() && !firstnamefill.getText().isBlank() && !lastnamefill.getText().isBlank())
+        if (!usernamefill.getText().isBlank() && !passwordfill.getText().isBlank() && !firstnamefill.getText().isBlank() && !lastnamefill.getText().isBlank()) {
+            progressBar.setVisible(true);
             signup();
+        }
         else {
             if (usernamefill.getText().isBlank()) usernameNotification.setText("Please enter your username.");
             if (firstnamefill.getText().isBlank() || lastnamefill.getText().isBlank())
@@ -59,9 +68,30 @@ public class SignUpController implements Initializable {
         String pass = passwordfill.getText();
         User newUser = new User(user, first, last, pass);
         if (UserDAO.addUser(newUser)) {
-//            invalidLabel.setText("User has been registered successfully!");
-            // Xử lí sau khi sign up thành công...
-        } //else invalidLabel.setText("Account already exists. Please try again.");
+            Task<Void> task = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    for (int i = 0; i <= 100; i++) {
+                        final int progress = i;
+                        Platform.runLater(() -> progressBar.setProgress(progress / 100.0));
+                        Thread.sleep(7);
+                    }
+                    return null;
+                }
+            };
+            task.setOnSucceeded(e -> {
+                try {
+                    Parent root = DictionaryApplication.loadFXML("/Views/LogIn.fxml");
+                    Stage stage = (Stage) firstnamefill.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                    progressBar.setVisible(false);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            });
+            new Thread(task).start();
+        }
     }
 
     private void setUsernameNotification() {

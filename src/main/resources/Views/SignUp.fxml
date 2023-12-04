@@ -4,6 +4,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,12 +23,12 @@
                 <Font name="Playfair Display Bold" size="30.0" />
             </font>
         </Text>
-        <Text layoutX="518.0" layoutY="161.0" opacity="0.9" strokeType="OUTSIDE" strokeWidth="0.0" text="The application is designed for a pleasant language learning experience, which includes both language learning and consolidation of what has been learned" wrappingWidth="327.1158752441406">
+        <Text layoutX="518.0" layoutY="152.0" opacity="0.9" strokeType="OUTSIDE" strokeWidth="0.0" text="The application is designed for a pleasant language learning experience, which includes both language learning and consolidation of what has been learned" wrappingWidth="327.1158752441406">
             <font>
                 <Font name="Poppins Light" size="16.0" />
             </font>
         </Text>
-        <Text fill="#fdfaf5" layoutX="72.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Password" wrappingWidth="223.11599731445312">
+        <Text fill="#fdfaf5" layoutX="72.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Password" wrappingWidth="223.11599731445312">
             <font>
                 <Font name="Poppins SemiBold" size="14.0" />
             </font>
@@ -42,10 +43,10 @@
                 <Font name="Poppins Light" size="14.0" />
             </font>
         </Text>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="40.0" layoutX="72.0" layoutY="252.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="270.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="40.0" layoutX="72.0" layoutY="337.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="270.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="40.0" layoutX="72.0" layoutY="254.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="270.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="40.0" layoutX="72.0" layoutY="350.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="270.0" />
         <Line endX="8.5999755859375" layoutX="180.0" layoutY="496.0" opacity="0.5" startX="-100.0" stroke="WHITE" />
-        <TextField fx:id="usernamefill" layoutX="76.0" layoutY="256.0" prefHeight="35.0" prefWidth="259.0" style="-fx-background-color: #1A475B; -fx-text-fill: white;">
+        <TextField fx:id="usernamefill" layoutX="76.0" layoutY="258.0" prefHeight="35.0" prefWidth="259.0" style="-fx-background-color: #1A475B; -fx-text-fill: white;">
             <font>
                 <Font size="14.0" />
             </font></TextField>
@@ -57,25 +58,25 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </Text>
-        <Text fill="#fdfaf5" layoutX="67.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" wrappingWidth="94.01419067382801">
+        <Text fill="#fdfaf5" layoutX="67.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" wrappingWidth="94.01419067382801">
             <font>
                 <Font name="Poppins SemiBold" size="14.0" />
             </font>
         </Text>
-        <Text fill="#fdfaf5" layoutX="222.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="94.01419067382801">
+        <Text fill="#fdfaf5" layoutX="222.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" wrappingWidth="94.01419067382801">
             <font>
                 <Font name="Poppins SemiBold" size="14.0" />
             </font>
         </Text>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="35.0" layoutX="70.0" layoutY="169.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="120.0" />
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="35.0" layoutX="222.0" layoutY="169.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="120.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="35.0" layoutX="70.0" layoutY="164.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="120.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="35.0" layoutX="222.0" layoutY="164.0" stroke="#ffffff5c" strokeType="INSIDE" style="-fx-arc-height: 8; -fx-arc-width: 10;" width="120.0" />
         <Line endX="8.5999755859375" layoutX="327.0" layoutY="497.0" opacity="0.5" startX="-100.0" stroke="WHITE" />
         <ImageView fitHeight="268.0" fitWidth="382.0" layoutX="491.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@../images/SignUpImg.png" />
             </image>
         </ImageView>
-        <JFXButton buttonType="RAISED" layoutX="72.0" layoutY="415.0" onAction="#signupButtonOnAction" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #c24935; -fx-border-radius: 20; -fx-background-radius: 20;" text="Register" textFill="WHITE">
+        <JFXButton buttonType="RAISED" layoutX="72.0" layoutY="418.0" onAction="#signupButtonOnAction" prefHeight="35.0" prefWidth="270.0" style="-fx-background-color: #c24935; -fx-border-radius: 20; -fx-background-radius: 20;" text="Register" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
@@ -83,26 +84,27 @@
             <Cursor fx:constant="HAND" />
          </cursor>
         </JFXButton>
-        <TextField fx:id="lastnamefill" layoutX="75.0" layoutY="169.0" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: transparent; -fx-text-fill: white;">
+        <TextField fx:id="lastnamefill" layoutX="75.0" layoutY="164.0" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: transparent; -fx-text-fill: white;">
             <font>
                 <Font size="14.0" />
             </font>
         </TextField>
-        <TextField fx:id="firstnamefill" layoutX="226.0" layoutY="169.0" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: transparent; -fx-text-fill: white;">
+        <TextField fx:id="firstnamefill" layoutX="226.0" layoutY="164.0" prefHeight="35.0" prefWidth="110.0" style="-fx-background-color: transparent; -fx-text-fill: white;">
             <font>
                 <Font size="14.0" />
             </font></TextField>
-        <PasswordField fx:id="passwordfill" layoutX="76.0" layoutY="339.0" prefHeight="35.0" prefWidth="259.0" style="-fx-background-color: transparent; -fx-text-fill: white;">
+        <PasswordField fx:id="passwordfill" layoutX="76.0" layoutY="352.0" prefHeight="35.0" prefWidth="259.0" style="-fx-background-color: transparent; -fx-text-fill: white;">
             <font>
                 <Font size="14.0" />
             </font></PasswordField>
-        <Label fx:id="usernameNotification" layoutX="78.0" layoutY="293.0" prefHeight="17.0" prefWidth="259.0" style="-fx-text-fill: #dbb534; -fx-font-family: Poppins;" />
-        <Label fx:id="passwordNotification" layoutX="76.0" layoutY="377.0" prefHeight="17.0" prefWidth="259.0" style="-fx-text-fill: #dbb534; -fx-font-family: Poppins;" />
+        <Label fx:id="usernameNotification" layoutX="78.0" layoutY="299.0" prefHeight="17.0" prefWidth="259.0" style="-fx-text-fill: #dbb534; -fx-font-family: Poppins;" />
+        <Label fx:id="passwordNotification" layoutX="76.0" layoutY="383.0" prefHeight="17.0" prefWidth="259.0" style="-fx-text-fill: #dbb534; -fx-font-family: Poppins;" />
         <Label fx:id="nameNotification" layoutX="76.0" layoutY="204.0" prefHeight="17.0" prefWidth="259.0" style="-fx-text-fill: #dbb534; -fx-font-family: Poppins;" />
-      <Text fill="#fdfaf5" layoutX="72.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Username" wrappingWidth="223.11599731445312">
+      <Text fill="#fdfaf5" layoutX="72.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Create Username" wrappingWidth="223.11599731445312">
          <font>
             <Font name="Poppins SemiBold" size="14.0" />
          </font>
       </Text>
+      <ProgressBar fx:id="progressBar" layoutX="560.0" layoutY="301.0" prefHeight="18.0" prefWidth="215.0" progress="0.0" styleClass="myProgressBar" stylesheets="@QuizStyle.css" visible="false" />
     </children>
 </AnchorPane>

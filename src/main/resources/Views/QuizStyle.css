@@ -123,3 +123,11 @@
     -fx-pref-height: 0;
     -fx-max-height: 0;
 }
+
+.myProgressBar {
+    -fx-accent: #1a475b;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 3px;
+}

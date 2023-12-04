@@ -58,7 +58,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <JFXButton fx:id="LogInButton" buttonType="RAISED" layoutX="68.0" layoutY="402.0" onAction="#loginButtonOnAction" prefHeight="35.0" prefWidth="231.0" style="-fx-background-color: #c24935; -fx-border-radius: 20; -fx-background-radius: 20;" text="Log In" textFill="WHITE">
+      <JFXButton fx:id="LogInButton" buttonType="RAISED" layoutX="68.0" layoutY="402.0" onMouseClicked="#loginButtonOnAction" prefHeight="35.0" prefWidth="231.0" style="-fx-background-color: #c24935; -fx-border-radius: 20; -fx-background-radius: 20;" text="Log In" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
