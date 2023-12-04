@@ -37,10 +37,10 @@ public class TranslateController {
     private ComboBox<String> targetLanguageComboBox;
 
     @FXML
-    private JFXButton VoiceLeft;
+    private ImageView VoiceLeft;
 
     @FXML
-    private JFXButton VoiceRight;
+    private ImageView VoiceRight;
 
     private Map<String, String> languageCodes;
 
