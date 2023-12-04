@@ -152,7 +152,6 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
         try {
             EngWord engWord = this.queryBuilder().where().eq("Word", word).queryForFirst();
             if (engWord != null && !engWord.getWord().isEmpty()) {
-                System.out.println("Từ này đã có");
                 return false;
             } else {
                 this.create(x);

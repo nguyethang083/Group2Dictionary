@@ -74,7 +74,6 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
             SearchedWord tuple = this.queryBuilder().where().eq("User_id", UserId).and().eq("English_id", EngId).queryForFirst();
             if (tuple != null) {
                 this.delete(tuple);
-                System.out.println("Đã xóa bản ghi cũ");
             }
             this.create(y);
         } catch (SQLException e) {

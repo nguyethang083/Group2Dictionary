@@ -40,7 +40,7 @@
         <ToggleButton fx:id="PlanD" layoutX="457.0" layoutY="381.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="405.0" styleClass="radiobutton" stylesheets="@QuizStyle.css" text="ToggleButton" />
         <ToggleButton fx:id="PlanC" layoutX="37.0" layoutY="381.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="405.0" styleClass="radiobutton" stylesheets="@QuizStyle.css" text="ToggleButton" />
         <ToggleButton fx:id="PlanB" layoutX="457.0" layoutY="288.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="405.0" styleClass="radiobutton" stylesheets="@QuizStyle.css" text="ToggleButton" />
-        <Label fx:id="Score" layoutX="823.0" layoutY="99.0" prefHeight="44.0" prefWidth="19.0" styleClass="score" stylesheets="@QuizStyle.css" text="1" />
+        <Label fx:id="Score" alignment="CENTER" layoutX="796.0" layoutY="99.0" prefHeight="44.0" prefWidth="70.0" styleClass="score" stylesheets="@QuizStyle.css" text="1" />
         <Label fx:id="questionNumber" layoutX="40.0" layoutY="108.0" prefHeight="25.0" prefWidth="80.0" styleClass="question-no" stylesheets="@QuizStyle.css" text="Label" />
         <ImageView fx:id="ResultBack" fitHeight="400.0" fitWidth="600.0" layoutX="150.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
             <image>
