@@ -68,17 +68,9 @@ public class WordleController implements Initializable {
     }
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         createGrid();
         createKeyboard();
         reset();
-        gridPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                onKeyPressed(event);
-            }
-        });
-
     }
 
     // tạo ra bảng gồm các từ hiển thị
@@ -129,8 +121,10 @@ public class WordleController implements Initializable {
             Integer r = GridPane.getRowIndex(child);
             Integer c = GridPane.getColumnIndex(child);
             // nếu = null thì đặt = 0, nếu not null trả về đúng giá trị
-            int row = r == null ? 0 : r;
-            int column = c == null ? 0 : c;
+            int row = 0;
+            if (r != null) row = r;
+            int column = 0;
+            if (c != null) column = c;
             if (row == searchRow && column == searchColumn && (child instanceof Label))
                 return (Label) child;
         }
