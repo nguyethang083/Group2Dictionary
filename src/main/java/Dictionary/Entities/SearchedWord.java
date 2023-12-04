@@ -21,9 +21,11 @@ public class SearchedWord {
     public long getId() {
         return id;
     }
+
     public long getEnglish_id() {
         return English_id;
     }
+
     public void setEnglish_id(long x) {
         English_id = x;
     }
@@ -31,9 +33,11 @@ public class SearchedWord {
     public String getUser_id() {
         return User_id;
     }
+
     public void setUser_id(String x) {
         User_id = x;
     }
+
     public SearchedWord() {
     }
 
@@ -41,11 +45,13 @@ public class SearchedWord {
         English_id = Eng;
         User_id = User;
     }
+
     public String getWord() throws SQLException {
         return WordDAO.queryEngWordbyId(this.getEnglish_id()).getWord();
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "The word is " + User_id + English_id + "\n";
     }
 }

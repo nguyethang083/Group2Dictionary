@@ -59,8 +59,7 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
                 tuple.setGuess5(g5);
                 tuple.setGuess6(g6);
                 this.update(tuple);
-            }
-            else this.create(x);
+            } else this.create(x);
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " insertSW");
             return false;
@@ -79,10 +78,11 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
         if (streak == null) return 0;
         return streak.getNum_win();
     }
+
     public long getGuessbyNum(int numGuess) throws SQLException {
         ScoreWordle tuple = this.queryBuilder().where().in("User_id", CurrentUser).queryForFirst();
         if (tuple == null) return 0;
-        switch(numGuess) {
+        switch (numGuess) {
             case 1:
                 return tuple.getGuess1();
             case 2:
@@ -101,7 +101,7 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
     // Xóa lượt chơi khi xóa user nè
     public boolean deleteScoreWordlebyUser() throws SQLException {
         try {
-            ScoreWordle tuple = this.queryBuilder().where().eq("User_id", CurrentUser).queryForFirst();;
+            ScoreWordle tuple = this.queryBuilder().where().eq("User_id", CurrentUser).queryForFirst();
             if (tuple == null) return false;
             this.delete(tuple);
             return true;
@@ -115,7 +115,7 @@ public class ScoreWordleDAO extends BaseDaoImpl<ScoreWordle, Long> {
     // Lưu ý: trc khi khởi tạo ScoreWordle phải check xem streak <= win <= play ko
     public static void main(String[] args) throws SQLException {
         ScoreWordle score1 = new ScoreWordle("lam", 1, 3, 2);
-        ScoreWordle score3 = new ScoreWordle("lam", 2, 4 , 3);
+        ScoreWordle score3 = new ScoreWordle("lam", 2, 4, 3);
         ScoreWordle score4 = new ScoreWordle("hang", 4, 10, 4);
         ScoreWordleDAO.addScoreWordle(score1);
         ScoreWordleDAO.addScoreWordle(score1);

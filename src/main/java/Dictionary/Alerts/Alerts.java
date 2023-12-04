@@ -28,7 +28,7 @@ public class Alerts {
         alert.setHeaderText(null);
         alert.setContentText(content);
         Optional<ButtonType> option = alert.showAndWait();
-        if(option.get() == ButtonType.OK) return true;
+        if (option.get() == ButtonType.OK) return true;
         else if (option.get() == ButtonType.CANCEL) return false;
         return false;
     }

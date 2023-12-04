@@ -103,27 +103,31 @@ public class EngWord {
         Synonym = synonym;
         Antonyms = antonyms;
     }
-    public EngWord(String word, String Meaning, String pronunciation){
+
+    public EngWord(String word, String Meaning, String pronunciation) {
         Word = word;
         this.Meaning = Meaning;
         Pronunciation = pronunciation;
     }
-    public EngWord(String word, String Meaning){
+
+    public EngWord(String word, String Meaning) {
         Word = word;
-        if(Meaning != null) {
+        if (Meaning != null) {
             this.Meaning = Meaning;
         }
     }
+
     // englishDAO.create(new English("Hello", "Xin chao", "'he:llo'", "Noun", "Greeting,Hello, how are you?"));
-    public EngWord(String word, String Meaning, String pronunciation, String type, String example){
+    public EngWord(String word, String Meaning, String pronunciation, String type, String example) {
         Word = word;
         this.Meaning = Meaning;
         Pronunciation = pronunciation;
         Type = type;
         Example = example;
     }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "The word is " + Word + " " + Meaning + " " + Pronunciation + " " + Type + " " + Example + " " + Synonym + " " + Antonyms + "\n";
     }
 }

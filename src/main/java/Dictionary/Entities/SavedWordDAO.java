@@ -10,9 +10,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static Dictionary.DatabaseConn.WordDAO;
 import static Dictionary.DatabaseConn.SavedWordDAO;
-import static Dictionary.DatabaseConn.CurrentUser;
+import static Dictionary.DatabaseConn.WordDAO;
+import static Dictionary.DatabaseConn.*;
 
 public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     public SavedWordDAO(ConnectionSource connectionSource) throws SQLException {
@@ -36,7 +36,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     public List<EngWord> queryListWordByUserNewest() throws SQLException {
         List<SavedWord> savedWords = new ArrayList<>(this.queryBuilder().where().eq("User_id", CurrentUser).query());
         List<EngWord> res = new ArrayList<>();
-        for(SavedWord x : savedWords) {
+        for (SavedWord x : savedWords) {
             res.add(WordDAO.queryEngWordbyId(x.getEnglish_id()));
         }
         return res;
@@ -51,9 +51,9 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     public List<SavedWord> queryListSavedWordByUser() throws SQLException {
         QueryBuilder<SavedWord, Long> IdWordByUser = this.queryBuilder().where().eq("User_id", CurrentUser).queryBuilder();
         Where<EngWord, Long> english = WordDAO.queryBuilder().where().in("Id", IdWordByUser.selectColumns("English_id"));
-        List<EngWord> alphabetList =  new ArrayList<>(english.query());
+        List<EngWord> alphabetList = new ArrayList<>(english.query());
         List<SavedWord> res = new ArrayList<>();
-        for(EngWord x : alphabetList) {
+        for (EngWord x : alphabetList) {
             res.add(this.queryBuilder().where().eq("English_id", x.getId()).queryForFirst());
         }
         return res;
@@ -68,7 +68,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     public List<SavedWord> searchSavedWordByUser(String prefix) throws SQLException {
         List<EngWord> engWords = searchWordbyUser(prefix);
         List<SavedWord> res = new ArrayList<>();
-        for(EngWord x : engWords) {
+        for (EngWord x : engWords) {
             res.add(this.queryBuilder().where().eq("English_id", x.getId()).queryForFirst());
         }
         return res;
@@ -84,6 +84,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
 
     /**
      * hàm add id từ vào user được chọn
+     *
      * @param x bao gồm Userid và Englishid
      * @return true nếu add thành công, false nếu đã có tuple đó rồi (từ đã lưu mà bị ngáo cố ấn)
      * @throws SQLException
@@ -95,7 +96,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
             return false;
         }
         try {
-            Where<SavedWord, Long> tuple = this.queryBuilder().where().eq("User_id", UserId).and().eq("English_id",EngId);
+            Where<SavedWord, Long> tuple = this.queryBuilder().where().eq("User_id", UserId).and().eq("English_id", EngId);
             if (tuple.queryForFirst() != null) {
                 System.out.println("Từ này đã được lưu rồi");
                 return false;

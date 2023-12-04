@@ -1,5 +1,8 @@
 package Dictionary.Features;
 
+import org.apache.commons.text.StringEscapeUtils;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URLEncoder;
@@ -7,10 +10,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-
-import org.json.JSONObject;
-
-import org.apache.commons.text.StringEscapeUtils;
 
 public class TranslateAPI implements APIGeneral {
     private static final String API_KEY = "4fe989700cmsh7f3c2df50281767p1cc134jsn1fc2645ddf35";  // Read API key from environment variable

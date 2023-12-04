@@ -1,5 +1,7 @@
 package Dictionary.Features;
 
+import javazoom.jl.player.Player;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
@@ -8,8 +10,6 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-
-import javazoom.jl.player.Player;
 
 public class VoiceAPI {
     private static final String API_KEY = "71dc1b6092msh3f8ee17bd0825bap163fb1jsnb9be8fbaa2ba";

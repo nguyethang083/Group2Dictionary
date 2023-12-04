@@ -17,9 +17,11 @@ public class ScoreQuiz {
     public long getId() {
         return id;
     }
+
     public long getScore() {
         return Score;
     }
+
     public void setScore(long x) {
         Score = x;
     }
@@ -27,9 +29,11 @@ public class ScoreQuiz {
     public String getUser_id() {
         return User_id;
     }
+
     public void setUser_id(String x) {
         User_id = x;
     }
+
     public ScoreQuiz() {
     }
 
@@ -39,7 +43,7 @@ public class ScoreQuiz {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "The tuple is " + User_id + Score + "\n";
     }
 }

@@ -235,7 +235,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             if (type.contains("v.")) {
                 type = type.replace("v.", "verb");
             }
-            if(type.contains("t.")){
+            if (type.contains("t.")) {
                 type = type.replace("t.", "transitive");
             }
             if (type.contains("Imp.")) {
@@ -250,10 +250,10 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             if (type.contains("pr.")) {
                 type = type.replace("pr.", "pronoun");
             }
-            if(type.contains("i.")){
+            if (type.contains("i.")) {
                 type = type.replace("i.", "intransitive");
             }
-            if(type.contains("pl.")){
+            if (type.contains("pl.")) {
                 type = type.replace("pl.", "plural");
             }
             if (type.contains("p.")) {
@@ -265,16 +265,17 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             if (type.contains("interj")) {
                 type = type.replace("interj.", "interjection");
             }
-            if(type.contains("&")){
+            if (type.contains("&")) {
                 type = type.replace("&", " and ");
             }
-            if(type.contains("vb.")){
+            if (type.contains("vb.")) {
                 type = type.replace("vb.", "verbNoun");
             }
             english.setType(type);
             this.update(english);
         }
     }
+
     public List<EngWord> getAllWords() throws SQLException {
         return this.queryForAll();
     }
@@ -286,38 +287,35 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
 
         StringBuilder definitionBuilder = new StringBuilder();
 
-        if(!engWord.getWord().isEmpty()){
+        if (!engWord.getWord().isEmpty()) {
             definitionBuilder.append("Word: ").append(engWord.getWord()).append("\n").append("\n");
         }
 
         if (!engWord.getType().isEmpty()) {
             definitionBuilder.append("Part of Speech: ").append(engWord.getType()).append("\n").append("\n");
-        }
-        else {
+        } else {
             definitionBuilder.append("Part of Speech: ").append("No part of speech found").append("\n").append("\n");
         }
         if (!engWord.getMeaning().isEmpty()) {
             definitionBuilder.append("Definition: ").append(engWord.getMeaning()).append("\n").append("\n");
-        }
-        else {
+        } else {
             definitionBuilder.append("Definition: ").append("No definition found").append("\n").append("\n");
         }
 
-        if(!engWord.getPronunciation().isEmpty()){
+        if (!engWord.getPronunciation().isEmpty()) {
             definitionBuilder.append("Pronunciation: ").append(engWord.getPronunciation()).append("\n").append("\n");
-        }
-        else {
+        } else {
             definitionBuilder.append("Pronunciation: ").append("No pronunciation found").append("\n").append("\n");
         }
 
         if (!engWord.getSynonym().isEmpty()) {
             definitionBuilder.append("Synonym: ").append(engWord.getSynonym()).append("\n").append("\n");
-        }else {
+        } else {
             definitionBuilder.append("Synonym: ").append("No synonym found").append("\n").append("\n");
         }
         if (!engWord.getAntonyms().isEmpty()) {
             definitionBuilder.append("Antonym: ").append(engWord.getAntonyms()).append("\n").append("\n");
-        }else {
+        } else {
             definitionBuilder.append("Antonym: ").append("No antonym found").append("\n").append("\n");
         }
         if (!engWord.getExample().isEmpty()) {
@@ -328,14 +326,14 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
         return definitionBuilder.toString().trim();
     }
 
-   public boolean sortedWord() throws SQLException {
-       var x = this.queryBuilder();
-       try {
-           x.orderBy("Word", true);
-       } catch (Exception e) {
-           System.err.println(e.getMessage() + " sortedWord");
-           return false;
-       }
-       return true;
-   }
+    public boolean sortedWord() throws SQLException {
+        var x = this.queryBuilder();
+        try {
+            x.orderBy("Word", true);
+        } catch (Exception e) {
+            System.err.println(e.getMessage() + " sortedWord");
+            return false;
+        }
+        return true;
+    }
 }

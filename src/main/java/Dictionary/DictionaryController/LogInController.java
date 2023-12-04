@@ -3,7 +3,6 @@ package Dictionary.DictionaryController;
 import Dictionary.DictionaryApplication;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.PauseTransition;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +18,6 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 import static Dictionary.DatabaseConn.CurrentUser;
-
 import static Dictionary.DatabaseConn.UserDAO;
 
 public class LogInController {

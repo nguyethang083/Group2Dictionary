@@ -5,11 +5,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
-import java.sql.SQLException;
-import java.util.*;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.ResourceBundle;
 
 import static Dictionary.DatabaseConn.ScoreWordleDAO;
+
 public class WordleStatisticController implements Initializable {
     @FXML
     private Label Played;
@@ -45,13 +48,13 @@ public class WordleStatisticController implements Initializable {
     }
 
     public void setLabels(ScoreWordle score) {
-            Played.setText("" + score.getNum_play());
-            Win.setText("" + score.getNum_win());
-            Streak.setText("" + score.getStreak());
+        Played.setText("" + score.getNum_play());
+        Win.setText("" + score.getNum_win());
+        Streak.setText("" + score.getStreak());
     }
 
     public void setBarChart() {
-        Long guess[] = {score.getGuess1(), score.getGuess2(), score.getGuess3(), score.getGuess4(),
+        Long[] guess = {score.getGuess1(), score.getGuess2(), score.getGuess3(), score.getGuess4(),
                 score.getGuess5(), score.getGuess6()};
 
         long max = Collections.max(Arrays.asList(guess));

@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static Dictionary.DatabaseConn.ScoreQuizDAO;
 import static Dictionary.DatabaseConn.CurrentUser;
+import static Dictionary.DatabaseConn.ScoreQuizDAO;
 
 public class ScoreQuizDAO extends BaseDaoImpl<ScoreQuiz, Long> {
     public ScoreQuizDAO(ConnectionSource connectionSource) throws SQLException {

@@ -125,13 +125,13 @@ public class TranslateController {
     }
 
     @FXML
-    void PlayVoiceT (MouseEvent event) {
+    void PlayVoiceT(MouseEvent event) {
         String targetLanguage = languageCodes.get(targetLanguageComboBox.getValue());
 
         // Create a new thread for the voiceplay process
         Thread thread = new Thread(() -> {
             try {
-                VoiceAPI.textToSpeech(translatedText.getText(),targetLanguage);
+                VoiceAPI.textToSpeech(translatedText.getText(), targetLanguage);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -142,13 +142,13 @@ public class TranslateController {
     }
 
     @FXML
-    void PlayVoiceS (MouseEvent event) {
+    void PlayVoiceS(MouseEvent event) {
         String sourceLanguage = languageCodes.get(sourceLanguageComboBox.getValue());
 
         // Create a new thread for the voiceplay process
         Thread thread = new Thread(() -> {
             try {
-                VoiceAPI.textToSpeech(textToTranslate.getText(),sourceLanguage);
+                VoiceAPI.textToSpeech(textToTranslate.getText(), sourceLanguage);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

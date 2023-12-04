@@ -1,23 +1,19 @@
 package Dictionary.Game;
 
-import Dictionary.Entities.AllWord;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.sql.SQLException;
 import java.util.Scanner;
-
-import static Dictionary.DatabaseConn.WordDAO;
 
 public class Wordle {
     long seed = System.currentTimeMillis();
     Random random = new Random(seed);
     private String answer;
     private int numberofGuess = 0;
-    private static List<String> wordleWord = new ArrayList<>();
+    private static final List<String> wordleWord = new ArrayList<>();
+
     static {
         try {
             File fileName = new File("src/main/resources/valid-wordle-words.txt");
@@ -31,14 +27,15 @@ public class Wordle {
         }
     }
 
-    private static int wordledbSize;
+    private static final int wordledbSize;
+
     static {
         wordledbSize = wordleWord.size();
     }
 
     public Wordle() {
 
-    };
+    }
 
     public void generateRandomWord() {
         int random = (int) (Math.random() * wordledbSize);
@@ -58,8 +55,7 @@ public class Wordle {
     }
 
     public boolean contains(String[] keyboardRow, String letter) {
-        for (String key : keyboardRow)
-        {
+        for (String key : keyboardRow) {
             if (key.equalsIgnoreCase(letter)) {
                 return true;
             }

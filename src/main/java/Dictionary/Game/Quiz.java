@@ -1,12 +1,11 @@
 package Dictionary.Game;
 
-import java.util.ArrayList;
-import java.util.Random;
-import java.sql.SQLException;
-
 import Dictionary.Entities.AllWord;
 import Dictionary.Entities.EngWord;
-import Dictionary.Entities.WordDAO;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class Quiz {
     long seed = System.currentTimeMillis();
@@ -44,7 +43,7 @@ public class Quiz {
             wordChoice.add(random);
             choice.add(tmp.getWord().toLowerCase());
             if (i == answerIndex) {
-                correctAnswer = tmp.getWord().toLowerCase();;
+                correctAnswer = tmp.getWord().toLowerCase();
                 question = tmp.getMeaning();
             }
             i++;
@@ -67,7 +66,7 @@ public class Quiz {
     }
 
 
-    public void increaseScore () {
+    public void increaseScore() {
         score++;
     }
 
@@ -79,7 +78,7 @@ public class Quiz {
         this.score = score;
     }
 
-    public void increaseNumberofQuestion () {
+    public void increaseNumberofQuestion() {
         numberofQuestion++;
     }
 
