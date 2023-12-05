@@ -2,6 +2,7 @@ package Dictionary.DictionaryController;
 
 import Dictionary.Entities.ScoreWordle;
 import Dictionary.Game.Wordle;
+import Dictionary.Alerts.Alerts;
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
