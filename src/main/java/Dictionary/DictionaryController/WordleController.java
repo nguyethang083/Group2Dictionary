@@ -265,7 +265,6 @@ public class WordleController implements Initializable {
     //xử lí sự kiện bàn phím
     @FXML
     public void onKeyPressed(KeyEvent keyEvent) {
-        System.out.println(keyEvent.getCode());
         if (keyEvent.getCode() == KeyCode.BACK_SPACE) {
             onBackspacePressed();
         } else if (keyEvent.getCode().isLetterKey()) {
@@ -295,7 +294,6 @@ public class WordleController implements Initializable {
     private void onLetterPressed(KeyEvent keyEvent) {
         if (Objects.equals(getBlockText(currentRow, currentColumn), "")) {
             setBlockText(currentRow, currentColumn, keyEvent.getText());
-            System.out.println(keyEvent.getText());
             Label label = getLabel(currentRow, currentColumn);
             ScaleTransition bounceTransition1 = new ScaleTransition(Duration.millis(100), label);
             bounceTransition1.fromXProperty().setValue(1);
@@ -314,7 +312,6 @@ public class WordleController implements Initializable {
         }
     }
 
-    // xử lí submit
     private void onEnterPressed() {
         for (int i = 1; i <= MAX_COLUMN; i++) {
             getLabel(currentRow, i).setTranslateX(0.0);
@@ -444,14 +441,8 @@ public class WordleController implements Initializable {
                 long streak = scoreWordle.getStreak() + 1;
                 long num_win = scoreWordle.getNum_win() + 1;
                 long played = scoreWordle.getNum_play();
-                System.out.println(currentRow);
                 guess[currentRow - 1]++;
-                for (int i = 0; i < 6; i++) {
-                    System.out.println(guess[i]);
-                }
                 ScoreWordle newScore = new ScoreWordle(CurrentUser, streak, played, num_win, guess);
-                System.out.println(newScore.getUser_id() + " " + newScore.getNum_win() + " " + newScore.getNum_play() + " " + newScore.getStreak() +
-                        " " + newScore.getGuess1() + " " + newScore.getGuess2() + " " + newScore.getGuess3() + " " + newScore.getGuess4() + " " + newScore.getGuess5() + " " + newScore.getGuess6());
                 ScoreWordleDAO.addScoreWordle(newScore);
             } else {
                 scoreWordle.setStreak(0);
@@ -478,11 +469,8 @@ public class WordleController implements Initializable {
             e.printStackTrace();
         }
 
-        // Set the title of the new Stage
         Statistic.setTitle("Wordle statistic");
-        //Instruction.initStyle(StageStyle.TRANSPARENT);
 
-        // Show the new Stage
         Statistic.show();
     }
 
@@ -500,4 +488,3 @@ public class WordleController implements Initializable {
         Invalid.setVisible(false);
     }
 }
-

@@ -23,7 +23,7 @@
                   <Image url="@../images/bgGUI.png" />
                </image>
             </ImageView>
-            <Text fx:id="saveMyWordsMenu" fill="WHITE" layoutX="648.0" layoutY="41.0" onMouseClicked="#switchToMyWords" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words" wrappingWidth="102.34698486328125">
+            <Text fx:id="saveMyWordsMenu" fill="WHITE" layoutX="667.0" layoutY="40.0" onMouseClicked="#switchToMyWords" strokeType="OUTSIDE" strokeWidth="0.0" text="My Words" wrappingWidth="102.34698486328125">
                <font>
                   <Font name="Poppins Bold" size="18.0" />
                </font>
@@ -123,7 +123,7 @@
                   <Image url="@../images/intro.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="exitProgram" fitHeight="25.0" fitWidth="32.0" layoutX="831.0" layoutY="23.0" onMousePressed="#exitProgram" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="exitProgram" fitHeight="25.0" fitWidth="32.0" layoutX="802.0" layoutY="22.0" onMousePressed="#exitProgram" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/exitProgram.png" />
                </image>

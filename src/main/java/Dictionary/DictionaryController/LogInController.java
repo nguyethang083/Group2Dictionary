@@ -3,6 +3,8 @@ package Dictionary.DictionaryController;
 import Dictionary.DictionaryApplication;
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.PauseTransition;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,23 +36,24 @@ public class LogInController {
     private TextField username;
 
     @FXML
-    public void loginButtonOnAction(ActionEvent event) {
+    public void loginButtonOnAction(MouseEvent event) {
         String userid = username.getText();
         String pass = password.getText();
         if (!userid.isBlank() && !pass.isBlank() && UserDAO.checkValidUser(userid, pass)) {
             CurrentUser = userid;
-            PauseTransition pause = new PauseTransition(Duration.seconds(0.2));
-            pause.setOnFinished(e -> {
+            Thread thread = new Thread(() -> {
                 try {
                     Parent root = DictionaryApplication.loadFXML("/Views/Dictionary.fxml");
-                    Stage stage = (Stage) LogInButton.getScene().getWindow();
-                    stage.setScene(new Scene(root));
-                    stage.show();
+                    Platform.runLater(() -> {
+                        Stage stage = (Stage) LogInButton.getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.show();
+                    });
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
             });
-            pause.play();
+            thread.start();
         } else {
             LogInError.setVisible(true);
             PauseTransition visiblePause = new PauseTransition(Duration.seconds(3));

@@ -12,6 +12,7 @@ import java.util.List;
 
 import static Dictionary.DatabaseConn.CurrentUser;
 import static Dictionary.DatabaseConn.WordDAO;
+import static Dictionary.DatabaseConn.SearchedWordDAO;
 
 public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
     public SearchedWordDAO(ConnectionSource connectionSource) throws SQLException {
@@ -109,5 +110,9 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
             System.err.println(e.getMessage() + " deleteAllWordsByUser");
             return false;
         }
+    }
+
+    public static void main(String[] args) throws SQLException {
+        SearchedWordDAO.deleteAllWordsByUser();
     }
 }

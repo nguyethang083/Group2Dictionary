@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Dictionary.DatabaseConn.CurrentUser;
+import static Dictionary.DatabaseConn.SearchedWordDAO;
+
 public class WordDAO extends BaseDaoImpl<EngWord, Long> {
     public WordDAO(ConnectionSource connectionSource) throws SQLException {
         super(connectionSource, EngWord.class);
@@ -178,6 +181,8 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             Where<EngWord, Long> english = this.queryBuilder().where().eq("Word", word);
             for (EngWord x : english.query()) {
                 this.delete(x);
+                SearchedWord s = new SearchedWord(x.getId(), CurrentUser);
+                SearchedWordDAO.deleteTuple(s);
             }
             return true;
         } catch (SQLException e) {
