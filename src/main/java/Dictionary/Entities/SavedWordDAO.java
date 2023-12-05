@@ -66,6 +66,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     }
 
     public List<SavedWord> searchSavedWordByUser(String prefix) throws SQLException {
+        prefix = prefix.replaceAll("\'", "''");
         List<EngWord> engWords = searchWordbyUser(prefix);
         List<SavedWord> res = new ArrayList<>();
         for (EngWord x : engWords) {
@@ -75,6 +76,7 @@ public class SavedWordDAO extends BaseDaoImpl<SavedWord, Long> {
     }
 
     public List<SavedWord> searchSavedWordByUserNewest(String prefix) throws SQLException {
+        prefix = prefix.replaceAll("\'", "''");
         QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
         Where<SavedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
         List<SavedWord> r = new ArrayList<>(res.query());
