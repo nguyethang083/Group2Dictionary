@@ -138,7 +138,8 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
 
     // co the tra ra null
     public EngWord queryWordByString(String word) throws SQLException {
-        return this.queryBuilder().where().eq("Word", word).queryForFirst();
+        word = word.replaceAll("'", "''");
+        return this.queryBuilder().where().like("Word", word).queryForFirst();
     }
 
     public EngWord queryWordByEngWord(EngWord word) throws SQLException {
@@ -149,9 +150,10 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
         if (x.getWord().isEmpty() || x.getMeaning().isEmpty()) {
             return false;
         }
-        String word = x.getWord();
+        String word = x.getWord().replaceAll("'", "''");
         word = StringProcessing.normalizeString(word);
-        x.setWord(word);
+        String word2 = x.getWord();
+        x.setWord(word2);
         try {
             EngWord engWord = this.queryBuilder().where().eq("Word", word).queryForFirst();
             if (engWord != null && !engWord.getWord().isEmpty()) {
@@ -220,6 +222,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
     }
 
     public List<EngWord> containWordByString(String word) throws SQLException {
+        word = word.replaceAll("'", "''");
         Where<EngWord, Long> english = this.queryBuilder().where().like("Word", word + "%");
         return new ArrayList<>(english.query());
     }

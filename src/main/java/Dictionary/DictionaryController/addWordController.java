@@ -2,6 +2,7 @@ package Dictionary.DictionaryController;
 
 import Dictionary.Alerts.Alerts;
 import Dictionary.Entities.EngWord;
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -14,7 +15,7 @@ import static Dictionary.Features.StringProcessing.normalizeString;
 
 public class addWordController {
     @FXML
-    private Button addButton;
+    private JFXButton addButton;
 
     @FXML
     private TextField newDefinition, newExample, newPhonetic, newSynonym, newType, newWord;
