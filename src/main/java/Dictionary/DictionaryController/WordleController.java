@@ -1,7 +1,9 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.Alerts.Alerts;
 import Dictionary.Entities.ScoreWordle;
 import Dictionary.Game.Wordle;
+
 import javafx.animation.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -61,6 +63,7 @@ public class WordleController implements Initializable {
     @FXML
     private Label Invalid;
 
+    private Alerts alerts = new Alerts();
     private ScoreWordle scoreWordle;
 
     public WordleController() {
@@ -423,11 +426,20 @@ public class WordleController implements Initializable {
 
     @FXML
     public void handleRestart() {
-        RotateTransition rotateTransition = new RotateTransition(Duration.millis(500), restartIcon);
-        rotateTransition.setFromAngle(0);
-        rotateTransition.setToAngle(360);
-        rotateTransition.setOnFinished(ae -> reset());
-        rotateTransition.play();
+        boolean confirm = alerts.showAlertConfirmation("Restart warning", "If you reset, you will lose all your streak.");
+        if (confirm) {
+            scoreWordle.setStreak(0);
+            try {
+                ScoreWordleDAO.addScoreWordle(scoreWordle);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            RotateTransition rotateTransition = new RotateTransition(Duration.millis(500), restartIcon);
+            rotateTransition.setFromAngle(0);
+            rotateTransition.setToAngle(360);
+            rotateTransition.setOnFinished(ae -> reset());
+            rotateTransition.play();
+        }
     }
 
     public void updateScore(boolean win) {
