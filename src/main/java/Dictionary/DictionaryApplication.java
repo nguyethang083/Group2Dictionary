@@ -15,10 +15,6 @@ public class DictionaryApplication extends Application {
         return fxmlLoader.load();
     }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = loadFXML("/Views/LogIn.fxml");
@@ -30,5 +26,9 @@ public class DictionaryApplication extends Application {
             Platform.exit();
             System.exit(0);
         });
+    }
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }

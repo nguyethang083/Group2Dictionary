@@ -11,6 +11,7 @@ import java.util.List;
 
 import static Dictionary.DatabaseConn.CurrentUser;
 import static Dictionary.DatabaseConn.SearchedWordDAO;
+import static Dictionary.DatabaseConn.SavedWordDAO;
 
 public class WordDAO extends BaseDaoImpl<EngWord, Long> {
     public WordDAO(ConnectionSource connectionSource) throws SQLException {
@@ -65,6 +66,7 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage() + " insertMeaning");
+
             return false;
         }
         return true;
@@ -186,6 +188,8 @@ public class WordDAO extends BaseDaoImpl<EngWord, Long> {
                 this.delete(x);
                 SearchedWord s = new SearchedWord(x.getId(), CurrentUser);
                 SearchedWordDAO.deleteTuple(s);
+                SavedWord s1 = new SavedWord(x.getId(), CurrentUser);
+                SavedWordDAO.deleteTuple(s1);
             }
             return true;
         } catch (SQLException e) {
