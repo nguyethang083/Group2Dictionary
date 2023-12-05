@@ -49,15 +49,21 @@
             <Image url="@../images/TranslateText.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="VoiceRight" fitHeight="14.0" fitWidth="35.0" layoutX="457.0" layoutY="476.0" onMouseClicked="#PlayVoiceT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="VoiceRight" fitHeight="14.0" fitWidth="35.0" layoutX="464.0" layoutY="476.0" onMouseClicked="#PlayVoiceT" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/voiceButton.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
-      <ImageView fx:id="VoiceLeft" fitHeight="14.0" fitWidth="35.0" layoutX="35.0" layoutY="476.0" onMouseClicked="#PlayVoiceS" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="VoiceLeft" fitHeight="14.0" fitWidth="35.0" layoutX="42.0" layoutY="477.0" onMouseClicked="#PlayVoiceS" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/voiceButton.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
    </children>
 </AnchorPane>

@@ -50,6 +50,7 @@ public class SearchedWordDAO extends BaseDaoImpl<SearchedWord, Long> {
     }
 
     public List<SearchedWord> searchSearchedWordByUserNewest(String prefix) throws SQLException {
+        prefix = prefix.replaceAll("\'", "''");
         QueryBuilder<EngWord, Long> containWord = WordDAO.queryBuilder().where().like("Word", prefix + "%").queryBuilder();
         Where<SearchedWord, Long> res = this.queryBuilder().where().eq("User_id", CurrentUser).and().in("English_id", containWord.selectColumns("Id"));
         List<SearchedWord> r = new ArrayList<>(res.query());
