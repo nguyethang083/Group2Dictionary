@@ -1,5 +1,6 @@
 package Dictionary.DictionaryController;
 
+import Dictionary.Alerts.Alerts;
 import Dictionary.Entities.ScoreWordle;
 import Dictionary.Game.Wordle;
 import javafx.animation.*;
@@ -15,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -60,6 +62,8 @@ public class WordleController implements Initializable {
     private Button TryAgain;
     @FXML
     private Label Invalid;
+
+    private Alerts alerts = new Alerts();
 
     private ScoreWordle scoreWordle;
 
@@ -410,18 +414,27 @@ public class WordleController implements Initializable {
             throw new RuntimeException(e);
         }
 
-        WinningWord.setText(wordle.getAnswer().toUpperCase());
         scoreWordle.setNum_play(scoreWordle.getNum_play() + 1);
+        WinningWord.setText(wordle.getAnswer().toUpperCase());
         System.out.println(wordle.getAnswer());
     }
 
     @FXML
-    public void handleRestart() {
-        RotateTransition rotateTransition = new RotateTransition(Duration.millis(500), restartIcon);
-        rotateTransition.setFromAngle(0);
-        rotateTransition.setToAngle(360);
-        rotateTransition.setOnFinished(ae -> reset());
-        rotateTransition.play();
+    public void handleRestart(MouseEvent mouseEvent) {
+        boolean confirm = alerts.showAlertConfirmation("Restart warning", "If you reset, you will lose all your streak.");
+        if (confirm) {
+            scoreWordle.setStreak(0);
+            try {
+                ScoreWordleDAO.addScoreWordle(scoreWordle);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            RotateTransition rotateTransition = new RotateTransition(Duration.millis(500), restartIcon);
+            rotateTransition.setFromAngle(0);
+            rotateTransition.setToAngle(360);
+            rotateTransition.setOnFinished(ae -> reset());
+            rotateTransition.play();
+        }
     }
 
     public void updateScore(boolean win) {
@@ -432,14 +445,8 @@ public class WordleController implements Initializable {
                 long streak = scoreWordle.getStreak() + 1;
                 long num_win = scoreWordle.getNum_win() + 1;
                 long played = scoreWordle.getNum_play();
-                System.out.println(currentRow);
                 guess[currentRow - 1]++;
-                for (int i = 0; i < 6; i++) {
-                    System.out.println(guess[i]);
-                }
                 ScoreWordle newScore = new ScoreWordle(CurrentUser, streak, played, num_win, guess);
-                System.out.println(newScore.getUser_id() + " " + newScore.getNum_win() + " " + newScore.getNum_play() + " " + newScore.getStreak() +
-                        " " + newScore.getGuess1() + " " + newScore.getGuess2() + " " + newScore.getGuess3() + " " + newScore.getGuess4() + " " + newScore.getGuess5() + " " + newScore.getGuess6());
                 ScoreWordleDAO.addScoreWordle(newScore);
             } else {
                 scoreWordle.setStreak(0);
